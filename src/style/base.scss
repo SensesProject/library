@@ -8,3 +8,13 @@
   margin: 0;
   padding: 0;
 }
+
+html {
+  font: normal normal #{$font-size}/#{$line-height} $font-family-default;
+  color: $color-black;
+}
+
+a {
+  color: $color-accent;
+  text-decoration: none;
+}

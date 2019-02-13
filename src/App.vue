@@ -11,9 +11,6 @@
 
 <style lang="scss">
 @import "/style/base";
-#app {
-  font-family: 'IBM Plex Sans', sans-serif;
-}
 </style>
 <style scoped lang="scss">
 @import "/style/variables";
