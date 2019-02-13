@@ -14,14 +14,6 @@
     <p>needs to be defined</p>
   </div>
 </template>
-
-<script>
-export default {
-  name: 'home',
-  components: {
-  }
-}
-</script>
 <style scoped lang="scss">
 @import "../style/variables";
 
