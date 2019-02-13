@@ -1,11 +1,13 @@
 <template>
   <div id="app">
     <nav>
-      Library
-      <router-link to="/">Style</router-link> |
-      <router-link to="/components">Components</router-link>
+      <router-link class="index" to="/"><h1>Library</h1></router-link>
+      <router-link class="subpage" to="/style">Style</router-link>
+      <router-link class="subpage" to="/components">Components</router-link>
     </nav>
-    <router-view/>
+    <div class="page">
+      <router-view/>
+    </div>
   </div>
 </template>
 

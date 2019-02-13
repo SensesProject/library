@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import Index from './views/Index.vue'
 import Style from './views/Style.vue'
 import Components from './views/Components.vue'
 
@@ -9,6 +10,11 @@ export default new Router({
   routes: [
     {
       path: '/',
+      name: 'index',
+      component: Index
+    },
+    {
+      path: '/style',
       name: 'style',
       component: Style
     },
