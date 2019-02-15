@@ -1,5 +1,5 @@
 export default [{
-  name: 'HelloWorld',
+  name: '_TestComponent',
   options: {
     color: {
       type: 'select',
