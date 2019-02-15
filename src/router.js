@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Index from './views/Index.vue'
 import Style from './views/Style.vue'
 import Components from './views/Components.vue'
+import library from '@/assets/library.js'
 
 Vue.use(Router)
 
@@ -21,11 +22,11 @@ export default new Router({
     {
       path: '/components',
       name: 'components',
-      component: Components
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      // component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
+      component: Components,
+      children: library.map(({ name }) => ({
+        path: `${name}`,
+        component: () => import(`@/components/${name}.vue`)
+      }))
     }
   ]
 })
