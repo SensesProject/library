@@ -2,23 +2,43 @@ export default [{
   name: 'HelloWorld',
   options: {
     color: {
-      type: 'options',
+      type: 'select',
       options: [{
-        label: 'orange',
-        value: '#ff0000'
+        value: 'black'
+      }, {
+        value: 'yellow'
+      }, {
+        value: 'red'
+      }, {
+        value: 'green'
+      }, {
+        value: 'blue'
       }]
     },
-    value: {
-      type: 'slider',
-      options: {
-        min: 0,
-        max: 10,
-        step: 1
-      }
+    opacity: {
+      type: 'select',
+      options: [{
+        label: 'opaque',
+        value: 1
+      }, {
+        label: 'transparent',
+        value: 0.5
+      }]
     },
-    label: {
+    offset: {
+      type: 'range',
+      min: 0,
+      max: 10,
+      step: 1,
+      default: 0
+    },
+    heading: {
       type: 'text',
-      default: 'Label'
+      default: 'Heading'
+    },
+    invert: {
+      type: 'checkbox',
+      default: false
     }
   }
 }]

@@ -22,9 +22,11 @@ export default new Router({
     {
       path: '/components',
       name: 'components',
+      redirect: `/components/${library[0].name}`,
       component: Components,
       children: library.map(({ name }) => ({
-        path: `${name}`,
+        path: name,
+        name,
         component: () => import(`@/components/${name}.vue`)
       }))
     }

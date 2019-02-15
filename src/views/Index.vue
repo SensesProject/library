@@ -19,14 +19,14 @@
 
 .index {
   width: 100%;
-  max-width: 640px;
+  max-width: 800px;
   h2 {
     font-size: 1rem;
     text-transform: uppercase;
     margin: $spacing / 2 0 0;
   }
   pre {
-    background: $color-yellow;
+    background: $color-green;
     display: flex;
     padding: $spacing / 4;
     margin: $spacing * 0.125 0 $spacing * 0.25;

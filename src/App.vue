@@ -1,10 +1,12 @@
 <template>
   <div id="app">
-    <nav>
-      <router-link class="index" to="/"><h1>Library</h1></router-link>
-      <router-link class="subpage" to="/style">Style</router-link>
-      <router-link class="subpage" to="/components">Components</router-link>
-    </nav>
+    <div class="menu-bar">
+      <nav>
+        <router-link class="root index" to="/">Library</router-link>
+        <router-link class="serif" to="/style">Style</router-link>
+        <router-link class="mono" to="/components">Components</router-link>
+      </nav>
+    </div>
     <div class="page">
       <router-view/>
     </div>
@@ -17,39 +19,37 @@
 <style scoped lang="scss">
 @import "/style/variables";
 #app {
-  nav {
+  .menu-bar {
     width: 100vw;
-    padding: 0 $spacing * 0.75;
-    // background: $color-pale-gray;
     display: flex;
-    align-items: center;
+    justify-content: space-between;
+  }
+  nav {
+    display: flex;
+    align-items: flex-start;
     justify-content: center;
-
-    h1 {
-      font-size: 1rem;
-    }
+    margin-bottom: $spacing / 4;
 
     a {
       color: $color-black;
-      text-decoration: none;
-      padding: $spacing / 2 $spacing / 4;
+      font-weight: $font-weight-bold;
+      margin: $spacing / 2 0 $spacing / 2 $spacing / 2;
 
-      &.index.router-link-exact-active {
-        color: $color-accent;
-        border-bottom: 2px solid $color-accent;
-        padding-bottom: calc(#{$spacing / 2} - 2px);
-      }
-
-      &.subpage.router-link-active {
-        color: $color-accent;
-        border-bottom: 2px solid $color-accent;
-        padding-bottom: calc(#{$spacing / 2} - 2px);
+      &.router-link-active {
+        $underline: $spacing * 0.185;
+        background: linear-gradient(0deg,transparent,transparent $underline,$color-green $underline,$color-green calc(#{$underline} + 2px),transparent 0);
+        &.index {
+          background: none;
+          &.router-link-exact-active {
+            background: linear-gradient(0deg,transparent,transparent $underline,$color-green $underline,$color-green calc(#{$underline} + 2px),transparent 0);
+          }
+        }
       }
     }
   }
 
   .page {
-    padding: $spacing / 2 $spacing;
+    padding: 0 $spacing / 2;
     display: flex;
     justify-content: center;
   }

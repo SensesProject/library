@@ -1,27 +1,85 @@
 <template>
   <div class="components">
-    <div class="select">
-      <select>
-        <option value="SensesLogo">SensesLogo</option>
-      </select>
+    <div class="component-list">
+      <div v-for="c in components" :key="c.name">
+        <router-link class="mono" :to="`/components/${c.name}`">{{ c.name }}</router-link>
+      </div>
     </div>
-    <router-view></router-view>
+    <router-view class="component-view" v-bind="bindings"></router-view>
+    <div class="component-options">
+      <div class="option" v-for="o in componentOptions" :key="o.label">
+        <span class="label">{{ o.label }} </span>
+        <select class="input" v-if="o.type === 'select'" v-model="o.value">
+          <option v-for="(option, i) in o.options" :key="`${o.label}-${i}`" :value="option.value">
+            {{ option.label || option.value }}
+          </option>
+        </select>
+        <input v-if="o.type === 'range'" :value="o.value" @change="o.value = +$event.target.value" type="range" :max="o.max" :min="o.min" :step="o.step"/>
+        <input v-if="o.type !== 'select' && o.type !== 'range'" v-model="o.value" :type="o.type"/>
+      </div>
+    </div>
   </div>
 </template>
 <script>
-// const HelloWorld = () => import('@/components/HelloWorld.vue')
-// import asyncComponent from '@/components/asyncComponent'
+import components from '@/assets/library'
 
 export default {
   name: 'home',
-  components: {
-    // HelloWorld: () => import(/* webpackChunkName: "view-[request2]" */ `@/components/${this.component}.vue`)
-  },
   data () {
     return {
-      // component: 'HelloWorld'
+      components,
+      options: components.map(c => {
+        const options = c.options
+        return {
+          name: c.name,
+          options: Object.keys(options).map(label => {
+            return {
+              label,
+              ...options[label],
+              value: options[label].type === 'select' ? options[label].options[0].value : options[label].default
+            }
+          })
+        }
+      })
     }
+  },
+  computed: {
+    componentOptions () {
+      return this.options.find(o => o.name === this.$route.name).options
+    },
+    bindings () {
+      const bindings = {}
+      this.componentOptions.forEach(o => {
+        bindings[o.label] = o.value
+      })
+      return bindings
+    }
+    // options () {
+    //   const options = this.components.find(c => c.name === this.$route.name).options
+    //   return Object.keys(options).map(label => ({ label, ...options[label] }))
+    // }
   }
+  // created () {
+  //   this.options.forEach(o => {
+  //     this.props[o.label] = o.type === 'select' ? o.options[0].value : o.default
+  //   })
+  // },
+  // methods: {
+  //   setValue (value, o, t) {
+  //     if (t === 'select') {
+  //       console.log('should change')
+  //       this.props[o] = value
+  //     }
+  //   }
+  // },
+  // watch: {
+  //   props: {
+  //     handler (props) {
+  //       console.log(props)
+  //     },
+  //     deep: true
+  //   }
+  // }
 }
 </script>
 <style scoped lang="scss">
@@ -29,13 +87,33 @@ export default {
 
 .components {
   display: flex;
-  justify-content: center;
-  flex-direction: column;
+  width: 100%;
+  justify-content: space-between;
 
-  select {
-    font-size: 1rem;
-    color: $color-black;
-    font-family: $font-sans;
+  .component-list {
+    width: 320px;
+    a {
+      display: inline-block;
+      color: $color-black;
+      flex: 1;
+
+      &.router-link-active {
+        $underline: $spacing * 0.185;
+        background: linear-gradient(0deg,transparent,transparent $underline,$color-green $underline,$color-green calc(#{$underline} + 2px),transparent 0);
+      }
+    }
+  }
+  .component-view {
+    width: calc(100% - 640px);
+  }
+  .component-options {
+    width: 320px;
+    flex: 1;
+    text-align: right;
+
+    .input, input {
+      width: 140px;
+    }
   }
 }
 </style>
