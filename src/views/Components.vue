@@ -54,32 +54,7 @@ export default {
       })
       return bindings
     }
-    // options () {
-    //   const options = this.components.find(c => c.name === this.$route.name).options
-    //   return Object.keys(options).map(label => ({ label, ...options[label] }))
-    // }
   }
-  // created () {
-  //   this.options.forEach(o => {
-  //     this.props[o.label] = o.type === 'select' ? o.options[0].value : o.default
-  //   })
-  // },
-  // methods: {
-  //   setValue (value, o, t) {
-  //     if (t === 'select') {
-  //       console.log('should change')
-  //       this.props[o] = value
-  //     }
-  //   }
-  // },
-  // watch: {
-  //   props: {
-  //     handler (props) {
-  //       console.log(props)
-  //     },
-  //     deep: true
-  //   }
-  // }
 }
 </script>
 <style scoped lang="scss">
