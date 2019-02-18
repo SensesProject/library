@@ -1,4 +1,4 @@
-export default [{
+export default {
   name: '_TestComponent',
   options: {
     color: {
@@ -41,4 +41,4 @@ export default [{
       default: false
     }
   }
-}]
+}
