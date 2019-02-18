@@ -20,6 +20,7 @@ export default {
 }
 </script>
 <style lang="scss">
+$font-prefix: './assets/fonts';
 @import "/style/base";
 a {
   color: $color-black;
