@@ -17,6 +17,7 @@
           </option>
         </select>
         <input v-if="o.type === 'range'" :value="o.value" @change="o.value = +$event.target.value" type="range" :max="o.max" :min="o.min" :step="o.step"/>
+        <span class="range-value" v-if="o.type === 'range'">{{ o.value }}</span>
         <input v-if="o.type !== 'select' && o.type !== 'range'" v-model="o.value" :type="o.type"/>
       </div>
     </div>
@@ -86,12 +87,21 @@ export default {
     align-items: flex-start;
   }
   .component-options {
+    font-family: $font-mono;
     width: 320px;
     flex: 1;
     text-align: right;
-
+    .range-value {
+      position: absolute;
+      pointer-events: none;
+      transform: translate(-100%);
+    }
     .input, input {
       width: 140px;
+
+      &[type=range]{
+        width: 140px;
+      }
     }
   }
 }
