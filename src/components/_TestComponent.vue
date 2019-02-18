@@ -11,7 +11,7 @@
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: '_TestComponent',
   props: {
     offset: Number,
     color: String,
