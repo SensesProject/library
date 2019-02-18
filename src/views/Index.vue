@@ -3,7 +3,7 @@
     <p>Here lives the <a href="https://climatescenarios.org">climatescenarios.org</a> styleguide & component library.</p>
     <h2>usage</h2>
     <p>In your project directory run:</p>
-    <pre><code>npm i github/SensesProject/library</code></pre>
+    <pre><code>npm i github/SensesProject/library#{{ pkg.version }}</code></pre>
     <p>Embedd base style:</p>
     <pre><code>@import "library/src/style/base.scss";</code></pre>
     <p>Use variables:</p>
@@ -16,6 +16,16 @@
     <p>needs to be defined</p>
   </div>
 </template>
+<script>
+import pkg from '../../package.json'
+export default {
+  data () {
+    return {
+      pkg
+    }
+  }
+}
+</script>
 <style scoped lang="scss">
 @import "../style/variables";
 
