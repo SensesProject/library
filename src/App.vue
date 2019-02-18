@@ -6,12 +6,19 @@
         <router-link class="serif" to="/style">Style</router-link>
         <router-link class="mono" to="/components">Components</router-link>
       </nav>
+      <SensesLogo color="green"/>
     </div>
     <div class="page">
       <router-view/>
     </div>
   </div>
 </template>
+<script>
+import SensesLogo from '@/components/SensesLogo.vue'
+export default {
+  components: { SensesLogo }
+}
+</script>
 <style lang="scss">
 @import "/style/base";
 a {
