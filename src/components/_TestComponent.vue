@@ -32,7 +32,6 @@ export default {
     margin-bottom: $spacing / 2;
   }
 
-
   &.violet {
     color: $color-violet;
     border-color: $color-violet;
