@@ -1,7 +1,6 @@
 # library
 
 Here lives the climatescenarios.org styleguide & component library.
-usage
 
 ## Usage
 
