@@ -5,9 +5,11 @@
     <p>In your project directory run:</p>
     <pre><code>npm i github/SensesProject/library</code></pre>
     <p>Embedd base style:</p>
-    <pre><code>@import "library/style/base";</code></pre>
+    <pre><code>@import "library/src/style/base.scss";</code></pre>
+    <p>Use variables:</p>
+    <pre><code>@import "library/src/style/variables.scss";</code></pre>
     <p>Import Components individually</p>
-    <pre><code>import SensesLogo from 'library/components/SensesLogo.vue'</code></pre>
+    <pre><code>import SensesLogo from 'library/src/components/SensesLogo.vue'</code></pre>
     <h2>Updating Styles</h2>
     <p>needs to be discussed</p>
     <h2>Adding Components</h2>
