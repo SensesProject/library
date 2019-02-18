@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import Index from './views/Index.vue'
 import Style from './views/Style.vue'
 import Components from './views/Components.vue'
-import library from '@/assets/library.js'
+import library from '@/assets/library'
 
 Vue.use(Router)
 
