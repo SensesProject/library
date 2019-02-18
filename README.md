@@ -2,30 +2,9 @@
 
 Here lives the climatescenarios.org styleguide & component library.
 
-## Usage
+[→ Visit](https://ft0.ch/senses/library) for details
 
-### In your project directory run:
-```
-npm i github/SensesProject/library
-```
-
-### Embedd base style:
-```
-@import "library/src/style/base.scss";
-```
-
-### Use variables:
-```
-@import "library/src/style/variables.scss";
-```
-
-### Import Components individually
-```
-import SensesLogo from 'library/src/components/SensesLogo.vue'
-```
-
-## Development
-### setup
+## setup
 ```
 npm install
 ```
@@ -44,13 +23,3 @@ npm run build
 ```
 npm run lint
 ```
-
-## Contributing
-
-### Updating Styles
-
-needs to be discussed
-
-### Adding Components
-
-needs to be defined
