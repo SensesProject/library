@@ -5,7 +5,9 @@
         <router-link class="mono" :to="`/components/${c.name}`">{{ c.name }}</router-link>
       </div>
     </div>
-    <router-view class="component-view" v-bind="bindings"></router-view>
+    <div class="component-view">
+      <router-view v-bind="bindings"/>
+    </div>
     <div class="component-options">
       <div class="option" v-for="o in componentOptions" :key="o.label">
         <span class="label">{{ o.label }} </span>
@@ -69,7 +71,6 @@ export default {
     width: 320px;
     a {
       display: inline-block;
-      color: $color-black;
       flex: 1;
 
       &.router-link-active {
@@ -80,6 +81,9 @@ export default {
   }
   .component-view {
     width: calc(100% - 640px);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
   }
   .component-options {
     width: 320px;
