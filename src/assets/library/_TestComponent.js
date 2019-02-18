@@ -6,13 +6,9 @@ export default {
       options: [{
         value: 'black'
       }, {
-        value: 'yellow'
-      }, {
         value: 'red'
       }, {
         value: 'green'
-      }, {
-        value: 'blue'
       }]
     },
     opacity: {
