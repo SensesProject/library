@@ -1,12 +1,12 @@
 <template>
-  <div class="senses-logo" :class="[color, { animate, invalid }]">
+  <a href="https://climatescenarios.org" class="senses-logo" :class="[color, { animate, invalid }]">
     <div class="circles" :style="{width: `${circlesWidth}em`, left: `${circlesOffset}em`, transform: `translateX(${-circlesOffset}em)`}">
       <div class="circle circle-s" :style="{transform: sTransform}"/>
       <div class="circle circle-m" :style="{transform: mTransform}"/>
       <div class="circle circle-l" :style="{transform: lTransform}"/>
     </div>
     <h1>SENSES {{project}}</h1>
-  </div>
+  </a>
 </template>
 
 <script>
