@@ -3,3 +3,16 @@
     @content;
   }
 }
+
+@mixin center() {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin grid-basic($columns, $gap) {
+	display: grid;
+	grid-template-columns: repeat($columns, 1fr);
+	grid-column-gap: $gap;
+	grid-row-gap: $gap;
+}
