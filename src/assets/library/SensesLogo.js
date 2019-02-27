@@ -72,6 +72,24 @@ export default {
     validate: {
       type: 'checkbox',
       default: true
+    },
+    rootElement: {
+      type: 'select',
+      options: [{
+        value: 'a'
+      }, {
+        value: 'span'
+      }]
+    },
+    rootAttributes: {
+      type: 'select',
+      options: [{
+        value: { href: 'https://climatescenarios.org/' },
+        label: 'href: https://climatescenarios.org/'
+      }, {
+        value: { href: '/' },
+        label: 'href: /'
+      }]
     }
   }
 }

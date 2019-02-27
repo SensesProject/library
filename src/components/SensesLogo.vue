@@ -1,12 +1,12 @@
 <template>
-  <a href="https://climatescenarios.org" class="senses-logo" :class="[color, { animate, invalid }]">
+  <component :is="rootElement" v-bind="rootAttributes" class="senses-logo" :class="[color, { animate, invalid }]">
     <div class="circles" :style="{width: `${circlesWidth}em`, left: `${circlesOffset}em`, transform: `translateX(${-circlesOffset}em)`}">
       <div class="circle circle-s" :style="{transform: sTransform}"/>
       <div class="circle circle-m" :style="{transform: mTransform}"/>
       <div class="circle circle-l" :style="{transform: lTransform}"/>
     </div>
     <h1>SENSES {{project}}</h1>
-  </a>
+  </component>
 </template>
 
 <script>
@@ -16,6 +16,18 @@ export default {
     project: {
       type: String,
       default: null
+    },
+    rootElement: {
+      type: String,
+      default: 'a'
+    },
+    rootAttributes: {
+      type: Object,
+      default () {
+        return {
+          href: 'https://climatescenarios.org'
+        }
+      }
     },
     color: {
       type: String,
