@@ -102,7 +102,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "../style/variables.scss";
+@import "../style/global.scss";
 .senses-logo {
   cursor: default;
   $unit: 1em/3.5;
