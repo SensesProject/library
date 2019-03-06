@@ -71,15 +71,15 @@ export default {
     },
     width: {
       type: 'range',
-      min: 320,
-      max: 700,
+      min: 300,
+      max: 1120,
       step: 10,
       default: 500
     },
     height: {
       type: 'range',
       min: 200,
-      max: 600,
+      max: 800,
       step: 10,
       default: 500
     },
