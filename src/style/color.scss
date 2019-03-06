@@ -34,3 +34,11 @@ $color-black: palette(grey, 0);
 
 $color-accent: $color-violet;
 $color-default: $color-black;
+
+:export {
+  violet: $color-violet;
+  red: $color-red;
+  yellow: $color-yellow;
+  green: $color-green;
+  blue: $color-blue;
+}
