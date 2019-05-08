@@ -2,7 +2,7 @@
 
 Here lives the climatescenarios.org styleguide & component library.
 
-[→ Visit](https://ft0.ch/senses/library) for details
+[→ Visit](https://dev.climatescenarios.org/library) for details
 
 ## setup
 ```
