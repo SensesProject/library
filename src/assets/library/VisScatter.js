@@ -1,4 +1,8 @@
 import data from './data/impact-data-points'
+import data2 from './data/impact-data-points-2'
+import data3 from './data/impact-data-points-3'
+import data4 from './data/impact-data-points-4'
+
 import colors from '../../style/global.scss'
 
 export default {
@@ -7,6 +11,15 @@ export default {
     rawData: {
       type: 'select',
       options: [{
+        label: 'actual values',
+        value: data2
+      }, {
+        label: 'absolute changes',
+        value: data3
+      }, {
+        label: 'relative changes',
+        value: data4
+      }, {
         label: 'data1',
         value: data
       }]
@@ -25,11 +38,16 @@ export default {
         label: 'none',
         value: []
       }, {
-        label: 'rcp26 in red',
+        label: 'rcp26 in yellow / rcp 60 in blue',
         value: [{
-          color: colors.red,
+          color: colors.yellow,
           filter: {
             scenario: ['rcp26']
+          }
+        }, {
+          color: colors.blue,
+          filter: {
+            scenario: ['rcp60']
           }
         }]
       }, {
