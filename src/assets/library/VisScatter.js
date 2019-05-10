@@ -2,6 +2,7 @@ import data from './data/impact-data-points'
 import data2 from './data/impact-data-points-2'
 import data3 from './data/impact-data-points-3'
 import data4 from './data/impact-data-points-4'
+import d from './data/json_importer'
 
 import colors from '../../style/global.scss'
 
@@ -11,6 +12,9 @@ export default {
     rawData: {
       type: 'select',
       options: [{
+        label: 'real data',
+        value: d[0]
+      }, {
         label: 'actual values',
         value: data2
       }, {
@@ -105,6 +109,14 @@ export default {
       type: 'input',
       default: 'Y Axis Label'
     },
+    plotTitle: {
+      type: 'input',
+      default: 'Plot Title'
+    },
+    region: {
+      type: 'input',
+      default: 'Region'
+    },
     yUnit: {
       type: 'input',
       default: '%'
@@ -114,28 +126,28 @@ export default {
       min: 2,
       max: 10,
       step: 1,
-      default: 5
+      default: 3
     },
     yTicks: {
       type: 'range',
       min: 2,
       max: 10,
       step: 1,
-      default: 5
+      default: 3
     },
     circleRadius: {
       type: 'range',
       min: 1,
       max: 12,
       step: 0.5,
-      default: 3
+      default: 2
     },
     tickSize: {
       type: 'range',
       min: 1,
       max: 20,
       step: 1,
-      default: 5
+      default: 3
     },
     em: {
       type: 'range',
