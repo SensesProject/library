@@ -4,6 +4,18 @@
   }
 }
 
+@mixin max-width($device) {
+  @media screen and (max-width: $device - 1px) {
+    @content;
+  }
+}
+
+@mixin min-width($device) {
+  @media screen and (min-width: $device) {
+    @content;
+  }
+}
+
 @mixin center() {
   display: flex;
   align-items: center;
