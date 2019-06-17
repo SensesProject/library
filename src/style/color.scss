@@ -24,13 +24,13 @@ $palettes: (
   @return map-get(map-get($palettes, $palette), $tone);
 }
 
-$color-white: palette(grey, 100);
+$color-white: #fff;
 $color-pale-gray: palette(grey, 80);
 $color-light-gray: palette(grey, 60);
 $color-gray: palette(grey, 50);
 $color-dark-gray: palette(grey, 40);
 $color-deep-gray: palette(grey, 20);
-$color-black: palette(grey, 0);
+$color-black: #000;
 
 $color-accent: $color-violet;
 $color-default: $color-black;
