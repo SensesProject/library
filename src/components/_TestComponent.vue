@@ -23,7 +23,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "../style/variables.scss";
+@import "../style/global.scss";
 .-test-component {
   padding: $spacing / 4;
   border: 1px solid;
@@ -48,9 +48,9 @@ export default {
     color: $color-yellow;
     border-color: $color-yellow;
   }
-  &.red {
-    color: $color-red;
-    border-color: $color-red;
+  &.cyan {
+    color: $color-cyan;
+    border-color: $color-cyan;
   }
   &.black {
     color: $color-black;
@@ -72,8 +72,8 @@ export default {
     &.yellow {
       background: $color-yellow;
     }
-    &.red {
-      background: $color-red;
+    &.cyan {
+      background: $color-cyan;
     }
     &.black {
       background: $color-black;

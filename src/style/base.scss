@@ -9,24 +9,14 @@
   padding: 0;
 }
 
-html {
-  font: $font-weight-regular normal #{$font-size-mobile}/1.6 $font-family-default;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  box-sizing: border-box;
-  -webkit-text-size-adjust: 100%;
-  -webkit-font-feature-settings: "kern" 1;
-     -moz-font-feature-settings: "kern" 1;
-       -o-font-feature-settings: "kern" 1;
-          font-feature-settings: "kern" 1;
-  font-kerning: normal;
+html, p, .p {
+  font: $font-weight-regular normal #{$font-size}/1.6 $font-family-default;
+  text-size-adjust: 100%;
   color: $color-default;
+}
 
-  @include media-query($narrow) {
-    font-size: $font-size;
-  }
+p, .p {
+  hyphens: auto;
 }
 
 b, strong, h1, h2, h3, h4, h5 {
@@ -48,4 +38,26 @@ a {
 
 .mono {
   font-family: $font-mono;
+}
+
+h1, .h1 {
+  font-family: $font-serif;
+  font-size: 2rem;
+}
+
+h2, .h2 {
+  font-size: 1.5rem;
+}
+
+h3, .h3 {
+  font-size: 1rem;
+}
+
+.label, svg text {
+  font-weight: $font-weight-light;
+  font-size: 0.75rem;
+}
+
+.uppercase {
+  text-transform: uppercase;
 }

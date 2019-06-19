@@ -5,20 +5,21 @@
         <router-link class="mono" :to="`/components/${c.name}`">{{ c.name }}</router-link>
       </div>
     </div>
+    <div class="component-message" v-if="componentMessage" v-html="componentMessage"/>
     <div class="component-view">
       <router-view v-bind="bindings"/>
-    </div>
-    <div class="component-options">
-      <div class="option" v-for="o in componentOptions" :key="o.label">
-        <span class="label">{{ o.label }} </span>
-        <select class="input" v-if="o.type === 'select'" v-model="o.value">
-          <option v-for="(option, i) in o.options" :key="`${o.label}-${i}`" :value="option.value">
-            {{ option.label || option.value }}
-          </option>
-        </select>
-        <input v-if="o.type === 'range'" :value="o.value" @change="o.value = +$event.target.value" type="range" :max="o.max" :min="o.min" :step="o.step"/>
-        <span class="range-value" v-if="o.type === 'range'">{{ o.value }}</span>
-        <input v-if="o.type !== 'select' && o.type !== 'range'" v-model="o.value" :type="o.type"/>
+      <div class="component-options" v-if="componentOptions.length > 0">
+        <div class="option" v-for="o in componentOptions" :key="o.label">
+          <span class="label">{{ o.label }} </span>
+          <select class="input" v-if="o.type === 'select'" v-model="o.value">
+            <option v-for="(option, i) in o.options" :key="`${o.label}-${i}`" :value="option.value">
+              {{ option.label || option.value }}
+            </option>
+          </select>
+          <input v-if="o.type === 'range'" :value="o.value" @change="o.value = +$event.target.value" type="range" :max="o.max" :min="o.min" :step="o.step"/>
+          <span class="range-value" v-if="o.type === 'range'">{{ o.value }}</span>
+          <input v-if="o.type !== 'select' && o.type !== 'range'" v-model="o.value" :type="o.type"/>
+        </div>
       </div>
     </div>
   </div>
@@ -50,6 +51,9 @@ export default {
     componentOptions () {
       return this.options.find(o => o.name === this.$route.name).options
     },
+    componentMessage () {
+      return this.components.find(c => c.name === this.$route.name).message
+    },
     bindings () {
       const bindings = {}
       this.componentOptions.forEach(o => {
@@ -67,27 +71,38 @@ export default {
   display: flex;
   width: 100%;
   justify-content: space-between;
+  flex-direction: column;
 
   .component-list {
-    width: 320px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: $spacing / 2;
     a {
       display: inline-block;
       flex: 1;
+      margin-right: $spacing / 2;
 
       &.router-link-active {
-        $underline: $spacing * 0.185;
-        background: linear-gradient(0deg,transparent,transparent $underline,$color-green $underline,$color-green calc(#{$underline} + 2px),transparent 0);
+        color: $color-green;
       }
     }
   }
+  .component-message {
+    max-width: 640px;
+    align-self: center;
+    background: transparentize($color-yellow, .98);
+    padding: $spacing / 2;
+    border: 1px solid $color-yellow;
+  }
   .component-view {
-    width: calc(100% - 640px);
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: flex-start;
   }
   .component-options {
     font-family: $font-mono;
+    margin-left: $spacing / 2;
     width: 320px;
     flex: 1;
     text-align: right;

@@ -10,7 +10,7 @@ export default {
       }, {
         value: 'yellow'
       }, {
-        value: 'red'
+        value: 'cyan'
       }, {
         value: 'green'
       }, {
