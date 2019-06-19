@@ -6,7 +6,7 @@ export default {
       options: [{
         value: 'black'
       }, {
-        value: 'red'
+        value: 'cyan'
       }, {
         value: 'green'
       }]

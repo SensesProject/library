@@ -1,11 +1,11 @@
 import _TestComponent from './_TestComponent'
 import SensesLogo from './SensesLogo'
-import VisScatter from './VisScatter'
-import VisScatterDemo from './VisScatterDemo'
+import LayoutScrollytelling from './LayoutScrollytelling'
+import IntersectionObserver from './IntersectionObserver'
 
 export default [
   _TestComponent,
   SensesLogo,
-  VisScatter,
-  VisScatterDemo
+  LayoutScrollytelling,
+  IntersectionObserver
 ]

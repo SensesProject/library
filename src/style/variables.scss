@@ -8,12 +8,12 @@ $font-serif: "IBM Plex Serif", "Georgia", serif !default;
 
 $font-family-default: $font-sans !default;
 
-$font-weight-regular: 450 !default;
+$font-weight-light: 400 !default;
+$font-weight-regular: 500 !default;
 $font-weight-bold: 600 !default;
 
 $line-height: 1.6 !default;
-$font-size: 18.75 / 16 * 100% !default;
-$font-size-mobile: 17 / 16 * 100% !default;
+$font-size: 16px !default;
 
 $transition: 0.2s !default;
 

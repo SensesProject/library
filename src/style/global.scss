@@ -1,2 +1,14 @@
 @import "mixins";
 @import "variables";
+
+:export {
+  colorGreen: $color-green;
+  colorBlue: $color-blue;
+  colorViolet: $color-violet;
+  colorCyan: $color-cyan;
+  colorYellow: $color-yellow;
+
+  colorWhite: $color-white;
+  colorDeepGray: $color-deep-gray;
+  colorBlack: $color-black;
+}

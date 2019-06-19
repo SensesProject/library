@@ -2,8 +2,9 @@
   <div class="index">
     <p>Here lives the <a href="https://climatescenarios.org">climatescenarios.org</a> styleguide & component library.</p>
     <h2>usage</h2>
-    <p>In your project directory run:</p>
+    <p>In your project directory run to install the current release / latest dev version:</p>
     <pre><code>npm i github:SensesProject/library#{{ pkg.version }}</code></pre>
+    <pre><code>npm i github:SensesProject/library#dev</code></pre>
     <p>Embedd base style:</p>
     <pre><code>@import "library/src/style/base.scss";</code></pre>
     <p>Use variables:</p>
@@ -14,7 +15,7 @@
     <p>needs to be discussed</p>
     <h2>Adding Components</h2>
     <p>Move component to <code>/src/components/</code></p>
-    <p>Create <code>/src/assets/library/[component].js</code>and specify name and options:</p>
+    <p>Create <code>/src/assets/library/[component].js</code> and specify name and options:</p>
     <pre><code>export default {{ spec }}</code></pre>
     <p>Import and export file in <code>/src/assets/library/index.js</code></p>
     <p>Update version in  <code>/package.json</code></p>
@@ -58,7 +59,7 @@ export default {
     overflow: auto;
     code {
       font-family: $font-mono;
-      color: $color-white;
+      // color: $color-white;
       word-wrap: normal;
     }
   }
@@ -66,7 +67,7 @@ export default {
   p code {
     background: $color-green;
     font-family: $font-mono;
-    color: $color-white;
+    // color: $color-white;
     word-wrap: normal;
     padding: 0 $spacing / 8;
   }
