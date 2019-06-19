@@ -9,10 +9,14 @@
   padding: 0;
 }
 
+html {
+  color: $color-default;
+}
+
 html, p, .p {
   font: $font-weight-regular normal #{$font-size}/1.6 $font-family-default;
   text-size-adjust: 100%;
-  color: $color-default;
+
 }
 
 p, .p {
