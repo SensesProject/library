@@ -2,7 +2,6 @@
 @import "variables";
 
 :export {
-  colorGreen: $color-green;
   colorBlue: $color-blue;
   colorViolet: $color-violet;
   colorCyan: $color-cyan;
@@ -11,4 +10,16 @@
   colorWhite: $color-white;
   colorDeepGray: $color-deep-gray;
   colorBlack: $color-black;
+
+  color: {
+    green: $color-green;
+    blue: $color-blue;
+    violet: $color-violet;
+    cyan: $color-cyan;
+    yellow: $color-yellow;
+    white: $color-white;
+    deep-gray: $color-deep-gray;
+    black: $color-black;
+    green: $color-green;
+  }
 }
