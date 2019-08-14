@@ -54,3 +54,8 @@ Nadia Zeissig
 
 ## Investment Opportunities and Alignment: What are investment opportunities in a low carbon world?
 Jonas Parnow
+
+## General information modules
+
+## Primary Energy Scenarios
+Hannah Schwan and Dennis Ostendorf
