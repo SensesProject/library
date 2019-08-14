@@ -108,7 +108,7 @@ export default {
 
   .text {
     width: 100%;
-    max-width: 480px;
+    max-width: 360px;
     min-height: 100vh;
     flex: 1;
     padding: 0 $spacing / 2;
