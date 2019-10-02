@@ -171,10 +171,10 @@ export default {
       border-color: $color-yellow;
     }
   }
-  &.cyan {
-    color: $color-cyan;
+  &.purple {
+    color: $color-purple;
     .circle {
-      border-color: $color-cyan;
+      border-color: $color-purple;
     }
   }
   &.black {
