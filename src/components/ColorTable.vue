@@ -22,9 +22,8 @@
       <tr
         v-for="color in colors"
         :key="color.title"
-        v-if="color.type !== 'aside' || (color.type === 'aside' && open === color.id)"
-        @click="toggleID(color.id)">
-        <td><span v-if="color.type === 'main'" :class="color.klass">{{ open === color.id ? '–' : '+' }}</span></td>
+        v-if="color.type !== 'aside' || (color.type === 'aside' && open === color.id)">
+        <td @click="toggleID(color.id)" class="clickable"><span v-if="color.type === 'main'" :class="color.klass">{{ open === color.id ? '–' : '+' }}</span></td>
         <td>{{ color.title }}</td>
         <td class="tags"><span class="bck" v-html="color.circle" v-if="color.circle" /></td>
         <td class="tags"><span class="bck" v-html="color.model" v-if="color.model" /></td>
