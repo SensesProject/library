@@ -20,9 +20,8 @@
     </thead>
     <transition-group name="rows" tag="tbody">
       <tr
-        v-for="color in colors"
-        :key="color.title"
-        v-if="color.type !== 'aside' || (color.type === 'aside' && open === color.id)">
+        v-for="color in filteredColors"
+        :key="color.title">
         <td @click="toggleID(color.id)" class="clickable"><span v-if="color.type === 'main'" :class="color.klass">{{ open === color.id ? '–' : '+' }}</span></td>
         <td>{{ color.title }}</td>
         <td class="tags"><span class="bck" v-html="color.circle" v-if="color.circle" /></td>
@@ -53,14 +52,14 @@
 </template>
 
 <script>
-function componentToHex(c) {
-  const hex = parseInt(c, 10).toString(16);
-  return hex.length == 1 ? "0" + hex : hex;
+function componentToHex (c) {
+  const hex = parseInt(c, 10).toString(16)
+  return hex.length === 1 ? '0' + hex : hex
 }
 
-function rgbToHex(rgb) {
-  const [, r, g, b] = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
-  return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+function rgbToHex (rgb) {
+  const [, r, g, b] = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/)
+  return '#' + componentToHex(r) + componentToHex(g) + componentToHex(b)
 }
 
 export default {
@@ -97,28 +96,28 @@ export default {
       { id: 'green', title: '100 Green', circle: '', model: '', energy: '', semantics: [], tags: [], area: true, code: 'palette(green, 100)', klass: 'color--green-100', type: 'aside' },
       { id: 'green', title: '80 Green', circle: '', model: '', energy: '', semantics: [], tags: [], area: true, code: 'palette(green, 80)', klass: 'color--green-80', type: 'aside' },
       { id: 'green', title: '60 Green', circle: '', model: '', energy: '', semantics: [], tags: [], area: true, code: 'palette(green, 60)', klass: 'color--green-60', type: 'aside' },
-      { id: 'green', title: 'Green', circle: 'Socioec. Develop.', model: 'Labor', energy: 'Renewables', semantics: ['“Good”'], tags: [], area: true, code: '$color-green', klass: 'color--green', type: 'main'  },
+      { id: 'green', title: 'Green', circle: 'Socioec. Develop.', model: 'Labor', energy: 'Renewables', semantics: ['“Good”'], tags: [], area: true, code: '$color-green', klass: 'color--green', type: 'main' },
       { id: 'green', title: '40 Green', circle: '', model: '', energy: '', semantics: [], tags: [], area: true, code: 'palette(green, 40)', klass: 'color--green-40', type: 'aside' },
       { id: 'green', title: '20 Green', circle: '', model: '', energy: '', semantics: [], tags: [], area: true, code: 'palette(green, 20)', klass: 'color--green-20', type: 'aside' },
       { id: 'green', title: '0 Green', circle: '', model: '', energy: '', semantics: [], tags: [], area: true, code: 'palette(green, 0)', klass: 'color--green-0', type: 'aside' },
       { id: 'blue', title: '100 Blue', circle: '', model: '', energy: '', semantics: [], tags: [], area: true, code: 'palette(blue, 100)', klass: 'color--blue-100', type: 'aside' },
       { id: 'blue', title: '80 Blue', circle: '', model: '', energy: '', semantics: [], tags: [], area: true, code: 'palette(blue, 80)', klass: 'color--blue-80', type: 'aside' },
       { id: 'blue', title: '60 Blue', circle: '', model: '', energy: '', semantics: [], tags: [], area: true, code: 'palette(blue, 60)', klass: 'color--blue-60', type: 'aside' },
-      { id: 'blue', title: 'Blue', circle: 'Climate Impacts', model: 'Capital stock', energy: '', semantics: ['Interactive'], tags: ['Mitigation'], area: true, code: '$color-blue', klass: 'color--blue', type: 'main'  },
+      { id: 'blue', title: 'Blue', circle: 'Climate Impacts', model: 'Capital stock', energy: '', semantics: ['Interactive'], tags: ['Mitigation'], area: true, code: '$color-blue', klass: 'color--blue', type: 'main' },
       { id: 'blue', title: '40 Blue', circle: '', model: '', energy: '', semantics: [], tags: [], area: true, code: 'palette(blue, 40)', klass: 'color--blue-40', type: 'aside' },
       { id: 'blue', title: '20 Blue', circle: '', model: '', energy: '', semantics: [], tags: [], area: true, code: 'palette(blue, 20)', klass: 'color--blue-20', type: 'aside' },
       { id: 'blue', title: '0 Blue', circle: '', model: '', energy: '', semantics: [], tags: [], area: true, code: 'palette(blue, 0)', klass: 'color--blue-0', type: 'aside' },
       { id: 'purple', title: '100 Purple', circle: '', model: '', energy: '', semantics: [], tags: [], area: true, code: 'palette(purple, 100)', klass: 'color--purple-100', type: 'aside' },
       { id: 'purple', title: '80 Purple', circle: '', model: '', energy: '', semantics: [], tags: [], area: true, code: 'palette(purple, 80)', klass: 'color--purple-80', type: 'aside' },
       { id: 'purple', title: '60 Purple', circle: '', model: '', energy: '', semantics: [], tags: [], area: true, code: 'palette(purple, 60)', klass: 'color--purple-60', type: 'aside' },
-      { id: 'purple', title: 'Purple', circle: '', model: '', energy: '', semantics: [], tags: [], area: true, code: '$color-purple', klass: 'color--purple', type: 'main'  },
+      { id: 'purple', title: 'Purple', circle: '', model: '', energy: '', semantics: [], tags: [], area: true, code: '$color-purple', klass: 'color--purple', type: 'main' },
       { id: 'purple', title: '40 Purple', circle: '', model: '', energy: '', semantics: [], tags: [], area: true, code: 'palette(purple, 40)', klass: 'color--purple-40', type: 'aside' },
       { id: 'purple', title: '20 Purple', circle: '', model: '', energy: '', semantics: [], tags: [], area: true, code: 'palette(purple, 20)', klass: 'color--purple-20', type: 'aside' },
       { id: 'purple', title: '0 Purple', circle: '', model: '', energy: '', semantics: [], tags: [], area: true, code: 'palette(purple, 0)', klass: 'color--purple-0', type: 'aside' },
       { id: 'neon', title: '100 Neon', circle: '', model: '', energy: '', semantics: [], tags: [], area: true, code: 'palette(neon, 100)', klass: 'color--neon-100', type: 'aside' },
       { id: 'neon', title: '80 Neon', circle: '', model: '', energy: '', semantics: [], tags: [], area: true, code: 'palette(neon, 80)', klass: 'color--neon-80', type: 'aside' },
       { id: 'neon', title: '60 Neon', circle: '', model: '', energy: '', semantics: [], tags: [], area: true, code: 'palette(neon, 60)', klass: 'color--neon-60', type: 'aside' },
-      { id: 'neon', title: 'Neon', circle: '', model: '', energy: '', semantics: [], tags: [], area: true, code: '$color-neon', klass: 'color--neon', type: 'main'  },
+      { id: 'neon', title: 'Neon', circle: '', model: '', energy: '', semantics: [], tags: [], area: true, code: '$color-neon', klass: 'color--neon', type: 'main' },
       { id: 'neon', title: '40 Neon', circle: '', model: '', energy: '', semantics: [], tags: [], area: true, code: 'palette(neon, 40)', klass: 'color--neon-40', type: 'aside' },
       { id: 'neon', title: '20 Neon', circle: '', model: '', energy: '', semantics: [], tags: [], area: true, code: 'palette(neon, 20)', klass: 'color--neon-20', type: 'aside' },
       { id: 'neon', title: '0 Neon', circle: '', model: '', energy: '', semantics: [], tags: [], area: true, code: 'palette(neon, 0)', klass: 'color--neon-0', type: 'aside' },
@@ -137,6 +136,12 @@ export default {
     return {
       colors,
       open: false
+    }
+  },
+  computed: {
+    filteredColors () {
+      const { colors, open } = this
+      return colors.filter(color => color.type !== 'aside' || (color.type === 'aside' && open === color.id))
     }
   },
   methods: {
