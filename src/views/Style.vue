@@ -33,14 +33,6 @@
     <div class="section">
       <div class="mono">Colors</div>
       <ColorTable />
-      <div class="color" v-for="c in colors">
-        <div class="square" :style="{background: c.color}"/>
-        <div class="">
-          <code>{{ c.name }}</code>
-          <br>
-          <code>{{ c.color }}</code>
-        </div>
-      </div>
     </div>
     <div class="section">
       <div class="mono">Units</div>
