@@ -8,7 +8,7 @@ $color-purple: #B035C9;
 $color-neon: #5263ff;
 
 
-$palettes: (
+$colorsPalettes: (
   gray: (
     100: hsl(240, 0%, 100%), // #ffffff
     90:  hsl(240, 100%, 97%), // #f2f2ff
@@ -88,33 +88,33 @@ $palettes: (
   )
 );
 
-@function palette($palette, $tone: '50') {
-  @return map-get(map-get($palettes, $palette), $tone);
+@function getColor($palette: 'gray', $tone: '50') {
+  @return map-get(map-get($colorsPalettes, $palette), $tone);
 }
 
-$color-white: palette(gray, 100);
-$color-pale-gray: palette(gray, 80);
-$color-light-gray: palette(gray, 60);
-$color-gray: palette(gray, 50);
-$color-dark-gray: palette(gray, 40);
-$color-deep-gray: palette(gray, 20);
-$color-black: palette(gray, 0);
+$color-white: getColor(gray, 100);
+$color-pale-gray: getColor(gray, 80);
+$color-light-gray: getColor(gray, 60);
+$color-gray: getColor(gray, 50);
+$color-dark-gray: getColor(gray, 40);
+$color-deep-gray: getColor(gray, 20);
+$color-black: getColor(gray, 0);
 
 $color-accent: $color-violet;
 $color-default: $color-black;
 
 :export {
-	colorViolet: $color-violet;
-	colorRed: $color-red;
-	colorOrange: $color-orange;
-	colorYellow: $color-yellow;
-	colorGreen: $color-green;
-	colorBlue: $color-blue;
-	colorPurple: $color-purple;
-	colorNeon: $color-neon;
+  colorViolet: $color-violet;
+  colorRed: $color-red;
+  colorOrange: $color-orange;
+  colorYellow: $color-yellow;
+  colorGreen: $color-green;
+  colorBlue: $color-blue;
+  colorPurple: $color-purple;
+  colorNeon: $color-neon;
 
-	colorAccent: $color-accent;
-	colorDefault: $color-default;
+  colorAccent: $color-accent;
+  colorDefault: $color-default;
 
   colorWhite: $color-white;
   colorPaleGray: $color-pale-gray;
