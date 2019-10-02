@@ -16,7 +16,6 @@ html {
 html, p, .p {
   font: $font-weight-regular normal #{$font-size}/1.6 $font-family-default;
   text-size-adjust: 100%;
-
 }
 
 p, .p {
@@ -32,6 +31,19 @@ a {
   text-decoration: none;
 }
 
+table {
+  border-spacing: 0;
+  border-collapse: collapse;
+
+  th > *, td > * {
+    vertical-align: middle;
+  }
+
+  thead th {
+    text-align: left;
+  }
+}
+
 .sans {
   font-family: $font-sans;
 }
@@ -40,7 +52,7 @@ a {
   font-family: $font-serif;
 }
 
-.mono {
+.mono, pre, code {
   font-family: $font-mono;
 }
 

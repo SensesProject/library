@@ -48,9 +48,9 @@ export default {
     color: $color-yellow;
     border-color: $color-yellow;
   }
-  &.cyan {
-    color: $color-cyan;
-    border-color: $color-cyan;
+  &.purple {
+    color: $color-purple;
+    border-color: $color-purple;
   }
   &.black {
     color: $color-black;
@@ -72,8 +72,8 @@ export default {
     &.yellow {
       background: $color-yellow;
     }
-    &.cyan {
-      background: $color-cyan;
+    &.purple {
+      background: $color-purple;
     }
     &.black {
       background: $color-black;

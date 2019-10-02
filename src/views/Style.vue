@@ -32,6 +32,7 @@
     </div>
     <div class="section">
       <div class="mono">Colors</div>
+      <ColorTable />
       <div class="color" v-for="c in colors">
         <div class="square" :style="{background: c.color}"/>
         <div class="">
@@ -56,6 +57,7 @@
 </template>
 
 <script>
+import ColorTable from '@/components/ColorTable.vue'
 import style from '@/style/global.scss'
 export default {
   name: 'home',
@@ -75,7 +77,8 @@ export default {
         }
       })
     }
-  }
+  },
+  components: { ColorTable }
 }
 </script>
 
