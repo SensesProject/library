@@ -4,6 +4,7 @@ import LayoutScrollytelling from './LayoutScrollytelling'
 import IntersectionObserver from './IntersectionObserver'
 import NavMenu from './NavMenu'
 import NavFalafel from './NavFalafel'
+import SensesRadio from './SensesRadio'
 
 export default [
   _TestComponent,
@@ -11,5 +12,6 @@ export default [
   LayoutScrollytelling,
   IntersectionObserver,
   NavMenu,
-  NavFalafel
+  NavFalafel,
+  SensesRadio
 ]
