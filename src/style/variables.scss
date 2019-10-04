@@ -2,22 +2,17 @@
 
 $spacing: 2rem !default;
 
-$font-sans: "IBM Plex Sans", "Helvetica Neue", "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Open Sans", Helvetica, sans-serif !default;
+$transition: 0.2s !default;
+
+$font-sans: "IBM Plex Sans", "Helvetica Neue", Helvetica, sans-serif !default;
 $font-mono: "IBM Plex Mono", monospace !default;
 $font-serif: "IBM Plex Serif", "Georgia", serif !default;
-
 $font-family-default: $font-sans !default;
-
-$font-weight-light: 400 !default;
 $font-weight-regular: 450 !default;
 $font-weight-bold: 600 !default;
-
-$line-height: 1.6 !default;
-$font-size: 16px !default;
-
-$transition: 0.2s !default;
 
 $narrow: 600px !default;
 $medium: 900px !default;
 $wide: 1200px !default;
 $extra-wide: 1700px !default;
+
