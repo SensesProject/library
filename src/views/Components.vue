@@ -7,7 +7,7 @@
     </div>
     <div class="component-message" v-if="componentMessage" v-html="componentMessage"/>
     <div class="component-view">
-      <router-view v-bind="bindings"/>
+      <router-view v-bind="bindings" v-model="input"/>
       <div class="component-options" v-if="componentOptions.length > 0">
         <div class="option" v-for="o in componentOptions" :key="o.label">
           <span class="label">{{ o.label }} </span>
@@ -44,7 +44,8 @@ export default {
             }
           })
         }
-      })
+      }),
+      input: null
     }
   },
   computed: {
@@ -54,11 +55,18 @@ export default {
     componentMessage () {
       return this.components.find(c => c.name === this.$route.name).message
     },
+    componentInput () {
+      return this.options.find(o => o.name === this.$route.name).input
+    },
     bindings () {
       const bindings = {}
       this.componentOptions.forEach(o => {
+        if (this.componentInput && o.label === 'input') return
         bindings[o.label] = o.value
       })
+      if (this.componentInput) {
+        bindings['v-model'] = 'input'
+      }
       return bindings
     }
   }
