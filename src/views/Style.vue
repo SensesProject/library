@@ -1,38 +1,12 @@
 <template>
   <div class="style">
     <div class="section">
-      <div class="mono">Fonts</div>
-      <div class="font">
-        <h1>Heading 1</h1><code>h1, .h1</code>
-      </div>
-      <div class="font">
-        <h2>Heading 2</h2><code>h2, .h2</code>
-      </div>
-      <div class="font">
-        <h3>Heading 3</h3><code>h3, .h3</code>
-      </div>
-      <div class="font">
-        <p>Climate change and socioeconomic development are deeply intertwined. Social and economic activities are the main driver of climate change. In turn, climate change will have serious impacts on these activities, e.g., by rising sea levels and exposure to severe weather events.</p>
-        <code>html, p, .p</code>
-      </div>
-      <div class="font">
-        <p class="serif">Climate change and socioeconomic development are deeply intertwined. Social and economic activities are the main driver of climate change. In turn, climate change will have serious impacts on these activities, e.g., by rising sea levels and exposure to severe weather events.</p>
-        <code>p.serif, .p.serif</code>
-      </div>
-      <div class="font">
-        <p class="mono">Climate change and socioeconomic development are deeply intertwined. Social and economic activities are the main driver of climate change. In turn, climate change will have serious impacts on these activities, e.g., by rising sea levels and exposure to severe weather events.</p>
-        <code>p.mono, .p.mono</code>
-      </div>
-      <div class="font">
-        <span class="label">Label</span><code>.label, svg text</code>
-      </div>
-      <div class="font">
-        <span class="label uppercase">Uppercase Label</span><code>.label.uppercase, svg text.uppercase</code>
-      </div>
+      <div class="mono">Typography</div>
+      <TypoTable/>
     </div>
     <div class="section">
       <div class="mono">Colors</div>
-      <ColorTable />
+      <ColorTable/>
     </div>
     <div class="section">
       <div class="mono">Units</div>
@@ -50,9 +24,11 @@
 
 <script>
 import ColorTable from '@/components/ColorTable.vue'
+import TypoTable from '@/components/TypoTable.vue'
 import style from '@/style/global.scss'
 export default {
   name: 'home',
+  components: { ColorTable, TypoTable },
   data () {
     return {
       style
@@ -69,8 +45,7 @@ export default {
         }
       })
     }
-  },
-  components: { ColorTable }
+  }
 }
 </script>
 
@@ -80,6 +55,7 @@ export default {
   width: 100%;
   .section {
     width: 100%;
+    overflow: scroll;
     border-top: 1px solid $color-green;
     margin-bottom: $spacing;
     padding-top: $spacing / 4;
