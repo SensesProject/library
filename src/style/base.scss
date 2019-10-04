@@ -13,22 +13,9 @@ html {
   color: $color-default;
 }
 
-html, p, .p {
-  font: $font-weight-regular normal #{$font-size}/1.6 $font-family-default;
-  text-size-adjust: 100%;
-}
-
-p, .p {
-  hyphens: auto;
-}
-
-b, strong, h1, h2, h3, h4, h5 {
-  font-weight: $font-weight-bold;
-}
-
-a {
-  color: $color-accent;
-  text-decoration: none;
+.invert {
+  background: $color-default;
+  color: $color-white;
 }
 
 table {
@@ -42,39 +29,6 @@ table {
   thead th {
     text-align: left;
   }
-}
-
-.sans {
-  font-family: $font-sans;
-}
-
-.serif {
-  font-family: $font-serif;
-}
-
-.mono, pre, code {
-  font-family: $font-mono;
-}
-
-h1, .h1 {
-  font-family: $font-serif;
-  font-size: 2rem;
-}
-
-h2, .h2 {
-  font-size: 1.5rem;
-}
-
-h3, .h3 {
-  font-size: 1rem;
-}
-
-.label, svg text {
-  font-size: 0.75rem;
-}
-
-.uppercase {
-  text-transform: uppercase;
 }
 
 .clickable {
