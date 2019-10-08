@@ -1,5 +1,5 @@
 <template>
-  <svg class="nav-falafel" viewBox="0 0 32 32">
+  <svg class="senses-falafel" viewBox="0 0 32 32">
     <g :fill="fill" :class="[symbol]" transform="translate(16 16)">
       <circle r="1.5"/>
       <g class="circle top left"><circle r="1.5"/></g>
@@ -13,7 +13,7 @@
 <script>
 import colors from '../style/global.scss'
 export default {
-  name: 'NavFalafel',
+  name: 'SensesFalafel',
   props: {
     color: {
       type: String,
@@ -36,7 +36,7 @@ export default {
 <style scoped lang="scss">
 @import "../style/global.scss";
 
-.nav-falafel {
+.senses-falafel {
   width: $spacing;
   height: $spacing;
 
