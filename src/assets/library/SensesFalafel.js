@@ -1,5 +1,5 @@
 export default {
-  name: 'NavFalafel',
+  name: 'SensesFalafel',
   options: {
     color: {
       type: 'select',

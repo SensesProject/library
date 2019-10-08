@@ -1,18 +1,18 @@
 <template>
-  <div class="nav-menu">
+  <div class="senses-menu">
     <senses-logo color="white"/>
-    <nav-falafel color="white"/>
+    <senses-falafel color="white"/>
   </div>
 </template>
 
 <script>
 import SensesLogo from './SensesLogo.vue'
-import NavFalafel from './NavFalafel.vue'
+import SensesFalafel from './SensesFalafel.vue'
 export default {
-  name: 'NavMenu',
+  name: 'SensesMenu',
   components: {
     SensesLogo,
-    NavFalafel
+    SensesFalafel
   },
   props: {
   },
@@ -24,7 +24,7 @@ export default {
 <style scoped lang="scss">
 @import "../style/global.scss";
 
-.nav-menu {
+.senses-menu {
   width: 100%;
   height: $spacing * 2;
   background: $color-black;

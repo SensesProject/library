@@ -1,5 +1,5 @@
 export default {
-  name: 'NavMenu',
+  name: 'SensesMenu',
   options: {
   }
 }
