@@ -5,6 +5,8 @@ import IntersectionObserver from './IntersectionObserver'
 import SensesMenu from './SensesMenu'
 import SensesFalafel from './SensesFalafel'
 import SensesRadio from './SensesRadio'
+import SensesTooltip from './SensesTooltip'
+import SensesSelect from './SensesSelect'
 
 export default [
   _TestComponent,
@@ -13,5 +15,7 @@ export default [
   IntersectionObserver,
   SensesMenu,
   SensesFalafel,
-  SensesRadio
+  SensesRadio,
+  SensesTooltip,
+  SensesSelect
 ]
