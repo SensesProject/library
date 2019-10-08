@@ -14,7 +14,18 @@
     <pre><code>@import "library/src/style/mixins.scss";</code></pre>
     <p>Use variables and mixins:</p>
     <pre><code>@import "library/src/style/global.scss";</code></pre>
-    <p>It is recommended to import the library’s <code>base.scss</code> into your <code>base.scss</code>. And to import the library’s <code>global.scss</code> into every component.</p>
+    <p>It is recommended to import the library’s <code>base.scss</code> into your <code>base.scss</code>. And to import the library’s <code>global.scss</code> into your global scss file that you load into every component.</p>
+    <p>Example local <code>base.scss</code>:</p>
+    <pre>
+      <code>@import "library/src/style/base.scss";
+@import "./global";</code>
+    </pre>
+    <p>Example local <code>global.scss</code>:</p>
+    <pre>
+      <code>@import "library/src/style/global.scss";
+@import "./variables";
+@import "./mixins";</code>
+    </pre>
     <h3>Components</h3>
     <p>Import Components individually</p>
     <pre><code>import SensesLogo from 'library/src/components/SensesLogo.vue'</code></pre>
@@ -75,7 +86,7 @@ export default {
   }
 
   p code {
-    background: $color-green;
+    background: rgba($color-green, 0.2);
     font-family: $font-mono;
     // color: $color-white;
     word-wrap: normal;
