@@ -5,10 +5,17 @@
     <p>In your project directory run to install the current release / latest dev version:</p>
     <pre><code>npm i github:SensesProject/library#{{ pkg.version }}</code></pre>
     <pre><code>npm i github:SensesProject/library#dev</code></pre>
+    <h3>Style</h3>
     <p>Embedd base style:</p>
     <pre><code>@import "library/src/style/base.scss";</code></pre>
     <p>Use variables:</p>
     <pre><code>@import "library/src/style/variables.scss";</code></pre>
+    <p>Use mixins:</p>
+    <pre><code>@import "library/src/style/mixins.scss";</code></pre>
+    <p>Use variables and mixins:</p>
+    <pre><code>@import "library/src/style/global.scss";</code></pre>
+    <p>It is recommended to import the library’s <code>base.scss</code> into your <code>base.scss</code>. And to import the library’s <code>global.scss</code> into every component.</p>
+    <h3>Components</h3>
     <p>Import Components individually</p>
     <pre><code>import SensesLogo from 'library/src/components/SensesLogo.vue'</code></pre>
     <h2>Updating Styles</h2>
@@ -48,6 +55,9 @@ export default {
   h2 {
     font-size: 1rem;
     text-transform: uppercase;
+    margin: $spacing / 2 0 0;
+  }
+  h3 {
     margin: $spacing / 2 0 0;
   }
   pre {
