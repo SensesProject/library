@@ -110,7 +110,7 @@ a, .a {
   background: getColor(neon, 100);
   @include tint(background, 100);
   padding: 0 $spacing / 8;
-  border-radius: 2px;
+  border-radius: $border-radius;
   transition: background $transition, text $transition;
   color: getColor(neon, 40);
   @include tint(color, 40);
@@ -133,7 +133,7 @@ a, .a {
 .button {
   background: $color-neon;
   padding: 0 $spacing / 8;
-  border-radius: 2px;
+  border-radius: $border-radius;
   color: $color-white;
   cursor: default;
   transition: background $transition;
