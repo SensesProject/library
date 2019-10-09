@@ -24,10 +24,10 @@ export default new Router({
       name: 'components',
       redirect: `/components/${library[0].name}`,
       component: Components,
-      children: library.map(({ name }) => ({
-        path: name,
-        name,
-        component: () => import(`@/components/${name}.vue`)
+      children: library.map((c) => ({
+        path: c.name,
+        name: c.name,
+        component: c
       }))
     }
   ]

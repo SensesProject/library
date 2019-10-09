@@ -1,5 +1,5 @@
 <template>
-  <div class="senses-radio" :class="{ stretch, centered }">
+  <div class="senses-radio">
     <span v-if="label" class="tiny">{{ label }}&nbsp;</span>
     <div class="radio">
       <label v-for="(o, i) in options" :key="i">
@@ -20,21 +20,29 @@ export default {
   name: 'OptionRadio',
   props: {
     label: {
-      type: String,
-      default: ''
+      type: [String, Number],
+      default: '',
+      docs: 'Text to show above input'
     },
-    value: {},
+    value: {
+      docs: 'To be used with v-model'
+    },
     options: {
       type: Array,
-      default () { return [] }
-    },
-    stretch: {
-      type: Boolean,
-      default: false
-    },
-    centered: {
-      type: Boolean,
-      default: false
+      default () {
+        return [{
+          value: 1,
+          label: 'Option 1'
+        }, {
+          value: 'Option 2'
+        }, {
+          value: 3,
+          label: 'Option 3',
+          color: 'green'
+        },
+        'Option 4']
+      },
+      docs: 'Array of available options. Options can be either strings or objects, with properties value (required), label (optional), and color (optional)'
     }
   },
   data () {
@@ -49,15 +57,17 @@ export default {
 <style scoped lang="scss">
 @import "../style/global.scss";
 .senses-radio {
+  display: inline-block;
   .radio {
-    display: flex;
+    display: inline-flex;
     position: relative;
-    display: flex;
     flex-wrap: wrap;
+    width: 100%;
 
     label {
       color: getColor(neon, 40);
       margin-bottom: 1px;
+      flex: 1;
       input {
         opacity: 0;
         appearance: none;
@@ -91,16 +101,6 @@ export default {
     }
     label + label {
       margin-left: 1px;
-    }
-  }
-
-  &.centered .radio{
-    justify-content: center;
-  }
-
-  &.stretch {
-    .radio label {
-      flex: 1;
     }
   }
 }

@@ -1,13 +1,15 @@
 <template>
-  <v-popover class="senses-select" offset="2" trigger="click" :popoverClass="['senses-tooltip senses-tooltip-select']" placement="auto">
-    <span class="highlight"><span><slot>{{ label }}</slot></span><svg width="16" height="8"><g><path d="M-4,1.5 L0,-1.5 L4,1.5"/></g></svg></span>
+  <v-popover class="senses-select" offset="2" trigger="click" :popoverClass="['senses-tooltip senses-tooltip-select']" :placement="placement">
+    <span class="highlight" :style="{width: isNaN(width) ? width : `${width}px`}"><span><slot>{{ label }}</slot></span><svg width="16" height="8"><g><path d="M-4,1.5 L0,-1.5 L4,1.5"/></g></svg></span>
     <slot name="tooltip" slot="popover">
-      <div v-for="(o, i) in options" :key="i"
-        v-close-popover
-        class="option"
-        :class="[{active: (o.value != null ? o.value : o) === value}]"
-        @click="$emit('input', o.value != null ? o.value : o)">
-        {{ o.label || (o.value != null ? o.value : o) }}
+      <div :style="{width: isNaN(width) ? width : `${width}px`}">
+        <div v-for="(o, i) in options" :key="i"
+          v-close-popover
+          class="option"
+          :class="[{active: (o.value != null ? o.value : o) === value}]"
+          @click="$emit('input', o.value != null ? o.value : o)">
+          {{ o.label || (o.value != null ? o.value : o) }}
+        </div>
       </div>
     </slot>
   </v-popover>
@@ -38,15 +40,17 @@ export default {
         'Option 3']
       }
     },
-    textClass: {
-      type: Array,
-      default () {
-        return ['dotted']
-      }
-    },
     tooltip: {
       type: String,
       default: 'tooltip'
+    },
+    width: {
+      type: String,
+      default: null
+    },
+    placement: {
+      type: String,
+      default: 'bottom-start'
     }
   },
   data () {
@@ -68,9 +72,12 @@ export default {
 @import "../style/global.scss";
 .senses-select {
   .highlight {
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
     svg {
       g {
-        transform: translate(11px, 3px);
+        transform: translate(11px, 4px);
         path {
           stroke: getColor(neon, 40);
           stroke-width: 1.5;

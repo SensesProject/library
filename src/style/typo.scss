@@ -107,6 +107,7 @@ a, .a {
 }
 
 .highlight {
+  display: inline-block;
   background: getColor(neon, 100);
   @include tint(background, 100);
   padding: 0 $spacing / 8;
@@ -120,6 +121,12 @@ a, .a {
     @include tint(background, 80);
     color: getColor(neon, 20);
     @include tint(color, 20);
+    &.no-hover {
+      background: getColor(neon, 100);
+      @include tint(background, 100);
+      color: getColor(neon, 40);
+      @include tint(color, 40);
+    }
   }
 
   &.active {
@@ -131,6 +138,7 @@ a, .a {
 }
 
 .button {
+  display: inline-block;
   background: $color-neon;
   padding: 0 $spacing / 8;
   border-radius: $border-radius;
