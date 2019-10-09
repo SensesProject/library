@@ -7,6 +7,7 @@
 <script>
 export default {
   name: 'IntersectionObserver',
+  docs: 'This component only works within LayoutScrollytelling.vue<br>It is used to commit its property <code>step</code> to vuex <code>scrollytelling/step</code> when it becomes visible.',
   props: {
     step: Number,
     offset: {

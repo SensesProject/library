@@ -1,15 +1,13 @@
-import _TestComponent from './_TestComponent'
-import SensesLogo from './SensesLogo'
-import LayoutScrollytelling from './LayoutScrollytelling'
-import IntersectionObserver from './IntersectionObserver'
-import SensesMenu from './SensesMenu'
-import SensesFalafel from './SensesFalafel'
-import SensesRadio from './SensesRadio'
-import SensesTooltip from './SensesTooltip'
-import SensesSelect from './SensesSelect'
+import SensesLogo from '@/components/SensesLogo.vue'
+import LayoutScrollytelling from '@/components/LayoutScrollytelling.vue'
+import IntersectionObserver from '@/components/IntersectionObserver.vue'
+import SensesMenu from '@/components/SensesMenu.vue'
+import SensesFalafel from '@/components/SensesFalafel.vue'
+import SensesRadio from '@/components/SensesRadio.vue'
+import SensesTooltip from '@/components/SensesTooltip.vue'
+import SensesSelect from '@/components/SensesSelect.vue'
 
 export default [
-  _TestComponent,
   SensesLogo,
   LayoutScrollytelling,
   IntersectionObserver,

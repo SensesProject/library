@@ -76,25 +76,25 @@ export default {
     }
     padding: $spacing;
     table {
-    width: 100%;
+      width: 100%;
 
-    thead th {
-      font-weight: $font-weight-bold;
-    }
+      thead th {
+        font-weight: $font-weight-bold;
+      }
 
-    thead th {
-      padding: 0 $spacing / 6 $spacing / 4;
-      border-bottom: 1px solid getColor(gray, 80);
-    }
+      thead th {
+        padding: 0 $spacing / 6 $spacing / 4;
+        border-bottom: 1px solid getColor(gray, 80);
+      }
 
-    tbody td {
-      border-bottom: 1px solid getColor(gray, 90);
-      padding: $spacing / 6 $spacing / 6;
+      tbody td {
+        border-bottom: 1px solid getColor(gray, 90);
+        padding: $spacing / 6 $spacing / 6;
 
-      &:nth-child(3) {
-        width: 512px;
+        &:nth-child(3) {
+          width: 512px;
+        }
       }
     }
-  }
   }
 </style>

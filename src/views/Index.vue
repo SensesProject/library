@@ -37,26 +37,17 @@
     <h2>Updating Styles</h2>
     <p>needs to be discussed</p>
     <h2>Adding Components</h2>
-    <p>Move component to <code>/src/components/</code></p>
-    <p>Create <code>/src/assets/library/[component].js</code> and specify name and options:</p>
-    <pre><code>export default {{ spec }}</code></pre>
-    <p>Import and export file in <code>/src/assets/library/index.js</code></p>
+    <p>Needs to be updated</p>
     <p>Update version in  <code>/package.json</code></p>
     <p>Commit and tag version</p>
   </div>
 </template>
 <script>
 import pkg from '../../package.json'
-import spec from '../assets/library/_TestComponent.js'
 export default {
   data () {
     return {
       pkg
-    }
-  },
-  computed: {
-    spec () {
-      return JSON.stringify(spec, null, 2)
     }
   }
 }
