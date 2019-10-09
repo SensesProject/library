@@ -15,6 +15,11 @@
     <p>Use variables and mixins:</p>
     <pre><code>@import "library/src/style/global.scss";</code></pre>
     <p>It is recommended to import the library’s <code>base.scss</code> into your <code>base.scss</code>. And to import the library’s <code>global.scss</code> into your global scss file that you load into every component.</p>
+    <br>
+    <p>To use fonts you might have to set the font prefix before importing the base style. The exact path depends on your setup, but might look something like that:</p>
+    <pre><code>$font-prefix: "../../node_modules/library/src/assets/fonts";</code></pre>
+    <br>
+    <pre><code>@import "library/src/style/mixins.scss";</code></pre>
     <p>Example local <code>base.scss</code>:</p>
     <pre>
       <code>@import "library/src/style/base.scss";
