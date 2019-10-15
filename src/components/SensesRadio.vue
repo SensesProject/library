@@ -17,7 +17,7 @@
 
 <script>
 export default {
-  name: 'OptionRadio',
+  name: 'SensesRadio',
   props: {
     label: {
       type: [String, Number],
