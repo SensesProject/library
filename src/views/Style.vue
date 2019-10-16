@@ -23,8 +23,8 @@
 </template>
 
 <script>
-import ColorTable from '@/components/ColorTable.vue'
-import TypoTable from '@/components/TypoTable.vue'
+import ColorTable from '@/components/library/ColorTable.vue'
+import TypoTable from '@/components/library/TypoTable.vue'
 import style from '@/style/global.scss'
 export default {
   name: 'home',

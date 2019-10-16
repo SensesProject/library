@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import SensesRadio from '../components/SensesRadio'
+import SensesRadio from '@/components/SensesRadio'
 export default {
   components: {
     SensesRadio
@@ -63,7 +63,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  @import "../style/global";
+  @import "~@/style/global";
 
   .typo-table {
     .options {
