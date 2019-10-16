@@ -89,6 +89,9 @@ a, .a {
   &.extern::after {
     content: ' ↗';
   }
+  &.no-underline {
+    background: none;
+  }
 }
 
 .dotted {
