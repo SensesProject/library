@@ -26,7 +26,8 @@ export default {
   },
   props: {
     value: {
-      default: 1
+      default: 1,
+      docs: 'To be used with v-model'
     },
     options: {
       type: Array,
@@ -38,19 +39,18 @@ export default {
           value: 'Option 2'
         },
         'Option 3']
-      }
-    },
-    tooltip: {
-      type: String,
-      default: 'tooltip'
+      },
+      docs: 'Array of available options. Options can be either strings or objects, with properties value (required) and label (optional)'
     },
     width: {
       type: String,
-      default: null
+      default: null,
+      docs: 'width of the dropdown menu either in pixels or css style. defaults to null: no fixed width'
     },
     placement: {
       type: String,
-      default: 'bottom-start'
+      default: 'bottom-start',
+      docs: 'placement of tooltip, defualts to "bottom-start"'
     }
   },
   data () {
