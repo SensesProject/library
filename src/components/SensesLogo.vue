@@ -1,5 +1,5 @@
 <template>
-  <component :is="rootElement" v-bind="rootAttributes" class="senses-logo" :class="[color, { animate, invalid }]">
+  <component :is="rootElement" v-bind="rootAttributes" class="senses-logo no-underline" :class="[color, { animate, invalid }]">
     <div class="circles" :style="{width: `${circlesWidth}em`, left: `${circlesOffset}em`, transform: `translateX(${-circlesOffset}em)`}">
       <div class="circle circle-s" :style="{transform: sTransform}"/>
       <div class="circle circle-m" :style="{transform: mTransform}"/>

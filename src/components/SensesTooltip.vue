@@ -17,31 +17,37 @@ export default {
   props: {
     text: {
       type: String,
-      default: 'text'
+      default: 'text',
+      docs: 'text that triggers the tooltip. can also be set by using the default slot i.e., <SensesTooltip>Text</SensesTooltip>'
     },
     textClass: {
-      type: Array,
+      type: [Array, Object, String],
       default () {
         return ['dotted']
-      }
+      },
+      docs: 'class or classes to add to the text. defaults to "dotted"'
     },
     tooltip: {
       type: String,
-      default: 'tooltip'
+      default: 'tooltip',
+      docs: 'text that shows up in the tooltip. can also be set using the popover slot i.e., <SensesTooltip>Text<span slot="popover">tooltip text</span></SensesTooltip>'
     },
     tooltipClass: {
-      type: Array,
+      type: [Array, Object, String],
       default () {
         return ['tiny']
-      }
+      },
+      docs: 'class or classes to add to the text. defaults to "tiny"'
     },
     trigger: {
       type: String,
-      default: 'hover'
+      default: 'hover',
+      docs: 'event to trigger tooltip. defaults to "hover"'
     },
     placement: {
       type: String,
-      default: 'top'
+      default: 'top',
+      docs: 'placement of tooltip. defaults to "top"'
     }
   },
   data () {
