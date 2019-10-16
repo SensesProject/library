@@ -1,6 +1,6 @@
 <template>
   <svg class="senses-falafel" viewBox="0 0 32 32">
-    <g :fill="fill" :class="[symbol]" transform="translate(16 16)">
+    <g :class="[symbol, color]" transform="translate(16 16)">
       <circle r="1.5"/>
       <g class="circle top left"><circle r="1.5"/></g>
       <g class="circle top right"><circle r="1.5"/></g>
@@ -17,11 +17,13 @@ export default {
   props: {
     color: {
       type: String,
-      default: 'white'
+      default: 'neon',
+      docs: 'color of symbol, see style/colors for available colors'
     },
     symbol: {
       type: String,
-      default: 'vertical'
+      default: 'vertical',
+      docs: 'symbol to show: vertical (default), horizontal, collapse, or close'
     }
   },
   computed: {
@@ -41,6 +43,7 @@ export default {
   height: $spacing;
 
   g {
+    @include tint(fill, 50);
     .circle {
       transition: transform .4s;
       &.top circle {
