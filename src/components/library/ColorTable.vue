@@ -177,7 +177,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  @import "../style/global";
+  @import "~@/style/global";
 
   table {
     min-width: calc(100% - 2 * #{$spacing});
