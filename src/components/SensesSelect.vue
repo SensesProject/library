@@ -100,7 +100,6 @@ export default {
 @import "../style/global.scss";
 .senses-select {
   .highlight {
-    outline-color: getColor(neon, 100);
     border: none;
     display: inline-flex;
     justify-content: space-between;
@@ -139,7 +138,12 @@ export default {
 <style lang="scss">
 @import "../style/global.scss";
 
-.senses-select-list {
-  list-style: none;
+.senses-tooltip-select {
+  box-shadow: 1px 1px 3px rgba($color-white, 1);
+  .senses-select-list {
+    list-style: none;
+    outline-color: getColor(neon, 100);
+  }
 }
+
 </style>
