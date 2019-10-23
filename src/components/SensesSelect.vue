@@ -21,7 +21,6 @@
         :style="{width: isNaN(width) ? width : `${width}px`}"
         role="listbox"
         class="senses-select-list"
-        tabindex="-1"
         :aria-labelledby="`btn_${uniqID}`"
         :aria-activedescendant="`option_${value}`">
         <li
@@ -141,9 +140,9 @@ export default {
 
 .senses-tooltip-select {
   box-shadow: 1px 1px 3px rgba($color-white, 1);
+  outline: none;
   .senses-select-list {
     list-style: none;
-    outline-color: getColor(neon, 100);
   }
 }
 
