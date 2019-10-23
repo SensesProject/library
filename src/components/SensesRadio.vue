@@ -73,7 +73,7 @@ export default {
 .senses-radio {
   display: inline-block;
   .radio {
-    display: inline-grid;
+    display: grid;
     grid-column-gap: 1px;
     position: relative;
     width: 100%;
