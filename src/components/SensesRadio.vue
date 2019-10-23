@@ -68,6 +68,7 @@ export default {
       color: getColor(neon, 40);
       margin-bottom: 1px;
       flex: 1;
+
       input {
         opacity: 0;
         appearance: none;
@@ -81,7 +82,8 @@ export default {
         +span {
           width: 100%;
           display: inline-block;
-          padding: 0 $spacing * 0.25;
+          line-height: 1.2;
+          padding: $spacing * 0.1 $spacing * 0.25;
           text-align: center;
           cursor: pointer;
           border-radius: 0;
