@@ -1,15 +1,19 @@
 <template>
   <div class="senses-radio">
     <span v-if="label" class="tiny">{{ label }}&nbsp;</span>
-    <div class="radio">
-      <label v-for="(o, i) in options" :key="i">
+    <div class="radio" :class="{ isEqualWidth, isHorizontal }">
+      <label
+        v-for="(o, i) in options"
+        :key="i"
+        class="highlight"
+        :class="[{active: (o.value != null ? o.value : o) === value}, o.color]">
         <input
           type="radio"
           :name="_uid"
           :checked="(o.value != null ? o.value : o) === value"
           :value="o.value != null ? o.value : o"
           @change="$emit('input', o.value != null ? o.value : o)">
-          <span class="highlight" :class="[{active: (o.value != null ? o.value : o) === value}, o.color]">{{ o.label || (o.value != null ? o.value : o) }}</span>
+          <span>{{ o.label || (o.value != null ? o.value : o) }}</span>
       </label>
     </div>
   </div>
@@ -40,9 +44,19 @@ export default {
           label: 'Option 3',
           color: 'green'
         },
-        'Option 4']
+        'Long Option 4']
       },
       docs: 'Array of available options. Options can be either strings or objects, with properties value (required), label (optional), and color (optional)'
+    },
+    isEqualWidth: {
+      type: Boolean,
+      default: true,
+      docs: 'Defines if items have the same width'
+    },
+    isHorizontal: {
+      type: Boolean,
+      default: true,
+      docs: 'Defines if orientation is horizontal or vertical'
     }
   },
   data () {
@@ -59,15 +73,46 @@ export default {
 .senses-radio {
   display: inline-block;
   .radio {
-    display: inline-flex;
+    display: inline-grid;
+    grid-column-gap: 1px;
     position: relative;
-    flex-wrap: wrap;
     width: 100%;
+
+    &.isEqualWidth {
+      grid-auto-columns: 1fr;
+    }
+
+    label {
+      &:first-child {
+        border-radius: $border-radius $border-radius 0 0;
+      }
+
+      &:last-child {
+        border-radius: 0 0 $border-radius $border-radius;
+      }
+    }
+
+    &.isHorizontal {
+      grid-auto-flow: column;
+
+      label {
+        &:first-child {
+          border-radius: $border-radius 0 0 $border-radius;
+        }
+
+        &:last-child {
+          border-radius: 0 $border-radius $border-radius 0;
+        }
+      }
+    }
 
     label {
       color: getColor(neon, 40);
       margin-bottom: 1px;
-      flex: 1;
+      border-radius: 0; // Because highlight class has border radius
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
       input {
         opacity: 0;
@@ -86,23 +131,8 @@ export default {
           padding: $spacing * 0.1 $spacing * 0.25;
           text-align: center;
           cursor: pointer;
-          border-radius: 0;
         }
       }
-      &:first-child {
-        input+span {
-          border-radius: 2px 0 0 2px;
-        }
-      }
-
-      &:last-child {
-        input+span {
-          border-radius: 0 2px 2px 0;
-        }
-      }
-    }
-    label + label {
-      margin-left: 1px;
     }
   }
 }
