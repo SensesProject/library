@@ -141,7 +141,7 @@ table {
 
   &-select {
     max-width: calc(100vw - #{$spacing / 2});
-    
+
     .tooltip-inner {
       background: getColor(neon, 100);
       color: getColor(neon, 40);
@@ -164,7 +164,7 @@ table {
         }
       }
     }
-  
+
     .tooltip-arrow {
       border-color: getColor(neon, 100);;
     }
