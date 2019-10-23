@@ -99,6 +99,7 @@ export default {
 <style scoped lang="scss">
 @import "../style/global.scss";
 .senses-select {
+  display: inline-block;
   .highlight {
     border: none;
     display: inline-flex;
