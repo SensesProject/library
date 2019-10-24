@@ -39,6 +39,7 @@ export default {
       { css: 'h1, .h1', size: '2em/1.2', class: 'h1', example: heading },
       { css: 'h2, .h2', size: '1.5em/1.25', class: 'h2', example: heading },
       { css: 'h3, .h3', size: '1em/1.5', class: 'h3', example: heading },
+      { css: 'h4, .h4', size: '0.8em/1.5', class: 'h4', example: heading },
       { css: 'html, p, .p', size: '1em/1.5', class: 'p', example: paragraph },
       { css: 'svg text, table, .tiny', size: '0.8em/1.375', class: 'tiny', example: heading },
       { css: 'a, .a', size: '', class: 'a', example: heading },
