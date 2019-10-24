@@ -13,12 +13,12 @@
       :aria-expanded="isVisible"
       :aria-labelledby="`btn_${uniqID}`"
       :id="`btn_${uniqID}`"
-      :style="{width: isNaN(width) ? width : `${width}px`}">
+      :style="{'min-width': isNaN(width) ? width : `${width}px`}">
       <span><slot>{{ label }}</slot></span><svg width="16" height="8"><g><path d="M-4,1.5 L0,-1.5 L4,1.5"/></g></svg>
     </button>
     <slot name="tooltip" slot="popover">
       <ul
-        :style="{width: isNaN(width) ? width : `${width}px`}"
+        :style="{'min-width': isNaN(width) ? width : `${width}px`}"
         role="listbox"
         class="senses-select-list"
         :aria-labelledby="`btn_${uniqID}`"
@@ -104,6 +104,8 @@ export default {
     display: inline-flex;
     justify-content: space-between;
     align-items: center;
+    padding-left: $spacing / 6;
+    padding-right: $spacing / 4;
     svg {
       g {
         transform: translate(11px, 4px);
