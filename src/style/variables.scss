@@ -1,23 +1,19 @@
 @import "color";
 
-$spacing: 2em !default;
-
-$font-sans: "IBM Plex Sans", "Helvetica Neue", "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Open Sans", Helvetica, sans-serif !default;
-$font-mono: "IBM Plex Mono", monospace !default;
-$font-serif: "IBM Plex Serif", "Georgia", serif !default;
-
-$font-family-default: $font-sans !default;
-
-$font-weight-regular: 450 !default;
-$font-weight-bold: 600 !default;
-
-$line-height: 1.6 !default;
-$font-size: 18.75 / 16 * 100% !default;
-$font-size-mobile: 17 / 16 * 100% !default;
+$spacing: 2rem !default;
 
 $transition: 0.2s !default;
+$border-radius: 2px !default;
+
+$font-sans: "IBM Plex Sans", "Helvetica Neue", Helvetica, sans-serif !default;
+$font-mono: "IBM Plex Mono", monospace !default;
+$font-serif: "IBM Plex Serif", "Georgia", serif !default;
+$font-family-default: $font-sans !default;
+$font-weight-regular: 450 !default;
+$font-weight-bold: 600 !default;
 
 $narrow: 600px !default;
 $medium: 900px !default;
 $wide: 1200px !default;
 $extra-wide: 1700px !default;
+

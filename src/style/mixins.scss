@@ -4,6 +4,18 @@
   }
 }
 
+@mixin max-width($device) {
+  @media screen and (max-width: $device - 1px) {
+    @content;
+  }
+}
+
+@mixin min-width($device) {
+  @media screen and (min-width: $device) {
+    @content;
+  }
+}
+
 @mixin center() {
   display: flex;
   align-items: center;
@@ -14,5 +26,38 @@
 	display: grid;
 	grid-template-columns: repeat($columns, 1fr);
 	grid-column-gap: $gap;
-	grid-row-gap: $gap;
+  grid-row-gap: $gap;
+}
+
+@mixin tint($property, $tone: 50) {
+  &.violet {
+    #{$property}: getColor(violet, $tone);
+  }
+  &.red {
+    #{$property}: getColor(red, $tone);
+  }
+  &.orange {
+    #{$property}: getColor(orange, $tone);
+  }
+  &.yellow {
+    #{$property}: getColor(yellow, $tone);
+  }
+  &.green {
+    #{$property}: getColor(green, $tone);
+  }
+  &.blue {
+    #{$property}: getColor(blue, $tone);
+  }
+  &.purple {
+    #{$property}: getColor(purple, $tone);
+  }
+  &.neon {
+    #{$property}: getColor(neon, $tone);
+  }
+  &.white {
+    #{$property}: $color-white;
+  }
+  &.black {
+    #{$property}: $color-black;
+  }
 }

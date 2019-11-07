@@ -10,42 +10,163 @@
 }
 
 html {
-  font: $font-weight-regular normal #{$font-size-mobile}/1.6 $font-family-default;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  box-sizing: border-box;
-  -webkit-text-size-adjust: 100%;
-  -webkit-font-feature-settings: "kern" 1;
-     -moz-font-feature-settings: "kern" 1;
-       -o-font-feature-settings: "kern" 1;
-          font-feature-settings: "kern" 1;
-  font-kerning: normal;
   color: $color-default;
+}
 
-  @include media-query($narrow) {
-    font-size: $font-size;
+.invert {
+  background: $color-default;
+  color: $color-white;
+}
+
+table {
+  border-spacing: 0;
+  border-collapse: collapse;
+
+  th > *, td > * {
+    vertical-align: middle;
+  }
+
+  thead th {
+    text-align: left;
   }
 }
 
-b, strong, h1, h2, h3, h4, h5 {
-  font-weight: $font-weight-bold;
+.clickable {
+  cursor: pointer;
 }
 
-a {
-  color: $color-accent;
-  text-decoration: none;
-}
+.senses-tooltip {
+  display: block !important;
+  z-index: 10000;
+  max-width: calc(100vw - #{$spacing / 2});
+  max-height: calc(100vh - #{$spacing / 2});
+  // overflow: visible;/
+  // overflow-y: auto;
 
-.sans {
-  font-family: $font-sans;
-}
+  .tooltip-inner {
+    background: $color-neon;
+    color: $color-white;
+    border-radius: $border-radius;
+    padding: $spacing / 4 $spacing / 4;
+    min-width: 96px;
+    min-height: $spacing * 1.5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 400px;
+    hyphens: auto;
+  }
 
-.serif {
-  font-family: $font-serif;
-}
+  .tooltip-arrow {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    position: absolute;
+    margin: 4px;
+    border-color: $color-neon;
+    z-index: 1;
+  }
 
-.mono {
-  font-family: $font-mono;
+  &[x-placement^="top"] {
+    margin-bottom: 4px;
+
+    .tooltip-arrow {
+      border-width: 4px 4px 0 4px;
+      border-left-color: transparent !important;
+      border-right-color: transparent !important;
+      border-bottom-color: transparent !important;
+      bottom: -4px;
+      left: calc(50% - 4px);
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+  }
+
+  &[x-placement^="bottom"] {
+    margin-top: 4px;
+
+    .tooltip-arrow {
+      border-width: 0 4px 4px 4px;
+      border-left-color: transparent !important;
+      border-right-color: transparent !important;
+      border-top-color: transparent !important;
+      top: -4px;
+      left: calc(50% - 4px);
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+  }
+
+  &[x-placement^="right"] {
+    margin-left: 4px;
+
+    .tooltip-arrow {
+      border-width: 4px 4px 4px 0;
+      border-left-color: transparent !important;
+      border-top-color: transparent !important;
+      border-bottom-color: transparent !important;
+      left: -4px;
+      top: calc(50% - 4px);
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+
+  &[x-placement^="left"] {
+    margin-right: 4px;
+
+    .tooltip-arrow {
+      border-width: 4px 0 4px 4px;
+      border-top-color: transparent !important;
+      border-right-color: transparent !important;
+      border-bottom-color: transparent !important;
+      right: -4px;
+      top: calc(50% - 4px);
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+
+  &[aria-hidden='true'] {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity $transition, visibility $transition;
+  }
+
+  &[aria-hidden='false'] {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity $transition;
+  }
+
+  &-select {
+    max-width: calc(100vw - #{$spacing / 2});
+
+    .tooltip-inner {
+      background: getColor(neon, 100);
+      color: getColor(neon, 40);
+      position: relative;
+      padding: $spacing / 4 0;
+      display: block;
+
+      .option {
+        width: 100%;
+        padding: 0 $spacing / 4;
+        cursor: default;
+        transition: background $transition, color $transition;
+        &:hover {
+          background: getColor(neon, 80);
+          color: getColor(neon, 20);
+        }
+        &.active {
+          background: $color-neon;
+          color: $color-white;
+        }
+      }
+    }
+
+    .tooltip-arrow {
+      border-color: getColor(neon, 100);;
+    }
+  }
 }
