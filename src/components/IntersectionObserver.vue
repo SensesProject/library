@@ -1,6 +1,8 @@
 <template>
-  <div class="intersection-observer" ref="intersect">
-    <slot/>
+  <div class="intersection-observer" ref="intersect" :class="{ default: !noStyling }">
+    <div :class="[{ default: !noStyling }, align]">
+      <slot/>
+    </div>
   </div>
 </template>
 
@@ -21,6 +23,16 @@ export default {
           rootMargin: `-${0.5 * 100}% 0% -${100 - 0.5 * 100}% 0%`
         }
       }
+    },
+    noStyling: {
+      type: Boolean,
+      default: false,
+      docs: 'Setting this to false disables the default styling (e.g., background-color, border, …)'
+    },
+    align: {
+      type: String,
+      default: 'center',
+      docs: `horizontally position the content, either 'left', 'center', or 'right'. has no effect if noStyling is set to true.`
     }
   },
   data () {
@@ -28,10 +40,11 @@ export default {
     }
   },
   mounted () {
-    const { step, $refs, $store, observerOptions } = this
+    this.$emit('step', 'start')
+    const { step, $refs, observerOptions } = this
     const observer = new window.IntersectionObserver(entries => {
       if (entries.filter(entry => entry.isIntersecting).length < 1) return
-      $store.commit('scrollytelling/setStep', step)
+      this.$parent.$emit('step', step)
     }, observerOptions)
 
     observer.observe($refs.intersect)
@@ -42,51 +55,39 @@ export default {
 <style scoped lang="scss">
 @import "../style/global.scss";
 
-.layout-scrollytelling {
+.intersection-observer {
   display: flex;
-  justify-content: center;
-
-  .text {
-    width: 100%;
-    max-width: 480px;
-    min-height: 100vh;
-    flex: 1;
-    padding: 0 $spacing / 2 $spacing / 2 $spacing / 2;
-    background: $color-black;
-    color: $color-white;
-
-    header {
-      padding: $spacing / 2 0;
-      position: sticky;
-      top: 0;
-      background: linear-gradient(to top, transparentize($color-black, 1), transparentize($color-black, 0.2) $spacing / 3);
-      // backdrop-filter: blur(10px);
-    }
-  }
-  .vis {
-    width: 100%;
-    max-width: 960px;
-    flex: 1.5;
-    height: 100vh;
+  flex-direction: column;
+  .default {
+    hyphens: auto;
+    max-width: 460px;
+    background: transparentize($color-white, 0.02);
     padding: $spacing / 2;
-    position: sticky;
-    top: 0;
 
-    > div {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      justify-content:  center;
-      align-items: center;
-      position: relative;
+    @supports ((-webkit-backdrop-filter: saturate(180%) blur(20px)) or(backdrop-filter: saturate(180%) blur(20px))) {
+      background: transparentize($color-white, 0.15);
+      -webkit-backdrop-filter: saturate(180%) blur(10px);
+      backdrop-filter:saturate(180%) blur(10px)
+    }
 
-      > div {
-        position: absolute;
-        // width: 100%;
-        // height: 100%;
-      }
+    &.left {
+      align-self: flex-start;
+    }
+
+    &.center {
+      align-self: center;
+    }
+
+    &.right {
+      align-self: flex-end;
     }
   }
 
+  &.default {
+    padding: 80vh 0 50vh;
+  }
+  + .default {
+    padding: 30vh 0 50vh;
+  }
 }
 </style>
