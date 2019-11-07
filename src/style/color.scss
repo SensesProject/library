@@ -1,11 +1,15 @@
 $color-violet: #4E40B2;
 $color-red: #C8005F;
+$color-orange: #e66b46;
 $color-yellow: #FFAC00;
 $color-green: #00CC84;
 $color-blue: #00A5D5;
+$color-purple: #B035C9;
+$color-neon: #5263ff;
 
-$palettes: (
-  grey: ( // http://gka.github.io/palettes/#colors=#F2F2FF,#1F1F21|steps=10|bez=1|coL=1
+
+$colorsPalettes: (
+  gray: (
     100: hsl(240, 0%, 100%), // #ffffff
     90:  hsl(240, 100%, 97%), // #f2f2ff
     80:  hsl(240, 18%, 87%), // #d7d7e3
@@ -16,29 +20,115 @@ $palettes: (
     30:  hsl(240, 3%, 38%), // #5d5d63
     20:  hsl(240, 3%, 29%), // #47474c
     10:  hsl(240, 3%, 21%), // #333336
-    0:   hsl(240, 3%, 13%) // #1f1f21
+    0:   hsl(240, 3%, 13%) // #202022
+  ),
+  violet: (
+    100: #d6ccec,
+    80: #ac9bd9,
+    60: #806cc6,
+    50: $color-violet,
+    40: #3d3182,
+    20: #2c2356,
+    0: #1b152d
+  ),
+  red: (
+    100: #f8cbd4,
+    80: #ed96ab,
+    60: #dd5f84,
+    50: $color-red,
+    40: #931547,
+    20: #611731,
+    0: #33121c
+  ),
+  orange: (
+    100: #ffdbcf,
+    80: #fcb69f,
+    60: #f39172,
+    50: $color-orange,
+    40: #a85036,
+    20: #6e3726,
+    0: #381f17
+  ),
+  yellow: (
+    100: #ffecce,
+    80: #ffd89a,
+    60: #ffc361,
+    50: $color-yellow,
+    40: #ba7e12,
+    20: #795315,
+    0: #3d2b11
+  ),
+  green: (
+    100: #d2f4df,
+    80: #a2e7c0,
+    60: #6cdaa2,
+    50: $color-green,
+    40: #1b9562,
+    20: #1d6141,
+    0: #163223
+  ),
+  blue: (
+    100: #d2e8f5,
+    80: #a3d1ea,
+    60: #6dbbe0,
+    50: $color-blue,
+    40: #1b799b,
+    20: #1d5065,
+    0: #162a33
+  ),
+  purple: (
+    100: #efcff2,
+    80: #dca0e5,
+    60: #c76fd7,
+    50: $color-purple,
+    40: #812c93,
+    20: #562260,
+    0: #2d1631
+  ),
+  neon: (
+    100: #ddd6ff,
+    80: #b8aeff,
+    60: #8d88ff,
+    50: $color-neon,
+    40: #424ab9,
+    20: #313277,
+    0: #1e1d3c
   )
 );
 
-@function palette($palette, $tone: '50') {
-  @return map-get(map-get($palettes, $palette), $tone);
+@function getColor($palette: 'gray', $tone: '50') {
+  @return map-get(map-get($colorsPalettes, $palette), $tone);
 }
 
-$color-white: palette(grey, 100);
-$color-pale-gray: palette(grey, 80);
-$color-light-gray: palette(grey, 60);
-$color-gray: palette(grey, 50);
-$color-dark-gray: palette(grey, 40);
-$color-deep-gray: palette(grey, 20);
-$color-black: palette(grey, 0);
+$color-white: getColor(gray, 100);
+$color-pale-gray: getColor(gray, 80);
+$color-light-gray: getColor(gray, 60);
+$color-gray: getColor(gray, 50);
+$color-dark-gray: getColor(gray, 40);
+$color-deep-gray: getColor(gray, 20);
+$color-black: getColor(gray, 0);
 
 $color-accent: $color-violet;
 $color-default: $color-black;
 
 :export {
-  violet: $color-violet;
-  red: $color-red;
-  yellow: $color-yellow;
-  green: $color-green;
-  blue: $color-blue;
+  colorViolet: $color-violet;
+  colorRed: $color-red;
+  colorOrange: $color-orange;
+  colorYellow: $color-yellow;
+  colorGreen: $color-green;
+  colorBlue: $color-blue;
+  colorPurple: $color-purple;
+  colorNeon: $color-neon;
+
+  colorAccent: $color-accent;
+  colorDefault: $color-default;
+
+  colorWhite: $color-white;
+  colorPaleGray: $color-pale-gray;
+  colorLightGray: $color-light-gray;
+  colorGray: $color-gray;
+  colorDarkGray: $color-dark-gray;
+  colorDeepGray: $color-deep-gray;
+  colorBlack: $color-black;
 }

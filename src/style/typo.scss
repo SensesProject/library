@@ -1,2 +1,198 @@
 $font-prefix: '../node_modules/library/src/assets/fonts' !default;
-@import '../assets/fonts/scss/ibm-plex.scss';
+
+@import '../assets/fonts/scss/mono/semibold/index';
+@import '../assets/fonts/scss/mono/semibold/italic/index';
+@import '../assets/fonts/scss/mono/text/index';
+@import '../assets/fonts/scss/mono/text/italic/index';
+
+@import '../assets/fonts/scss/sans/semibold/index';
+@import '../assets/fonts/scss/sans/semibold/italic/index';
+@import '../assets/fonts/scss/sans/text/index';
+@import '../assets/fonts/scss/sans/text/italic/index';
+
+@import '../assets/fonts/scss/serif/semibold/index';
+@import '../assets/fonts/scss/serif/semibold/italic/index';
+@import '../assets/fonts/scss/serif/text/index';
+@import '../assets/fonts/scss/serif/text/italic/index';
+
+$font-size: 100%;
+
+html, button {
+  font: $font-weight-regular normal #{$font-size}/1.5 $font-family-default;
+  text-size-adjust: 100%;
+}
+
+b, strong, h1, h2, h3, h4, h5, .h1, .h2, .h3, .h4, .h5 {
+  font-weight: $font-weight-bold;
+}
+
+.wide {
+  @include min-width($narrow) {
+    font-size: 1.25rem;
+    line-height: 1.5;
+  }
+}
+
+.narrow {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.sans {
+  font-family: $font-sans;
+}
+
+.serif {
+  font-family: $font-serif;
+}
+
+.mono, pre, code {
+  font-family: $font-mono;
+}
+
+h1, .h1 {
+  font-size: 2em;
+  line-height: 1.2;
+}
+
+h2, .h2 {
+  font-size: 1.5em;
+  line-height: 1.25;
+}
+
+h3, .h3 {
+  font-size: 1em;
+  line-height: 1.5;
+}
+
+h4, .h4 {
+  font-size: 0.8em;
+  line-height: 1.5;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.tiny, svg text, table {
+  font-size: 0.8em;
+  line-height: 1.375;
+}
+
+p, .p {
+  font-size: 1em;
+  line-height: 1.5;
+  hyphens: auto;
+}
+
+a, .a {
+  color: $color-neon;
+  text-decoration: none;
+  background: linear-gradient(to top, transparent 0.1em, $color-neon 0.1em, $color-neon 0.2em, transparent 0.2em);
+  transition: color $transition, background $transition;
+  cursor: pointer;
+
+  &:hover {
+    color: getColor(neon, 40);
+    background: linear-gradient(to top, transparent 0.1em, getColor(neon, 40) 0.1em, getColor(neon, 40) 0.2em, transparent 0.2em);
+  }
+
+  &.extern::after {
+    content: ' ↗';
+  }
+  &.no-underline {
+    background: none;
+  }
+}
+
+.dotted {
+  cursor: default;
+  background: repeating-linear-gradient(to left, transparent 0em, transparent 0.2em, $color-white 0.2em, $color-white 0.4em),
+    linear-gradient(to top, transparent 0.1em, $color-neon 0.1em, $color-neon 0.2em, transparent 0.2em);
+
+  &:hover {
+    background: repeating-linear-gradient(to left, transparent 0em, transparent 0.2em, $color-white 0.2em, $color-white 0.4em),
+    linear-gradient(to top, transparent 0.1em, getColor(neon, 40) 0.1em, getColor(neon, 40) 0.2em, transparent 0.2em);
+  }
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.highlight {
+  display: inline-block;
+  background: getColor(neon, 100);
+  @include tint(background, 100);
+  padding: 0 $spacing / 8;
+  border-radius: $border-radius;
+  transition: background $transition, text $transition;
+  color: getColor(neon, 40);
+  @include tint(color, 40);
+  cursor: default;
+  &:hover, &:focus {
+    outline: none;
+    background: getColor(neon, 80);
+    @include tint(background, 80);
+    color: getColor(neon, 20);
+    @include tint(color, 20);
+    &.no-hover {
+      background: getColor(neon, 100);
+      @include tint(background, 100);
+      color: getColor(neon, 40);
+      @include tint(color, 40);
+    }
+  }
+
+  &.active {
+    background: $color-neon;
+    color: $color-white;
+
+    @include tint(background);
+  }
+}
+
+.button {
+  display: inline-block;
+  background: $color-neon;
+  padding: 0 $spacing / 8;
+  border-radius: $border-radius;
+  color: $color-white;
+  cursor: default;
+  transition: background $transition;
+
+  &:hover {
+    background: getColor(neon, 40);
+  }
+}
+
+.invert {
+  a, .a {
+    &:hover {
+      color: getColor(neon, 60);
+      background: linear-gradient(to top, transparent 0.1em, getColor(neon, 60) 0.1em, getColor(neon, 60) 0.2em, transparent 0.2em);
+    }
+  }
+  .dotted {
+    background: repeating-linear-gradient(to left, transparent 0em, transparent 0.2em, $color-default 0.2em, $color-default 0.4em),
+      linear-gradient(to top, transparent 0.1em, $color-neon 0.1em, $color-neon 0.2em, transparent 0.2em);
+  
+    &:hover {
+      background: repeating-linear-gradient(to left, transparent 0em, transparent 0.2em, $color-default 0.2em, $color-default 0.4em),
+      linear-gradient(to top, transparent 0.1em, getColor(neon, 60) 0.1em, getColor(neon, 60) 0.2em, transparent 0.2em);
+    }
+  }
+
+  .highlight {
+    background: getColor(neon, 20);
+    color: getColor(neon, 80);
+
+    &:hover {
+      background: getColor(neon, 40);
+    }
+
+    &.active {
+      background: $color-neon;
+      color: $color-white;
+      @include tint(background);
+    }
+  }
+}
