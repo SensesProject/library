@@ -2,9 +2,9 @@
   <div class="index">
     <p>Here lives the <a href="https://climatescenarios.org">climatescenarios.org</a> styleguide & component library.</p>
     <h2>usage</h2>
-    <p>In your project directory run to install the current release / latest dev version:</p>
+    <p>In your project directory run to install the current release / latest version:</p>
     <pre><code>npm i github:SensesProject/library#{{ pkg.version }}</code></pre>
-    <pre><code>npm i github:SensesProject/library#dev</code></pre>
+    <pre><code>npm i github:SensesProject/library</code></pre>
     <h3>Style</h3>
     <p>Embedd base style:</p>
     <pre><code>@import "library/src/style/base.scss";</code></pre>
