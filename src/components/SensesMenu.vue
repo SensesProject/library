@@ -1,7 +1,7 @@
 <template>
   <div class="senses-menu">
-    <senses-logo color="white"/>
-    <senses-falafel color="white"/>
+    <senses-logo color="black"/>
+    <senses-falafel color="black"/>
   </div>
 </template>
 
@@ -27,10 +27,19 @@ export default {
 .senses-menu {
   width: 100%;
   height: $spacing * 2;
-  background: $color-black;
+  background: transparentize($color-white, 0.02);
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 $spacing / 2;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  @supports ((-webkit-backdrop-filter: saturate(180%) blur(20px)) or(backdrop-filter: saturate(180%) blur(20px))) {
+    background: transparentize($color-white, 0.15);
+    -webkit-backdrop-filter: saturate(180%) blur(10px);
+    backdrop-filter:saturate(180%) blur(10px)
+  }
 }
 </style>
