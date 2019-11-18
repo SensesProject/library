@@ -4,7 +4,7 @@
       <!-- <header>
         <SensesLogo color="white"/>
       </header> -->
-    <div class="vis" ref="vis">
+    <div class="vis" ref="vis" :class="{'ignore-menu-bar': ignoreMenuBar}">
       <div class="debug" v-if="debug"></div>
       <slot name="vis" :width="width" :height="height" :step="step">
         <div
@@ -59,10 +59,10 @@ export default {
       default: false,
       docs: 'set to true to help you finetune transitions between steps'
     },
-    offset: {
-      type: Number,
-      default: 64,
-      docs: 'pixel value that gets subtracted from the height property, defaults to the height of the menu bar ($spacing/4rem/64px).'
+    ignoreMenuBar: {
+      type: Boolean,
+      default: false,
+      docs: 'set to true to ignore the height of the menu bar.'
     }
   },
   data () {
@@ -82,7 +82,7 @@ export default {
     setDimensions () {
       const { width, height } = this.$refs.vis.getBoundingClientRect()
       this.width = width
-      this.height = height - this.offset
+      this.height = height
     }
   },
   mounted () {
@@ -135,11 +135,16 @@ export default {
   }
   .vis {
     width: 100%;
-    height: 100vh;
+    height: calc(100vh - #{$spacing * 2});
     z-index: -1;
     position: sticky;
-    top: 0;
+    top: $spacing * 2;
     left: 0;
+
+    &.ignore-menu-bar {
+      top: 0;
+      height: 100vh;
+    }
 
     .debug {
       position: fixed;
