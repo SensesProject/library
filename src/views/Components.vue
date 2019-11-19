@@ -26,7 +26,7 @@
           <td class="mono">{{ prop.type.join(', ') }}</td>
           <td class="mono example">
             <input class="mono" v-if="prop.type[0] === 'String'" v-model="props[prop.name]"/>
-            <input class="mono" v-if="prop.type[0] === 'Number'" type="number" v-model.number="props[prop.name]"/>
+            <input class="mono" v-if="prop.type[0] === 'Number'" type="number" v-model.number="props[prop.name]" novalidate/>
             <textarea class="mono" :class="{ warn: !jsonValids[prop.name] }" v-if="prop.type[0] === 'Array' || prop.type[0] === 'Object'" v-model="jsonProps[prop.name]"/>
             <SensesRadio v-if="prop.type[0] === 'Boolean'" v-model="props[prop.name]" :options="[true, false]"/>
           </td>
@@ -194,6 +194,10 @@ export default {
       border: 1px solid getColor(gray, 80);
       padding: $spacing / 4;
       font-size: 1em;
+
+      &:invalid {
+        box-shadow: none;
+      }
     }
     textarea {
       padding: $spacing / 4;
