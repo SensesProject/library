@@ -11,14 +11,14 @@
           class="vis-demo"
           :style="{
             background: step === 1 ? style.colorBlue : style.colorGreen}">
-          <span class="step">{{ step }}</span><br/>
+          <span class="step">{{ fStep }}</span><br/>
           <span>{{ width }}&thinsp;✕&thinsp;{{ height }}</span>
         </div>
       </slot>
     </div>
     <section class="text" :class="{ debug }">
       <!-- <article> -->
-        <slot name="text">
+        <slot name="text" :width="width" :height="height" :step="step">
           <IntersectionObserver align="left" :step="0">
             <h2>Zero</h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
@@ -27,7 +27,11 @@
             <h2>One</h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
           </IntersectionObserver>
-          <IntersectionObserver align="right" :step="2">
+          <IntersectionObserverFracture align="right" :step="1">
+            <h2>One to Two</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          </IntersectionObserverFracture>
+          <IntersectionObserver :step="2">
             <h2>Two</h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
           </IntersectionObserver>
@@ -43,6 +47,7 @@ import { ResizeObserver } from 'vue-resize'
 // import { mapState } from 'vuex'
 
 import IntersectionObserver from './IntersectionObserver'
+import IntersectionObserverFracture from './IntersectionObserverFracture'
 // import SensesLogo from './SensesLogo.vue'
 import style from '../style/global.scss'
 
@@ -51,7 +56,8 @@ export default {
   components: {
     // SensesLogo,
     ResizeObserver,
-    IntersectionObserver
+    IntersectionObserver,
+    IntersectionObserverFracture
   },
   props: {
     debug: {
@@ -74,9 +80,9 @@ export default {
     }
   },
   computed: {
-    // ...mapState({
-    //   step: state => state.scrollytelling ? state.scrollytelling.step : null
-    // })
+    fStep () {
+      return +this.step.toPrecision(4)
+    }
   },
   methods: {
     setDimensions () {
