@@ -1,6 +1,7 @@
 import SensesLogo from '@/components/SensesLogo.vue'
 import LayoutScrollytelling from '@/components/LayoutScrollytelling.vue'
 import IntersectionObserver from '@/components/IntersectionObserver.vue'
+import IntersectionObserverFracture from '@/components/IntersectionObserverFracture.vue'
 import SensesMenu from '@/components/SensesMenu.vue'
 import SensesFalafel from '@/components/SensesFalafel.vue'
 import SensesRadio from '@/components/SensesRadio.vue'
@@ -11,6 +12,7 @@ export default [
   SensesLogo,
   LayoutScrollytelling,
   IntersectionObserver,
+  IntersectionObserverFracture,
   SensesMenu,
   SensesFalafel,
   SensesRadio,
