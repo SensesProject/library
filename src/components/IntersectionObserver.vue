@@ -1,7 +1,9 @@
 <template>
   <div class="intersection-observer" ref="intersect" :class="{ default: !noStyling }">
     <div :class="[{ default: !noStyling }, align]">
-      <slot/>
+      <slot>
+        <h2>Step {{ step }}</h2>
+      </slot>
     </div>
   </div>
 </template>
@@ -9,12 +11,12 @@
 <script>
 export default {
   name: 'IntersectionObserver',
-  docs: 'This component only works within LayoutScrollytelling.vue<br>It is used to commit its property <code>step</code> to vuex <code>scrollytelling/step</code> when it becomes visible.',
+  docs: 'This component is designed to be used inside the text slot of the LayoutScrollytelling component. When it intersects with the the rectangle defined as rootMargin in observerOptions it will emit the value of the property step',
   props: {
-    step: Number,
-    offset: {
+    step: {
       type: Number,
-      default: 0.5
+      default: 0,
+      docs: 'Value that gets emitted when the component starts intersecting'
     },
     observerOptions: {
       type: Object,
@@ -22,7 +24,8 @@ export default {
         return {
           rootMargin: `-${0.5 * 100}% 0% -${100 - 0.5 * 100}% 0%`
         }
-      }
+      },
+      docs: 'Options passed to the intersection observer. → https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API'
     },
     noStyling: {
       type: Boolean,
