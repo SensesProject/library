@@ -121,7 +121,7 @@ export default {
     margin-top: -100vh;
     z-index: 1;
     min-height: 100vh;
-    // padding: 0 $spacing / 2;
+    pointer-events: none;
 
     @include max-width($narrow) {
       z-index: 1;

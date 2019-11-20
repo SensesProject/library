@@ -83,6 +83,7 @@ export default {
   display: flex;
   flex-direction: column;
   .default {
+    pointer-events: all;
     hyphens: auto;
     max-width: 460px;
     background: transparentize($color-white, 0.02);
