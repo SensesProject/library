@@ -28,7 +28,6 @@ export default {
   },
   computed: {
     fill () {
-      console.log(colors)
       return colors[`color-${this.color.toLowerCase()}`]
     }
   }
