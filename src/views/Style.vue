@@ -9,6 +9,10 @@
       <ColorTable/>
     </div>
     <div class="section">
+      <div class="mono">Glyphs</div>
+      <GlyphsTable/>
+    </div>
+    <div class="section">
       <div class="mono">Units</div>
       <div class="unit">
         <div class="square"/>
@@ -25,10 +29,11 @@
 <script>
 import ColorTable from '@/components/library/ColorTable.vue'
 import TypoTable from '@/components/library/TypoTable.vue'
+import GlyphsTable from '@/components/library/GlyphsTable.vue'
 import style from '@/style/global.scss'
 export default {
   name: 'home',
-  components: { ColorTable, TypoTable },
+  components: { ColorTable, TypoTable, GlyphsTable },
   data () {
     return {
       style
