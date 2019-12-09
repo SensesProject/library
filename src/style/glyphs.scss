@@ -7,50 +7,65 @@ $font-prefix: '../node_modules/library/src/assets/fonts' !default;
   font-style: normal;
 }
 
-[class^="icon-"]:before, [class*=" icon-"]:before {
+[class^="glyph-"]:before, [class*=" glyph-"]:before {
   font-family: "senses_glyphs";
   font-style: normal;
   font-weight: normal;
   speak: none;
- 
+
   display: inline-block;
   text-decoration: inherit;
   width: 1em;
   margin-right: .2em;
   text-align: center;
   /* opacity: .8; */
- 
+
   /* For safety - reset parent styles, that can break glyph codes*/
   font-variant: normal;
   text-transform: none;
- 
+
   /* fix buttons height, for twitter bootstrap */
   line-height: 1em;
- 
+
   /* Animation center compensation - margins should be symmetric */
   /* remove if not needed */
   margin-left: .2em;
- 
-  /* you can be more comfortable with increased icons size */
+
+  /* you can be more comfortable with increased glyphs size */
   /* font-size: 120%; */
- 
+
   /* Font smoothing. That was taken from TWBS */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
- 
+
   /* Uncomment for 3D effect */
   /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
- 
-.icon-plus:before { content: '\e800'; } /* '' */
-.icon-chart:before { content: '\e801'; } /* '' */
-.icon-chart-bar:before { content: '\e802'; } /* '' */
-.icon-home:before { content: '\e803'; } /* '' */
-.icon-lightbulb:before { content: '\f0eb'; } /* '' */
-.icon-angle-left:before { content: '\f104'; } /* '' */
-.icon-angle-right:before { content: '\f105'; } /* '' */
-.icon-angle-up:before { content: '\f106'; } /* '' */
-.icon-angle-down:before { content: '\f107'; } /* '' */
-.icon-cube:before { content: '\f1b2'; } /* '' */
-.icon-sticky-note-o:before { content: '\f24a'; } /* '' */
-.icon-search:before { content: '\f50d'; } /* '' */
+
+.glyph-plus:before { content: '\e800'; } /* '' */
+.glyph-building:before { content: '\e801'; } /* '' */
+.glyph-chart:before { content: '\e802'; } /* '' */
+.glyph-crop-failure:before { content: '\e803'; } /* '' */
+.glyph-droughts:before { content: '\e804'; } /* '' */
+.glyph-emissions:before { content: '\e805'; } /* '' */
+.glyph-floods:before { content: '\e806'; } /* '' */
+.glyph-gas:before { content: '\e807'; } /* '' */
+.glyph-gems:before { content: '\e808'; } /* '' */
+.glyph-hurricanes:before { content: '\e809'; } /* '' */
+.glyph-industry:before { content: '\e80a'; } /* '' */
+.glyph-land:before { content: '\e80b'; } /* '' */
+.glyph-oil:before { content: '\e80c'; } /* '' */
+.glyph-policies:before { content: '\e80d'; } /* '' */
+.glyph-power:before { content: '\e80e'; } /* '' */
+.glyph-wildfires:before { content: '\e80f'; } /* '' */
+.glyph-coal:before { content: '\e810'; } /* '' */
+.glyph-home:before { content: '\e811'; } /* '' */
+.glyph-chart-bar:before { content: '\e812'; } /* '' */
+.glyph-lightbulb:before { content: '\f0eb'; } /* '' */
+.glyph-angle-left:before { content: '\f104'; } /* '' */
+.glyph-angle-right:before { content: '\f105'; } /* '' */
+.glyph-angle-up:before { content: '\f106'; } /* '' */
+.glyph-angle-down:before { content: '\f107'; } /* '' */
+.glyph-cube:before { content: '\f1b2'; } /* '' */
+.glyph-sticky-note-o:before { content: '\f24a'; } /* '' */
+.glyph-search:before { content: '\f50d'; } /* '' */
