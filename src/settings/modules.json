@@ -60,13 +60,8 @@
       "main-topic": "Transitions",
       "path": "transition-path-1",
       "id": "transition-path-1",
-<<<<<<< HEAD
-      "title": "National and sectoral transition paths",
-      "description": "We cannot predict the future, but we can create different plausible scenarios of how a future decarbonization pathway could look like. In this general you will be introduced to the concept of Electrification and to the broad strategy to go Carbon Neutral by reducing emissions.",
-=======
       "title": "Towards an electric future",
       "description": "We cannot predict the future, but we can create different plausible scenarios of how a future decarbonization pathway could look like. In this module you will be introduced to the concept of Electrification and to the broad strategy to go Carbon Neutral by reducing emissions.",
->>>>>>> 90c642ee4f63a2661a80a62b9f7c9e309f0a8e9a
       "keywords": "",
       "authors": ["Falko Ueckerdt", "Felix Schreyer", "Francesca Morini"],
       "readingTime": 25,
