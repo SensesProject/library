@@ -1,5 +1,5 @@
 {
-  "modules": [
+  "generals": [
     {
       "portal": ["Policy", "Finance"],
       "portal-num": 0,
@@ -11,14 +11,12 @@
       "keywords": "ssp",
       "authors": ["Fidel Thomet"],
       "readingTime": 45,
-      "gem": false,
-      "scenario-finder": false,
-      "data": false,
       "downloadIDs": [1, 2, 3],
       "bg": "bg3",
       "alignRight": false,
       "tags": ["Policy", "Finance"],
-      "dev": false
+      "dev": false,
+      "links": [{"general": "https://climatescenarios.org/primer/"}, { "title": "data", "href": "http://..." }, { "title": "scenario finder", "href": "http://..." }, { "title": "gem", "href": "http://..." }]
     },
     {
       "portal": "Policy",
@@ -27,18 +25,16 @@
       "path": "stocktake-1",
       "id": "stocktake-1",
       "title": "Global Stocktake I",
-      "description": "This module explores how current decarbonization plans until 2030 relate to the long-term targets of the Paris Agreement.",
+      "description": "This general explores how current decarbonization plans until 2030 relate to the long-term targets of the Paris Agreement.",
       "keywords": "",
       "authors": ["Christoph Bertram", "Jonas Parnow"],
       "readingTime": 15,
-      "gem": "https://data.ene.iiasa.ac.at/iamc-1.5c-explorer//#/workspaces/share/1a6e44c8-0963-4f28-a871-2b81bfb11def",
-      "scenario-finder": true,
-      "data": false,
       "downloadIDs": [1],
       "bg": "bg1",
       "alignRight": true,
       "tags": ["Policy"],
-      "dev": true
+      "dev": true,
+      "links": [{"general": "https://dev.climatescenarios.org/stocktake/"}, { "title": "data", "href": "http://..." }, { "title": "scenario finder", "href": "http://..." }, { "title": "gem", "href": "https://data.ene.iiasa.ac.at/iamc-1.5c-explorer//#/workspaces/share/1a6e44c8-0963-4f28-a871-2b81bfb11def" }]
     },
     {
       "portal": "Policy",
@@ -51,14 +47,12 @@
       "keywords": "",
       "authors": ["Jonas Parnow"],
       "readingTime": 15,
-      "gem": true,
-      "scenario-finder": false,
-      "data": false,
       "downloadIDs": [1],
       "bg": "bg2",
       "alignRight": true,
       "tags": ["Policy"],
-      "dev": true
+      "dev": true,
+      "links": [{"general": "https://dev.climatescenarios.org/stocktake/"}, { "title": "data", "href": "http://..." }, { "title": "scenario finder", "href": "http://..." }, { "title": "gem", "href": "http://..." }]
     },
     {
       "portal": "Policy",
@@ -67,18 +61,16 @@
       "path": "transition-path-1",
       "id": "transition-path-1",
       "title": "National and sectoral transition paths",
-      "description": "We cannot predict the future, but we can create different plausible scenarios of how a future decarbonization pathway could look like. In this module you will be introduced to the concept of Electrification and to the broad strategy to go Carbon Neutral by reducing emissions.",
+      "description": "We cannot predict the future, but we can create different plausible scenarios of how a future decarbonization pathway could look like. In this general you will be introduced to the concept of Electrification and to the broad strategy to go Carbon Neutral by reducing emissions.",
       "keywords": "",
       "authors": ["Falko Ueckerdt", "Gunnar Luderer", "Francesca Morini"],
       "readingTime": 25,
-      "gem": false,
-      "scenario-finder": false,
-      "data": true,
       "downloadIDs": false,
       "bg": "bg1",
       "alignRight": true,
       "tags": ["Policy"],
-      "dev": true
+      "dev": true,
+      "links": [{"general": "https://dev.climatescenarios.org/sector-transition/"}, { "title": "data", "href": "http://..." }, { "title": "scenario finder", "href": "http://..." }, { "title": "gem", "href": "http://..." }]
     },
     {
       "portal": "Policy",
@@ -91,14 +83,12 @@
       "keywords": "",
       "authors": ["Falko Ueckerdt", "Gunnar Luderer", "Francesca Morini"],
       "readingTime": 25,
-      "gem": false,
-      "scenario-finder": false,
-      "data": false,
       "downloadIDs": false,
       "bg": "bg3",
       "alignRight": false,
       "tags": ["Policy"],
-      "dev": true
+      "dev": true,
+      "links": [{"general": "https://dev.climatescenarios.org/sector-transition/"}, { "title": "data", "href": "http://..." }, { "title": "scenario finder", "href": "http://..." }, { "title": "gem", "href": "http://..." }]
     },
     {
       "portal": "Policy",
@@ -116,14 +106,12 @@
         "Francesca Morini"
       ],
       "readingTime": null,
-      "gem": false,
-      "scenario-finder": false,
-      "data": false,
       "downloadIDs": false,
       "bg": "bg3",
       "alignRight": false,
       "tags": ["Policy"],
-      "dev": true
+      "dev": true,
+      "links": [{"general": "http://..."}, { "title": "data", "href": "http://..." }, { "title": "scenario finder", "href": "http://..." }, { "title": "gem", "href": "http://..." }]
     },
     {
       "portal": "Policy",
@@ -131,19 +119,17 @@
       "main-topic": "Transitions",
       "path": "land-transitions",
       "id": "land-transitions",
-      "title": "Land transitions module",
+      "title": "Land transitions general",
       "description": "Placeholder Text TODO",
       "keywords": "",
       "authors": ["Florian Humpenöder", "Alex Popp", "Fidel Thomet"],
       "readingTime": 10,
-      "gem": false,
-      "scenario-finder": false,
-      "data": false,
       "downloadIDs": false,
       "bg": "bg3",
       "alignRight": false,
       "tags": ["Policy"],
-      "dev": true
+      "dev": true,
+      "links": [{"general": "http://..."}, { "title": "data", "href": "http://..." }, { "title": "scenario finder", "href": "http://..." }, { "title": "gem", "href": "http://..." }]
     },
     {
       "portal": "Policy",
@@ -151,19 +137,17 @@
       "main-topic": "Transitions",
       "path": "land-affected",
       "id": "land-affected",
-      "title": "How much land area is affected by and how much population is exposed to extreme events under climate change?",
-      "description": "The extent and impact of crop failures, river floods, tropical cyclones, heatwaves, wildfires, and droughts depend on the underlying meteorological, hydrological, or climatological events as well as on human factors such as land use, water and agricultural management, and population density. In this module you'll learn how climate change contributes to extreme events and who is most affected by those.",
+      "title": "Extreme Events",
+      "description": "The extent and impact of crop failures, river floods, tropical cyclones, heatwaves, wildfires, and droughts depend on the underlying meteorological, hydrological, or climatological events as well as on human factors such as land use, water and agricultural management, and population density. In this general you'll learn how climate change contributes to extreme events and who is most affected by those.",
       "keywords": "",
       "authors": ["Katja Frieler", "Jan Volkholz", "Fidel Thomet"],
       "readingTime": 25,
-      "gem": false,
-      "scenario-finder": false,
-      "data": false,
       "downloadIDs": false,
       "bg": "bg3",
       "alignRight": false,
       "tags": ["Policy"],
-      "dev": true
+      "dev": true,
+      "links": [{"general": "https://dev.climatescenarios.org/extreme-events/#/"}, { "title": "data", "href": "http://..." }, { "title": "scenario finder", "href": "http://..." }, { "title": "gem", "href": "http://..." }]
     },
     {
       "portal": "Finance",
@@ -171,19 +155,17 @@
       "main-topic": "Risks",
       "path": "transition-risk",
       "id": "transition-risk",
-      "title": "Transition risk",
+      "title": "Fossil Fuels Risks",
       "description": "Discover finance risks related to transitions in a variety of sectors including: Fossil fuels, End User and Power",
       "keywords": "",
       "authors": ["Nico Bauer", "Bas van Ruijven", "Nadia Zeissig"],
-      "readingTime": 25,
-      "gem": false,
-      "scenario-finder": false,
       "data": false,
       "downloadIDs": false,
       "bg": "bg3",
       "alignRight": false,
       "tags": ["Finance"],
-      "dev": true
+      "dev": true,
+      "links": [{"general": "https://dev.climatescenarios.org/fossil-fuels/"}, { "title": "data", "href": "http://..." }, { "title": "scenario finder", "href": "http://..." }, { "title": "gem", "href": "http://..." }]
     },
     {
       "portal": "Finance",
@@ -196,14 +178,12 @@
       "keywords": "",
       "authors": ["Bas van Ruijven", "Christoph Bertram", "Jonas Parnow"],
       "readingTime": 25,
-      "gem": false,
-      "scenario-finder": false,
-      "data": false,
       "downloadIDs": false,
       "bg": "bg3",
       "alignRight": false,
       "tags": ["Finance"],
-      "dev": true
+      "dev": true,
+      "links": [{"general": "http://..."}, { "title": "data", "href": "http://..." }, { "title": "scenario finder", "href": "http://..." }, { "title": "gem", "href": "http://..." }]
     },
     {
       "portal": "Finance",
@@ -216,14 +196,12 @@
       "keywords": "",
       "authors": ["Katja Frieler", "Jan Volkholz", "Fidel Thomet"],
       "readingTime": 15,
-      "gem": false,
-      "scenario-finder": false,
-      "data": false,
       "downloadIDs": false,
       "bg": "bg3",
       "alignRight": false,
       "tags": ["Finance"],
-      "dev": true
+      "dev": true,
+      "links": [{"general": "http://..."}, { "title": "data", "href": "http://..." }, { "title": "scenario finder", "href": "http://..." }, { "title": "gem", "href": "http://..." }]
     },
     {
       "portal": "Policy",
@@ -236,14 +214,12 @@
       "keywords": "",
       "authors": ["Hannah Schwan", "Dennis Ostendorf"],
       "readingTime": 15,
-      "gem": false,
-      "scenario-finder": false,
-      "data": true,
       "downloadIDs": false,
       "bg": "bg3",
       "alignRight": false,
-      "tags": ["Finance"],
-      "dev": true
+      "tags": ["Policy","Finance"],
+      "dev": true,
+      "links": [{"general": "http://..."}, { "title": "data", "href": "http://..." }, { "title": "scenario finder", "href": "http://..." }, { "title": "gem", "href": "http://..." }]
     },
     {
       "portal": null,
@@ -256,14 +232,12 @@
       "keywords": "",
       "authors": ["Jonas Parnow"],
       "readingTime": null,
-      "gem": false,
-      "scenario-finder": false,
-      "data": false,
       "downloadIDs": false,
       "bg": "bg3",
       "alignRight": false,
       "tags": ["Finance", "Policy"],
-      "dev": true
+      "dev": true,
+      "links": [{"general": "https://dev.climatescenarios.org/finder/"}, { "title": "data", "href": "http://..." }, { "title": "scenario finder", "href": "http://..." }, { "title": "gem", "href": "http://..." }]
     },
     {
       "portal": "Policy",
@@ -276,14 +250,12 @@
       "keywords": "",
       "authors": ["Fidel Thomet"],
       "readingTime": null,
-      "gem": false,
-      "scenario-finder": false,
-      "data": false,
       "downloadIDs": false,
       "bg": "bg3",
       "alignRight": false,
       "tags": ["Finance", "Policy"],
-      "dev": true
+      "dev": true,
+      "links": [{"general": "https://dev.climatescenarios.org/earth/"}, { "title": "data", "href": "http://..." }, { "title": "scenario finder", "href": "http://..." }, { "title": "gem", "href": "http://..." }]
     },
     {
       "portal": null,
@@ -296,14 +268,12 @@
       "keywords": "",
       "authors": ["Volker Krey"],
       "readingTime": null,
-      "gem": false,
-      "scenario-finder": false,
-      "data": false,
       "downloadIDs": false,
       "bg": "bg3",
       "alignRight": false,
       "tags": ["Finance", "Policy"],
-      "dev": true
+      "dev": true,
+      "links": [{"general": "http://..."}, { "title": "data", "href": "http://..." }, { "title": "scenario finder", "href": "http://..." }, { "title": "gem", "href": "http://..." }]
     },
     {
       "portal": null,
@@ -316,14 +286,12 @@
       "keywords": "",
       "authors": ["Boris Müller"],
       "readingTime": 8,
-      "gem": false,
-      "scenario-finder": false,
-      "data": false,
       "downloadIDs": false,
       "bg": "bg3",
       "alignRight": false,
       "tags": ["Finance", "Policy"],
-      "dev": true
+      "dev": true,
+      "links": [{"general": "http://..."}, { "title": "data", "href": "http://..." }, { "title": "scenario finder", "href": "http://..." }, { "title": "gem", "href": "http://..." }]
     }
   ]
 }
