@@ -7,6 +7,7 @@ import SensesFalafel from '@/components/SensesFalafel.vue'
 import SensesRadio from '@/components/SensesRadio.vue'
 import SensesTooltip from '@/components/SensesTooltip.vue'
 import SensesSelect from '@/components/SensesSelect.vue'
+import SensesDownload from '@/components/SensesDownload.vue'
 
 export default [
   SensesLogo,
@@ -17,5 +18,6 @@ export default [
   SensesFalafel,
   SensesRadio,
   SensesTooltip,
-  SensesSelect
+  SensesSelect,
+  SensesDownload
 ]
