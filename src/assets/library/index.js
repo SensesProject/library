@@ -8,6 +8,7 @@ import SensesRadio from '@/components/SensesRadio.vue'
 import SensesTooltip from '@/components/SensesTooltip.vue'
 import SensesSelect from '@/components/SensesSelect.vue'
 import SensesDownload from '@/components/SensesDownload.vue'
+import SensesCopy from '@/components/SensesCopy.vue'
 
 export default [
   SensesLogo,
@@ -19,5 +20,6 @@ export default [
   SensesRadio,
   SensesTooltip,
   SensesSelect,
-  SensesDownload
+  SensesDownload,
+  SensesCopy
 ]
