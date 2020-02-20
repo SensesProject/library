@@ -1,7 +1,18 @@
 <template>
   <div class="readonly">
-    <input type="text" readonly :content="content" :class="{ copied }" />
-    <button class="btn" @click="copyToClipboard" ref="referenceButton">{{ referenceLabel }}</button>
+    <input
+      :class="{ copied }"
+      :content="content"
+      type="text"
+      readonly
+    />
+    <button
+      ref="referenceButton"
+      @click="copyToClipboard"
+      class="btn"
+    >
+      {{ referenceLabel }}
+    </button>
   </div>
 </template>
 
