@@ -15,6 +15,7 @@
         <ul v-if="downloadElements.length" class="list">
           <li
             v-for="element in downloadElements"
+            :key="element.id"
             :class="{ isActive: element.isActive, clickable: !element.isActive }"
             @click="() => setActive(element.id)"
           >
@@ -39,7 +40,10 @@
           </dt>
           <dd class="gallery">
             <ul class="previews">
-              <li v-for="element in item.previews" class="preview">
+              <li
+                v-for="(element, i) in item.previews"
+                :key="i"
+                class="preview">
                 <img :src="`/previews/${element}`">
               </li>
             </ul>
@@ -88,9 +92,13 @@
 </template>
 
 <script>
+import Vue from 'vue'
 import { get, map, includes, head, find } from 'lodash'
 import axios from 'axios'
+import VModal from 'vue-js-modal'
 import SensesCopy from './SensesCopy.vue'
+
+Vue.use(VModal)
 
 // Function to make sentence from author array
 const chain = (a) => { return [a.slice(0, -1).join(', '), a.slice(-1)[0]].join(a.length < 2 ? '' : ' and ') }
