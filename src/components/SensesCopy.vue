@@ -5,7 +5,7 @@
       :content="content"
       type="text"
       readonly
-    />
+    >
     <button
       ref="referenceButton"
       @click="copyToClipboard"
