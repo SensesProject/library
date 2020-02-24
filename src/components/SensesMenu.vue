@@ -1,6 +1,7 @@
 <template>
   <div class="senses-menu">
     <senses-logo color="black"/>
+    <span v-if="message" class="message">{{ message }}</span>
     <senses-falafel color="black"/>
   </div>
 </template>
@@ -15,6 +16,10 @@ export default {
     SensesFalafel
   },
   props: {
+    message: {
+      type: [String, Boolean],
+      default: false
+    }
   },
   computed: {
   }
@@ -29,7 +34,6 @@ export default {
   height: $spacing * 2;
   background: transparentize($color-white, 0.02);
   display: flex;
-  justify-content: space-between;
   align-items: center;
   padding: 0 $spacing / 2;
   position: sticky;
@@ -40,6 +44,19 @@ export default {
     background: transparentize($color-white, 0.15);
     -webkit-backdrop-filter: saturate(180%) blur(10px);
     backdrop-filter:saturate(180%) blur(10px)
+  }
+
+  .message {
+    margin-left: $spacing / 2;
+    font-size: 1em;
+    font-weight: $font-weight-regular;
+    letter-spacing: 1em / 3.5 * 0.125;
+    text-transform: uppercase;
+    color: $color-red;
+  }
+
+  & > *:last-child {
+    margin-left: auto;
   }
 }
 </style>
