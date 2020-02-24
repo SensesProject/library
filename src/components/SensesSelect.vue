@@ -23,18 +23,27 @@
         class="senses-select-list"
         :aria-labelledby="`btn_${uniqID}`"
         :aria-activedescendant="`option_${value}`">
-        <li
-          v-for="(o, i) in options"
-          :key="i"
-          role="option"
-          v-close-popover
-          :id="`option_${(o.value != null ? o.value : o)}`"
-          :aria-selected="(o.value != null ? o.value : o) === value"
-          class="option"
-          :class="[{active: (o.value != null ? o.value : o) === value, focused: (o.value != null ? o.value : o) === value}]"
-          @click="$emit('input', o.value != null ? o.value : o)">
-          {{ o.label || (o.value != null ? o.value : o) }}
-        </li>
+        <template v-for="(o, i) in options">
+          <li
+            v-if="o.text"
+            :key="i"
+            v-close-popover
+            class="text">
+            {{ o.text }}
+          </li>
+          <li
+            v-else
+            :key="i"
+            role="option"
+            v-close-popover
+            :id="`option_${(o.value != null ? o.value : o)}`"
+            :aria-selected="(o.value != null ? o.value : o) === value"
+            class="option"
+            :class="[{active: (o.value != null ? o.value : o) === value, focused: (o.value != null ? o.value : o) === value}]"
+            @click="$emit('input', o.value != null ? o.value : o)">
+            {{ o.label || (o.value != null ? o.value : o) }}
+          </li>
+        </template>
       </ul>
     </slot>
   </v-popover>
@@ -63,7 +72,11 @@ export default {
         }, {
           value: 'Option 2'
         },
-        'Option 3']
+        {
+          text: 'Other options'
+        },
+        'Option 3',
+        'Option 4']
       },
       docs: 'Array of available options. Options can be either strings or objects, with properties value (required) and label (optional)'
     },
@@ -145,6 +158,10 @@ export default {
   outline: none;
   .senses-select-list {
     list-style: none;
+    .text {
+      font-size: 0.8rem;
+      padding: $spacing / 4 $spacing / 4 0;
+    }
   }
 }
 
