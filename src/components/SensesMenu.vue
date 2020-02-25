@@ -82,6 +82,7 @@ export default {
   background: transparentize($color-white, 0.02);
   top: 0;
   z-index: 100;
+  position: sticky;
 
   @supports ((-webkit-backdrop-filter: saturate(180%) blur(20px)) or(backdrop-filter: saturate(180%) blur(20px))) {
     background: transparentize($color-white, 0.15);
@@ -96,7 +97,6 @@ export default {
     display: flex;
     align-items: center;
     padding: 0 $spacing / 2;
-    position: sticky;
 
     .message {
       margin-left: $spacing / 2;
