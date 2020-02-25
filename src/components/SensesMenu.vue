@@ -79,21 +79,21 @@ export default {
 .senses-menu {
   width: 100%;
   // height: $spacing * 2;
-  background: transparentize($color-white, 0.02);
+  // background: transparentize($color-white, 0.02);
   top: 0;
   z-index: 100;
   position: sticky;
-
-  @supports ((-webkit-backdrop-filter: saturate(180%) blur(20px)) or(backdrop-filter: saturate(180%) blur(20px))) {
-    background: transparentize($color-white, 0.15);
-    -webkit-backdrop-filter: saturate(180%) blur(10px);
-    backdrop-filter:saturate(180%) blur(10px)
-  }
 
   .bar {
     width: 100%;
     height: $spacing * 2;
     background: transparentize($color-white, 0.02);
+
+    @supports ((-webkit-backdrop-filter: saturate(180%) blur(20px)) or(backdrop-filter: saturate(180%) blur(20px))) {
+      background: transparentize($color-white, 0.15);
+      -webkit-backdrop-filter: saturate(180%) blur(10px);
+      backdrop-filter:saturate(180%) blur(10px)
+    }
     display: flex;
     align-items: center;
     padding: 0 $spacing / 2;
@@ -118,12 +118,12 @@ export default {
   }
 
   .overlay {
-    position: fixed;
+    position: absolute;
     top: $spacing * 2;
     height: calc(100vh - #{$spacing * 2});
-    width: 100vw;
+    width: 100%;
     left: 0;
-    background: red;
+    // background: red;
 
     display: flex;
     justify-content: center;
@@ -150,7 +150,7 @@ export default {
       @include center();
 
       .page-intro-float {
-        // background-color: #fff;
+        // background-color: $color-white;
         // box-shadow: $box-shadow--strong;
         margin-bottom: $spacing;
 
