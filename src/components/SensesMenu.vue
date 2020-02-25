@@ -150,7 +150,7 @@ export default {
       @include center();
 
       .page-intro-float {
-        background-color: #fff;
+        // background-color: #fff;
         // box-shadow: $box-shadow--strong;
         margin-bottom: $spacing;
 
