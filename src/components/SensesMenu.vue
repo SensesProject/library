@@ -1,6 +1,6 @@
 <template>
   <div class="senses-menu">
-    <senses-logo color="black"/>
+    <senses-logo color="black" href="https://dev.climatescenarios.org/"/>
     <span v-if="message" class="message">{{ message }}</span>
     <senses-falafel color="black"/>
   </div>
