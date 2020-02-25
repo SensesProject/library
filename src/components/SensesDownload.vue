@@ -44,7 +44,7 @@
                 v-for="(element, i) in item.previews"
                 :key="i"
                 class="preview">
-                <img :src="`/previews/${element}`">
+                <img :src="`https://dev.climatescenarios.org/share/${element}`">
               </li>
             </ul>
           </dd>
