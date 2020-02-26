@@ -2,7 +2,7 @@
 
 Here lives the climatescenarios.org styleguide & component library.
 
-[→ Visit](https://dev.climatescenarios.org/library) for details
+[→ Visit](https://senses-library.now.sh/) for details
 
 ## setup
 ```
