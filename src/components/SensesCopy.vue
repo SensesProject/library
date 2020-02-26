@@ -10,6 +10,7 @@
       ref="referenceButton"
       @click="copyToClipboard"
       class="btn"
+      :class="['btn', { copied }]"
     >
       {{ referenceLabel }}
     </button>
@@ -75,7 +76,6 @@ export default {
 
     &:hover, &:focus {
       color: #000;
-      transition: color 0.1s;
     }
 
     &.copied {
