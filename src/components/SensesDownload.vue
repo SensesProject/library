@@ -93,7 +93,7 @@
 
 <script>
 import Vue from 'vue'
-import { get, map, includes, head, find } from 'lodash'
+import { get, map, includes, head, find, isNumber } from 'lodash'
 import axios from 'axios'
 import VModal from 'vue-js-modal'
 import SensesCopy from './SensesCopy.vue'
@@ -109,10 +109,10 @@ export default {
     SensesCopy
   },
   props: {
-    selected: { // The id of the currently selected download. This will be checked again
-      type: [Number, Boolean],
+    visible: {
+      type: [Boolean, Number],
       default: false,
-      docs: 'The currently selected download id'
+      docs: 'Is the modal visible or nor. Or specify specific selected id'
     },
     title: {
       type: String,
@@ -175,10 +175,13 @@ export default {
     }
   },
   watch: {
-    selected (v) {
+    visible (v) {
       if (v) {
-        this.setActive(v)
+        this.setActive(isNumber(v) ? v : 0) // Call with id of download or 0 to display the first
         this.$modal.show('download')
+      } else {
+        this.setActive(false)
+        this.$modal.hide('download')
       }
     }
   },
@@ -195,7 +198,7 @@ export default {
       this.close()
     },
     setActive (v) {
-      if (v) {
+      if (v || v === 0) { // Something should be selected
         if (includes(this.availableIDS, v)) {
           // The id is present in the list of downloads
           this.activeID = v
