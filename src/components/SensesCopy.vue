@@ -2,7 +2,7 @@
   <div class="readonly">
     <input
       :class="{ copied }"
-      :content="content"
+      :value="content"
       type="text"
       readonly
     >
