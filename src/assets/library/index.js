@@ -9,6 +9,7 @@ import SensesTooltip from '@/components/SensesTooltip.vue'
 import SensesSelect from '@/components/SensesSelect.vue'
 import SensesDownload from '@/components/SensesDownload.vue'
 import SensesCopy from '@/components/SensesCopy.vue'
+import SensesMeta from '@/components/SensesMeta.vue'
 
 export default [
   SensesLogo,
@@ -21,5 +22,6 @@ export default [
   SensesTooltip,
   SensesSelect,
   SensesDownload,
-  SensesCopy
+  SensesCopy,
+  SensesMeta
 ]
