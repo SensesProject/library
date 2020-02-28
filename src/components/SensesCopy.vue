@@ -52,7 +52,7 @@ export default {
           this.referenceLabel = this.copyReference
         }, 2000)
       } else {
-        console.log('No string to copy to clipboard')
+        // console.log('No string to copy to clipboard')
       }
     }
   }

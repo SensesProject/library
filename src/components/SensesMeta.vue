@@ -71,8 +71,7 @@
 </template>
 
 <script>
-import Vue from 'vue'
-import { get, map, includes, head, find, isNumber } from 'lodash'
+import { get, find } from 'lodash'
 import axios from 'axios'
 import SensesCopy from './SensesCopy.vue'
 import SensesDownload from './SensesDownload.vue'
@@ -124,7 +123,7 @@ export default {
     },
     downloadIDs () {
       return get(this.module, 'downloadIDs', [])
-    },
+    }
   },
   mounted () {
     // Load the list of downloads
@@ -135,7 +134,7 @@ export default {
       axios.get('https://dev.climatescenarios.org/settings/modules.json')
         .then((response) => {
           const modules = get(response, ['data', 'modules'], [])
-          console.info(`Fetched ${modules.length} modules`)
+          // console.info(`Fetched ${modules.length} modules`)
           this.modules = modules
         })
     }
