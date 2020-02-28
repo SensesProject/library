@@ -150,6 +150,10 @@ export default {
   border: 1px solid getColor(gray, 80);
   border-radius: $border-radius * 2;
   padding: $spacing;
+
+  @include max-width($narrow) {
+    padding: $spacing / 2;
+  }
   display: grid;
   grid-row-gap: $spacing;
 
@@ -157,6 +161,10 @@ export default {
     display: grid;
     grid-gap: $spacing $spacing;
     grid-template-columns: repeat(2, 1fr);
+
+    @include max-width($narrow) {
+      grid-template-columns: repeat(1, 1fr);
+    }
 
     .caption {
       display: block;
@@ -192,8 +200,12 @@ export default {
     max-width: 1100px;
     margin-bottom: $spacing;
 
+    @include max-width($narrow) {
+      grid-template-columns: repeat(1, 1fr);
+    }
+
     .wrapper {
-      padding: $spacing / 2;
+      padding: $spacing / 2 $spacing / 1.5 $spacing / 2 0;
       display: flex;
       height: 100%;
 
@@ -261,6 +273,10 @@ export default {
     justify-content: space-between;
     grid-gap: $spacing;
     grid-auto-flow: column;
+
+    @include max-width($narrow) {
+      grid-auto-flow: row;
+    }
   }
 }
 </style>

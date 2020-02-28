@@ -109,6 +109,9 @@ export default {
     padding: $spacing / 4 $spacing;
     border-radius: 0 $border-radius $border-radius 0;
 
+    @include max-width($narrow) {
+      padding: $spacing / 4 $spacing / 2;
+    }
     &:focus {
       outline: none;
     }
