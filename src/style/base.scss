@@ -36,6 +36,27 @@ table {
   cursor: pointer;
 }
 
+.until-narrow {
+  @include media-query($narrow) {
+    display: none;
+    visibility: hidden;
+  }
+}
+
+.until-medium {
+  @include media-query($medium) {
+    display: none;
+    visibility: hidden;
+  }
+}
+
+.until-wide {
+  @include media-query($wide) {
+    display: none;
+    visibility: hidden;
+  }
+}
+
 .senses-tooltip {
   display: block !important;
   z-index: 10000;
