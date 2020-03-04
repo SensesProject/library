@@ -1,14 +1,14 @@
 <template>
   <div class="senses-menu">
-    <div class="bar">
-      <senses-logo color="black" href="https://dev.climatescenarios.org/"/>
+    <div class="bar" :class="{ darkmode }">
+      <senses-logo :color="darkmode ? 'white' : 'black'" href="https://dev.climatescenarios.org/"/>
       <span v-if="message" class="message">{{ message }}</span>
       <div class="falafel" @click="open = !open">
-        <senses-falafel color="black" :symbol="open ? 'close' : 'vertical'"/>
+        <senses-falafel :color="darkmode ? 'white' : 'black'" :symbol="open ? 'close' : 'vertical'"/>
       </div>
     </div>
     <transition name="fade">
-      <div class="overlay" v-if="open">
+      <div class="overlay" :class="{ darkmode }" v-if="open">
         <nav class="page-intro">
           <div class="page-intro-float">
             <section class="toolkit">
@@ -61,6 +61,10 @@ export default {
     message: {
       type: [String, Boolean],
       default: false
+    },
+    darkmode: {
+      type: Boolean,
+      default: false
     }
   },
   data () {
@@ -93,6 +97,16 @@ export default {
       background: transparentize($color-white, 0.15);
       -webkit-backdrop-filter: saturate(180%) blur(10px);
       backdrop-filter:saturate(180%) blur(10px)
+    }
+
+    &.darkmode {
+      background: transparentize($color-black, 0.02);
+
+      @supports ((-webkit-backdrop-filter: saturate(180%) blur(20px)) or(backdrop-filter: saturate(180%) blur(20px))) {
+        background: transparentize(#000, 0.15);
+        -webkit-backdrop-filter: saturate(180%) blur(10px);
+        backdrop-filter:saturate(180%) blur(10px)
+      }
     }
     display: flex;
     align-items: center;
@@ -137,6 +151,25 @@ export default {
       -webkit-backdrop-filter: saturate(180%) blur(10px);
       backdrop-filter:saturate(180%) blur(10px)
     }
+    --border-color: #{getColor(gray, 90)};
+    --policy-color: #{getColor(green, 50)};
+    --finance-color: #{getColor(purple, 50)};
+    --toolkit-color: #{getColor(neon, 50)};
+
+    &.darkmode {
+      background: transparentize($color-black, 0.02);
+
+      @supports ((-webkit-backdrop-filter: saturate(180%) blur(20px)) or(backdrop-filter: saturate(180%) blur(20px))) {
+        background: transparentize(#000, 0.15);
+        -webkit-backdrop-filter: saturate(180%) blur(10px);
+        backdrop-filter:saturate(180%) blur(10px)
+      }
+
+      --border-color: #{getColor(gray, 80)};
+      --policy-color: #{getColor(green, 50)};
+      --finance-color: #{getColor(purple, 50)};
+      --toolkit-color: #{getColor(neon, 50)};
+    }
 
     &.fade-enter-active, &.fade-leave-active {
       transition: opacity $transition;
@@ -177,15 +210,15 @@ export default {
         }
 
         section {
-          border-bottom: 1px solid #F0F0FF;
+          border-bottom: 1px solid var(--border-color);
           min-width: 280px;
 
           @include media-query($narrow) {
-            border: 1px solid #F0F0FF;
+            border: 1px solid var(--border-color);
             border-right: none;
-            // border-right: 1px solid #F0F0FF;
+            // border-right: 1px solid var(--border-color);
             &:last-child {
-              border-right: 1px solid #F0F0FF;
+              border-right: 1px solid var(--border-color);
             }
           }
 
@@ -195,7 +228,6 @@ export default {
 
           a {
             background: none;
-            color: #000;
           }
 
           .glyph {
@@ -205,7 +237,7 @@ export default {
 
           &.policy {
             strong, .glyph {
-              color: $color-green;
+              color: var(--policy-color);
             }
 
             a:hover, a:focus {
@@ -219,7 +251,7 @@ export default {
 
           &.finance {
             strong, .glyph {
-              color: $color-purple;
+              color: var(--finance-color);
             }
 
             a:hover, a:focus {
@@ -233,11 +265,11 @@ export default {
 
           &.toolkit {
             strong, .glyph {
-              color: $color-black;
+              color: var(--toolkit-color);
             }
 
             a:hover, a:focus {
-              background-color: $color-deep-gray;
+              background-color: $color-neon;
 
               strong, .glyph, span {
                 color: #fff;
