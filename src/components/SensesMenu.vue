@@ -108,17 +108,42 @@ export default {
         backdrop-filter:saturate(180%) blur(10px)
       }
     }
-    display: flex;
+    display: grid;
+    grid-template-columns: auto auto;
     align-items: center;
     padding: 0 $spacing / 2;
+    grid-template-rows: auto auto;
+
+    @include media-query($narrow) {
+      grid-template-columns: auto 1fr auto;
+    }
 
     .message {
       margin-left: $spacing / 2;
-      font-size: 1em;
+      font-size: 0.7em;
       font-weight: $font-weight-regular;
       letter-spacing: 1em / 3.5 * 0.125;
       text-transform: uppercase;
       color: $color-red;
+      line-height: 1.2;
+      grid-row-start: 2;
+      grid-column-end: span 2;
+      text-align: center;
+
+      @include media-query($narrow) {
+        font-size: 0.8em;
+        text-align: left;
+        grid-row-start: auto;
+        grid-column-end: span 1;
+      }
+
+      @include media-query($medium) {
+        font-size: 0.9em;
+      }
+
+      @include media-query($wide) {
+        font-size: 1em;
+      }
     }
 
     & > *:last-child {
