@@ -111,6 +111,7 @@ export default {
     display: grid;
     grid-template-columns: auto auto;
     align-items: center;
+    align-content: center;
     padding: 0 $spacing / 2;
     grid-template-rows: auto auto;
 
