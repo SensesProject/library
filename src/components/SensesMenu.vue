@@ -103,7 +103,7 @@ export default {
       background: transparentize($color-black, 0.02);
 
       @supports ((-webkit-backdrop-filter: saturate(180%) blur(20px)) or(backdrop-filter: saturate(180%) blur(20px))) {
-        background: transparentize(#000, 0.15);
+        background: transparentize($color-black, 0.15);
         -webkit-backdrop-filter: saturate(180%) blur(10px);
         backdrop-filter:saturate(180%) blur(10px)
       }
@@ -186,7 +186,7 @@ export default {
       background: transparentize($color-black, 0.02);
 
       @supports ((-webkit-backdrop-filter: saturate(180%) blur(20px)) or(backdrop-filter: saturate(180%) blur(20px))) {
-        background: transparentize(#000, 0.15);
+        background: transparentize($color-black, 0.15);
         -webkit-backdrop-filter: saturate(180%) blur(10px);
         backdrop-filter:saturate(180%) blur(10px)
       }

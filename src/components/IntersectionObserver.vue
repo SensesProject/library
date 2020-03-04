@@ -1,6 +1,6 @@
 <template>
   <div class="intersection-observer" ref="intersect" :class="{ default: !noStyling }">
-    <div :class="[{ default: !noStyling }, align]">
+    <div :class="[{ default: !noStyling, darkmode }, align]">
       <slot>
         <h2>Step {{ step }}</h2>
       </slot>
@@ -36,6 +36,11 @@ export default {
       type: String,
       default: 'center',
       docs: `horizontally position the content, either 'left', 'center', or 'right'. has no effect if noStyling is set to true.`
+    },
+    darkmode: {
+      type: Boolean,
+      default: false,
+      docs: 'enable darkmode'
     }
   },
   data () {
@@ -72,6 +77,17 @@ export default {
       background: transparentize($color-white, 0.15);
       -webkit-backdrop-filter: saturate(180%) blur(10px);
       backdrop-filter:saturate(180%) blur(10px)
+    }
+
+    &.darkmode {
+      background: transparentize($color-black, 0.02);
+      color: $color-white;
+
+      @supports ((-webkit-backdrop-filter: saturate(180%) blur(20px)) or(backdrop-filter: saturate(180%) blur(20px))) {
+        background: transparentize($color-black, 0.15);
+        -webkit-backdrop-filter: saturate(180%) blur(10px);
+        backdrop-filter:saturate(180%) blur(10px)
+      }
     }
 
     &.left {
