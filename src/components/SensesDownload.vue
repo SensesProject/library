@@ -105,6 +105,7 @@ const chain = (a) => { return [a.slice(0, -1).join(', '), a.slice(-1)[0]].join(a
 
 export default {
   name: 'SensesDownload',
+  docs: 'It’s important to set mode to <code class="highlight gray no-hover">spa</code> in <code class="highlight gray no-hover">nuxt.config.js</code>, when running in Nuxt.',
   components: {
     SensesCopy
   },
