@@ -113,7 +113,7 @@ export default {
       return `https://dev.climatescenarios.org/share/${get(this.module, 'path')}`
     },
     downloads () {
-      return get(this.module, 'downloadIDs')
+      return get(this.module, 'downloadIDs', [])
     },
     gems () {
       return get(this.module, 'gems')
