@@ -17,7 +17,7 @@ $font-prefix: '../node_modules/library/src/assets/fonts' !default;
 
 $font-size: 100%;
 
-html, button {
+html, button, input {
   font: $font-weight-regular normal #{$font-size}/1.5 $font-family-default;
   text-size-adjust: 100%;
 }
