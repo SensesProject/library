@@ -174,7 +174,7 @@ a, .a {
   .dotted {
     background: repeating-linear-gradient(to left, transparent 0em, transparent 0.2em, $color-default 0.2em, $color-default 0.4em),
       linear-gradient(to top, transparent 0.1em, $color-neon 0.1em, $color-neon 0.2em, transparent 0.2em);
-  
+
     &:hover {
       background: repeating-linear-gradient(to left, transparent 0em, transparent 0.2em, $color-default 0.2em, $color-default 0.4em),
       linear-gradient(to top, transparent 0.1em, getColor(neon, 60) 0.1em, getColor(neon, 60) 0.2em, transparent 0.2em);
@@ -195,4 +195,12 @@ a, .a {
       @include tint(background);
     }
   }
+}
+
+.caption {
+  display: block;
+  color: getColor(grey, 50);
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
