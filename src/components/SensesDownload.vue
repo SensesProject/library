@@ -1,7 +1,7 @@
 <template>
   <modal
     :scrollable="true"
-    :width="800"
+    :width="900"
     @closed="closed"
     name="download"
     height="auto"
@@ -26,7 +26,7 @@
       </header>
       <div v-if="activeID && item" class="download-content">
         <div class="download-download">
-          <h2>{{ item.label }}</h2>
+          <h2 class="download-title">{{ item.label }}</h2>
           <div>
             <a :href="item.link" class="btn btn--action">Download</a>
           </div>
@@ -67,21 +67,23 @@
           <dt class="caption">
             Licence
           </dt>
-          <dd>{{ item.licence }}</dd>
+          <dd>
+            <span>Creative Commons Attribution-ShareAlike 4.0 International</span>
+            <aside class="licence-details">
+              <span>You are free to</span>
+              <ul>
+                <li>Copy and redistribute the material in any medium or format</li>
+                <li>Remix, transform, and build upon the material for any purpose, even commercially</li>
+              </ul>
+              <span>Under the following terms</span>
+              <ul>
+                <li>You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.</li>
+                <li>If you remix, transform, or build upon the material, you must distribute your contributions under the same license as the original.</li>
+                <li>You may not apply legal terms or technological measures that legally restrict others from doing anything the license permits.</li>
+              </ul>
+            </aside>
+          </dd>
         </dl>
-        <footer class="download-footer">
-          <strong>You are free to</strong>
-          <ul>
-            <li>Copy and redistribute the material in any medium or format</li>
-            <li>Remix, transform, and build upon the material for any purpose, even commercially</li>
-          </ul>
-          <strong>Under the following terms</strong>
-          <ul>
-            <li>You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.</li>
-            <li>If you remix, transform, or build upon the material, you must distribute your contributions under the same license as the original.</li>
-            <li>You may not apply legal terms or technological measures that legally restrict others from doing anything the license permits.</li>
-          </ul>
-        </footer>
         <span @click="closed" class="close">&times;</span>
       </div>
       <div v-else class="download-error">
@@ -230,15 +232,18 @@ export default {
 <style lang="scss" scoped>
 @import "../style/global.scss";
 
+$spacing-horizontal: $spacing * 2;
+$spacing-vertical: $spacing;
+$spacing-vertical-small: $spacing-vertical / 3 * 2;
+
 .page-download {
-  // margin: $spacing;
   display: grid;
-  grid-row-gap: $spacing;
+  grid-row-gap: $spacing-vertical;
   position: relative;
   z-index: 10;
 
   .download-download, .download-details {
-    margin: $spacing;
+    margin: $spacing $spacing-horizontal;
     margin-bottom: 0;
     margin-top: 0;
   }
@@ -249,7 +254,28 @@ export default {
     grid-template-columns: 2fr 1fr;
     grid-column-gap: $spacing;
     grid-row-gap: $spacing;
-    margin-bottom: $spacing / 2;
+    margin-bottom: $spacing-vertical-small;
+    align-items: start;
+
+    .download-title {
+      font-size: 1.8rem;
+    }
+
+    .btn--action {
+      background-color: $color-neon;
+      display: block;
+      text-align: center;
+      padding: $spacing / 3 0;
+      color: #fff;
+      border-radius: $border-radius;
+      box-shadow: $box-shadow--weak;
+      transition: transform $transition, background-color $transition, color $transition, box-shadow $transition;
+
+      &:hover, &:focus {
+        background: getColor(neon, 45);
+        border: none;
+      }
+    }
 
     .description {
       grid-column-end: span 2;
@@ -257,9 +283,7 @@ export default {
   }
 
   .download-header {
-    // background-color: $color-neon;
-    padding: $spacing;
-    // color: #fff;
+    padding: $spacing $spacing-horizontal;
     border-bottom: 1px solid getColor(gray, 80);
 
     h1 {
@@ -267,11 +291,10 @@ export default {
       font-style: italic;
       line-height: 1;
       letter-spacing: -0.02em;
-      margin-bottom: $spacing / 2;
+      margin-bottom: $spacing;
     }
 
     .list {
-      margin-top: $spacing / 4;
       list-style: none;
 
       li {
@@ -298,29 +321,57 @@ export default {
     }
   }
 
-  .download-footer {
-    border-top: 1px solid getColor(gray, 80);
-    padding: $spacing;
+  .download-details {
+    margin-bottom: $spacing-vertical;
 
-    ul {
-      font-size: 0.8rem;
+    dd {
+      margin-bottom: $spacing-vertical-small;
+
+      &:last-of-type {
+        margin-bottom: 0;
+      }
     }
 
-    strong {
-      font-size: 0.9rem;
+    .gallery {
+      position: relative;
+      height: 200px;
+
+      .previews {
+        width: 100%;
+        overflow-y: scroll;
+        display: flex;
+        flex-direction: row;
+        list-style: none;
+        position: absolute;
+
+        .preview {
+          height: 200px;
+          padding: $spacing / 4;
+
+          img {
+            height: 100%;
+            width: auto;
+            box-shadow: $box-shadow--default;
+          }
+        }
+      }
     }
 
-    ul {
-      margin-left: $spacing;
-      margin-bottom: $spacing / 2;
-    }
+    .licence-details {
+      padding-top: $spacing-vertical-small;
 
-    .btn {
-      margin-top: $spacing;
-    }
+      ul {
+        font-size: 0.8rem;
+      }
 
-    dl {
-      margin-bottom: $spacing / 2;
+      strong {
+        font-size: 0.9rem;
+      }
+
+      ul {
+        margin-left: $spacing;
+        margin-bottom: $spacing / 2;
+      }
     }
   }
 
@@ -339,49 +390,14 @@ export default {
     margin-top: $spacing / 3;
     margin-right: $spacing / 2;
 
-    &:hover {
-      color: #000;
+    &:hover, &:focus {
+      color: getColor(neon, 40);
     }
   }
 
   .download-error {
     @include center();
     margin-bottom: $spacing;
-  }
-
-  .download-details {
-    dd {
-      margin-bottom: $spacing / 2;
-
-      &:last-of-type {
-        margin-bottom: 0;
-      }
-    }
-  }
-
-  .gallery {
-    position: relative;
-    height: 200px;
-  }
-
-  .previews {
-    width: 100%;
-    overflow-y: scroll;
-    display: flex;
-    flex-direction: row;
-    list-style: none;
-    position: absolute;
-
-    .preview {
-      height: 200px;
-      padding: $spacing / 4;
-
-      img {
-        height: 100%;
-        width: auto;
-        box-shadow: $box-shadow--default;
-      }
-    }
   }
 }
 
