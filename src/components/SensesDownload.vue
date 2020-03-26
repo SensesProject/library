@@ -97,11 +97,9 @@ import { get, map, includes, head, find, isNumber } from 'lodash'
 import axios from 'axios'
 import VModal from 'vue-js-modal'
 import SensesCopy from './SensesCopy.vue'
+import { chain } from '../assets/js/utils.js'
 
 Vue.use(VModal)
-
-// Function to make sentence from author array
-const chain = (a) => { return [a.slice(0, -1).join(', '), a.slice(-1)[0]].join(a.length < 2 ? '' : ' and ') }
 
 export default {
   name: 'SensesDownload',
@@ -251,6 +249,7 @@ export default {
     grid-template-columns: 2fr 1fr;
     grid-column-gap: $spacing;
     grid-row-gap: $spacing;
+    margin-bottom: $spacing / 2;
 
     .description {
       grid-column-end: span 2;
@@ -269,10 +268,6 @@ export default {
       line-height: 1;
       letter-spacing: -0.02em;
       margin-bottom: $spacing / 2;
-    }
-
-    .caption {
-      color: rgba(#000, 0.7);
     }
 
     .list {
