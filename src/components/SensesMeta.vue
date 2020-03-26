@@ -75,9 +75,7 @@ import { get, find } from 'lodash'
 import axios from 'axios'
 import SensesCopy from './SensesCopy.vue'
 import SensesDownload from './SensesDownload.vue'
-
-// Function to make sentence from author array
-const chain = (a) => { return [a.slice(0, -1).join(', '), a.slice(-1)[0]].join(a.length < 2 ? '' : ' and ') }
+import { chain } from '../assets/js/utils.js'
 
 export default {
   name: 'SensesMeta',
