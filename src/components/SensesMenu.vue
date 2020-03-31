@@ -122,7 +122,6 @@ export default {
   },
   computed: {
     module () {
-      console.log(this.modules)
       return this.modules.find(m => m.id === this.id)
     }
   },
