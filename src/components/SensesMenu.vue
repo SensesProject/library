@@ -236,7 +236,7 @@ export default {
     z-index: 10;
     display: flex;
     justify-content: center;
-    padding: $spacing * 2 $spacing / 2 0;
+    padding: 0 $spacing / 2;
 
     background: transparentize($color-white, 0.02);
     @supports ((-webkit-backdrop-filter: saturate(180%) blur(20px)) or(backdrop-filter: saturate(180%) blur(20px))) {
