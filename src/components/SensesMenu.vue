@@ -3,7 +3,7 @@
     <ResizeObserver @notify="onResize"/>
     <div class="bar" :class="{ darkmode }">
       <senses-logo :color="logo && logo.color ? logo.color : darkmode ? 'white' : 'black'" href="/" v-bind="logo"/>
-      <div class="falafel" @click="open = !open">
+      <div class="falafel" @click="toggleMenu()">
         <senses-falafel :color="darkmode ? 'white' : 'black'" :symbol="open ? 'close' : 'vertical'"/>
       </div>
       <div class="warnings">
@@ -24,7 +24,7 @@
     </div>
     <transition name="fade">
       <div class="overlay" :class="{ darkmode }" v-if="open">
-        <div class="menu">
+        <div class="menu" id="senses-menu">
           <div class="about">
             <section v-if="module != null">
               <h3>{{ module.title }}</h3>
@@ -78,6 +78,7 @@ import 'vue-resize/dist/vue-resize.css'
 import { ResizeObserver } from 'vue-resize'
 import SensesLogo from './SensesLogo.vue'
 import SensesFalafel from './SensesFalafel.vue'
+import { disableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock'
 export default {
   name: 'SensesMenu',
   components: {
@@ -109,6 +110,10 @@ export default {
     darkmode: {
       type: Boolean,
       default: false
+    },
+    disableScrollLock: {
+      type: Boolean,
+      default: false
     }
   },
   data () {
@@ -128,6 +133,16 @@ export default {
   methods: {
     onResize () {
       this.showScreenWarning = this.minWidth != null && this.minWidth >= window.innerWidth
+    },
+    toggleMenu () {
+      this.open = !this.open
+      if (this.disableScrollLock) return
+      const el = document.querySelector('#senses-menu')
+      if (this.open) {
+        disableBodyScroll(el)
+      } else {
+        clearAllBodyScrollLocks()
+      }
     }
   },
   mounted () {
@@ -258,6 +273,7 @@ export default {
 
     .menu {
       display: grid;
+      overflow: auto;
       grid-template-columns: 2fr 1fr;
       gap: 0 $spacing * 2;
       max-width: 800px;

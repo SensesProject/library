@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "axios": "^0.19.2",
+    "body-scroll-lock": "^3.0.1",
     "copy-to-clipboard": "^3.2.1",
     "d3-delaunay": "^5.1.5",
     "d3-dsv": "^1.1.1",
