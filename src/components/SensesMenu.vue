@@ -2,7 +2,7 @@
   <div class="senses-menu">
     <ResizeObserver @notify="onResize"/>
     <div class="bar" :class="{ darkmode }">
-      <senses-logo :color="darkmode ? 'white' : 'black'" href="/"/>
+      <senses-logo :color="logo && logo.color ? logo.color : darkmode ? 'white' : 'black'" href="/" v-bind="logo"/>
       <div class="falafel" @click="open = !open">
         <senses-falafel :color="darkmode ? 'white' : 'black'" :symbol="open ? 'close' : 'vertical'"/>
       </div>
@@ -24,40 +24,50 @@
     </div>
     <transition name="fade">
       <div class="overlay" :class="{ darkmode }" v-if="open">
-        <nav class="page-intro">
-          <div class="page-intro-float">
-            <section class="toolkit">
-              <a href="https://dev.climatescenarios.org/" class="wrapper">
-                <div>
-                  <span class="glyph glyph-gems" />
-                </div>
-                <div>
-                  <span><strong>Toolkit&nbsp;&nearr;</strong></span>
+        <div class="menu">
+          <div class="about">
+            <section v-if="module != null">
+              <h3>{{ module.title }}</h3>
+              <div class="gray tiny uppercase">{{ module.authors.join(', ').replace(/,\s([^,]+)$/, ' & $1') }}</div>
+              <!-- <div class="gray tiny">{{ module.description }}</div> -->
+            </section>
+            <slot name="about"/>
+            <section>
+              <h3>About</h3>
+              <div class="gray tiny">
+               The SENSES <strong><a href="/">Toolkit</a></strong> offers a range of modules to learn about and explore climate change scenarios. The <strong>policy</strong> and <strong>finance portals</strong> will offer a dedicated entry point with a curated selection of modules soon.
+              </div>
+              <a href="/about">
+                <div class="button">
+                  Learn to navigate the toolkit →
                 </div>
               </a>
             </section>
-            <section class="policy">
-              <a href="https://dev.climatescenarios.org/policy-portal" class="wrapper">
-                <div>
-                  <span class="glyph glyph-policies" />
-                </div>
-                <div>
-                  <span><strong>Policy Portal&nbsp;&nearr;</strong></span>
-                </div>
-              </a>
-            </section>
-            <section class="finance">
-              <a href="#" class="wrapper">
-                <div>
-                  <span class="glyph glyph-hurricanes" />
-                </div>
-                <div>
-                  <span><strong>Finance Portal&nbsp;&nearr;</strong></span>
-                </div>
-              </a>
+            <section>
+              <h3>
+                Funding
+              </h3>
+              <div class="gray tiny">
+                 The project SENSES is part of the European Research Area for Climate Services (ERA4CS), an ERA-NET initiated by JPI Climate. It is funded by BMBF (DE), BMWFW (AT), NWO (NL), FORMAS (SE) with co-funding by the European Union (Grant 690462). (ERA4CS).
+              </div>
             </section>
           </div>
-        </nav>
+          <nav class="nav">
+            <a href="/" class="neon wrapper">
+              <span class="glyph glyph-gems" />
+              <span class="link uppercase">Toolkit</span>
+            </a>
+            <span class="disabled tiny">coming soon:</span>
+            <a href="/policy-portal" class="disabled green wrapper">
+                <span class="green glyph glyph-policies" />
+                <span class="link">Policy Portal</span>
+            </a>
+            <a href="/finance-portal" class="disabled purple wrapper">
+                <span class="purple glyph glyph-hurricanes" />
+                <span class="link">Finance Portal</span>
+            </a>
+          </nav>
+        </div>
       </div>
     </transition>
   </div>
@@ -76,6 +86,16 @@ export default {
     ResizeObserver
   },
   props: {
+    id: {
+      type: String,
+      default: null,
+      docs: 'module id to show metadata'
+    },
+    logo: {
+      type: Object,
+      default: null,
+      docs: 'properties to pass down to <SensesLogo/>'
+    },
     wip: {
       type: Boolean,
       default: false,
@@ -96,7 +116,14 @@ export default {
       open: false,
       showScreenWarning: false,
       closeScreenWarning: false,
-      closeBrowserWarning: false
+      closeBrowserWarning: false,
+      modules: []
+    }
+  },
+  computed: {
+    module () {
+      console.log(this.modules)
+      return this.modules.find(m => m.id === this.id)
     }
   },
   methods: {
@@ -106,6 +133,11 @@ export default {
   },
   mounted () {
     this.onResize()
+    fetch('https://dev.climatescenarios.org/settings/modules.json').then(r => r.json()).then(data => {
+      this.modules = data.modules
+    }).catch(e => {
+      this.modules = []
+    })
   }
 }
 </script>
@@ -199,18 +231,15 @@ export default {
   .overlay {
     position: absolute;
     top: 0;
+    left: 0;
     height: calc(100vh);
     width: 100%;
-    left: 0;
-    // background: red;
-
+    z-index: 1;
     display: flex;
     justify-content: center;
-    align-items: center;
+    padding: $spacing * 2 $spacing / 2 0;
 
     background: transparentize($color-white, 0.02);
-    z-index: 1;
-
     @supports ((-webkit-backdrop-filter: saturate(180%) blur(20px)) or(backdrop-filter: saturate(180%) blur(20px))) {
       background: transparentize($color-white, 0.15);
       -webkit-backdrop-filter: saturate(180%) blur(10px);
@@ -221,21 +250,6 @@ export default {
     --finance-color: #{getColor(purple, 50)};
     --toolkit-color: #{getColor(neon, 50)};
 
-    &.darkmode {
-      background: transparentize($color-black, 0.02);
-
-      @supports ((-webkit-backdrop-filter: saturate(180%) blur(20px)) or(backdrop-filter: saturate(180%) blur(20px))) {
-        background: transparentize($color-black, 0.15);
-        -webkit-backdrop-filter: saturate(180%) blur(10px);
-        backdrop-filter:saturate(180%) blur(10px)
-      }
-
-      --border-color: #{getColor(gray, 80)};
-      --policy-color: #{getColor(green, 50)};
-      --finance-color: #{getColor(purple, 50)};
-      --toolkit-color: #{getColor(neon, 50)};
-    }
-
     &.fade-enter-active, &.fade-leave-active {
       transition: opacity $transition;
     }
@@ -243,104 +257,125 @@ export default {
       opacity: 0;
     }
 
-    .page-intro {
-      z-index: 3;
-      @include center();
+    .menu {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 0 $spacing * 2;
+      max-width: 800px;
+      width: 100%;
 
-      .page-intro-float {
-        // background-color: $color-white;
-        // box-shadow: $box-shadow--strong;
-        margin-bottom: $spacing;
+      @include max-width($narrow) {
+        grid-template-columns: auto;
+        grid-template-rows: auto 1fr;
+      }
 
-        @include media-query($narrow) {
-          display: grid;
-          max-width: $medium;
-          grid-template-columns: repeat(3, 1fr);
-          // transform: translateY(-50%);
-          margin-bottom: 0;
-        }
-
-        .wrapper {
-          padding: $spacing / 2;
-          display: flex;
-          height: 100%;
-
-          @include media-query($medium) {
-            padding: $spacing;
-          }
-
-          div {
-            @include center();
-          }
-        }
-
+      .about {
+        width: 100%;
+        padding: $spacing / 2 0;
         section {
-          border-bottom: 1px solid var(--border-color);
-          min-width: 280px;
-
-          @include media-query($narrow) {
-            border: 1px solid var(--border-color);
-            border-right: none;
-            // border-right: 1px solid var(--border-color);
-            &:last-child {
-              border-right: 1px solid var(--border-color);
+          margin: $spacing / 2 0 $spacing;
+          h3 {
+            text-transform: uppercase;
+          }
+          div {
+            margin: $spacing / 4 0;
+          }
+          .gray {
+            color: $color-deep-gray;
+            a {
+              color: $color-deep-gray;
+              background: none;
             }
           }
-
-          [class^="glyph-"]:before, [class*=" glyph-"]:before {
-            margin: 0;
+          .button {
+            padding: $spacing / 4 $spacing / 2;
           }
+        }
+      }
 
-          a {
-            background: none;
+      .nav {
+        display: flex;
+        flex-direction: column;
+        margin-top: $spacing / 2;
+
+        @include max-width($narrow) {
+          grid-row: 1 / 2;
+        }
+
+        .disabled {
+          opacity: 0.5;
+          pointer-events: none;
+          &.tiny {
+            margin-top: $spacing / 2;
+          }
+        }
+
+        a {
+          background: none;
+          display: flex;
+          align-items: center;
+          white-space: nowrap;
+
+          &:hover {
+            @include tint(color);
           }
 
           .glyph {
-            font-size: 2.6rem;
-            margin-right: $spacing / 2;
+            transform: scale(2.6);
+            // position: absolute;
+            // padding: 0 $spacing 0 0;
+            @include tint(color);
+
+            @include max-width($narrow) {
+              transform: scale(2);
+              font-size: 1em;
+            }
           }
 
-          &.policy {
-            strong, .glyph {
-              color: var(--policy-color);
+          .link {
+            padding: $spacing / 2 0 $spacing / 2 $spacing / 2;
+
+            @include max-width($narrow) {
+              padding: $spacing / 4 $spacing / 2 $spacing / 4 0;
             }
+          }
 
-            a:hover, a:focus {
-              background-color: $color-green;
+          @include max-width($narrow) {
+            justify-content: flex-end;
+            align-items: center;
+            flex-direction: row-reverse;
+          }
+        }
+      }
+    }
+    &.darkmode {
+      background: transparentize($color-black, 0.02);
+      @supports ((-webkit-backdrop-filter: saturate(180%) blur(20px)) or(backdrop-filter: saturate(180%) blur(20px))) {
+        background: transparentize($color-black, 0.15);
+        -webkit-backdrop-filter: saturate(180%) blur(10px);
+        backdrop-filter:saturate(180%) blur(10px)
+      }
+      --border-color: #{getColor(gray, 80)};
+      --policy-color: #{getColor(green, 50)};
+      --finance-color: #{getColor(purple, 50)};
+      --toolkit-color: #{getColor(neon, 50)};
 
-              strong, .glyph, span {
-                color: #fff;
+      color: $color-white;
+      .menu {
+        .about {
+          section {
+            .gray {
+              color: $color-light-gray;
+              a {
+                color: $color-light-gray;
               }
             }
           }
-
-          &.finance {
-            strong, .glyph {
-              color: var(--finance-color);
-            }
-
-            a:hover, a:focus {
-              background-color: $color-purple;
-
-              strong, .glyph, span {
-                color: #fff;
-              }
-            }
-          }
-
-          &.toolkit {
-            strong, .glyph {
-              color: var(--toolkit-color);
-            }
-
-            a:hover, a:focus {
-              background-color: $color-neon;
-
-              strong, .glyph, span {
-                color: #fff;
-              }
-            }
-          }
+        }
+      }
+      .nav {
+        a {
+          color: $color-white;
         }
       }
     }
