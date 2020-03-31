@@ -1,16 +1,16 @@
 <template>
-  <div class="readonly">
+  <div class="sensesCopy">
     <input
-      :class="{ copied }"
+      :class="['input', 'mono', { copied }]"
       :value="content"
       type="text"
       readonly
     >
     <button
+      v-if="content"
       ref="referenceButton"
       @click="copyToClipboard"
-      class="btn"
-      :class="['btn', { copied }]"
+      :class="['button', { copied }]"
     >
       {{ referenceLabel }}
     </button>
@@ -19,6 +19,7 @@
 
 <script>
 import copy from 'copy-to-clipboard'
+
 export default {
   name: 'SensesCopy',
   props: {
@@ -40,19 +41,18 @@ export default {
   },
   methods: {
     copyToClipboard () {
-      if (this.content) {
-        copy(this.content)
-        this.referenceLabel = this.copiedReference
+      const { content, copiedReference, copyReference } = this
+      if (content) {
+        copy(content)
+        this.referenceLabel = copiedReference
         this.copied = true
         setTimeout(() => {
           this.copied = false
           this.$refs.referenceButton.blur()
         }, 1000)
         setTimeout(() => {
-          this.referenceLabel = this.copyReference
+          this.referenceLabel = copyReference
         }, 2000)
-      } else {
-        // console.log('No string to copy to clipboard')
       }
     }
   }
@@ -62,58 +62,70 @@ export default {
 <style lang="scss" scoped>
 @import "../style/global.scss";
 
-.readonly {
+.sensesCopy {
   border-radius: $border-radius;
   margin-right: 8px;
-  display: grid;
+  display: flex;
+  width: 100%;
+  align-content: stretch;
   grid-template-columns: 1fr auto;
 
-  .btn {
-    border: 1px solid rgba($color-gray, 0.2);
-    background-color: #fff;
-    color: $color-neon;
-    transition: color 2s, border-color 2s, box-shadow 2s;
-
-    &:hover, &:focus {
-      color: #000;
-    }
-
-    &.copied {
-      color: $color-neon;
-      border-color: $color-neon;
-      transition: color 0.1s, border-color 0.1s, box-shadow 0.1s;
-    }
-  }
-
-  input {
+  .input {
+    flex-grow: 1;
     border: 0;
     padding: $spacing / 4;
     font-size: 0.8rem;
     border: 1px solid rgba($color-gray, 0.2);
-    border-right: 0;
+    border-right-width: 0;
     box-shadow: 0 0 0 $color-neon;
-    transition: color 2s, border-color 2s, box-shadow 2s;
+    transition: color 2s, border-color 2s, box-shadow 2s, flex 2s;
 
     &.copied {
       color: $color-neon;
       border-color: $color-neon;
-      transition: color 0.1s, border-color 0.1s, box-shadow 0.1s;
+      transition: color 0.2s, border-color 0.2s, box-shadow 0.2s, flex 0.2s;
     }
 
     &:focus {
       outline: none;
     }
+
+    &:last-child {
+      // If button is not visible because there is no content
+      border-right: 1px solid rgba($color-gray, 0.2);
+    }
   }
 
-  button {
+  .button {
+    border: 1px solid rgba($color-gray, 0.2);
+    background-color: #fff;
+    color: $color-neon;
+    transition: color 0.2s, border-color 0.2s, box-shadow 0.2s, background-color 0.2s, flex 0.2s;
     padding: $spacing / 4 $spacing;
     border-radius: 0 $border-radius $border-radius 0;
+    cursor: pointer;
 
     @include max-width($narrow) {
       padding: $spacing / 4 $spacing / 2;
     }
+
+    &:hover, &:focus {
+      background-color: $color-neon;
+      color: #fff;
+    }
+
     &:focus {
       outline: none;
+    }
+
+    &.copied {
+      color: $color-neon;
+      border-color: $color-neon;
+      transition: color 2s, border-color 2s, box-shadow 2s, background-color 2s, flex 2s;
+
+      &:hover, &:focus {
+        color: #fff;
+      }
     }
   }
 }

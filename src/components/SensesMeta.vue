@@ -75,12 +75,11 @@ import { get, find } from 'lodash'
 import axios from 'axios'
 import SensesCopy from './SensesCopy.vue'
 import SensesDownload from './SensesDownload.vue'
-
-// Function to make sentence from author array
-const chain = (a) => { return [a.slice(0, -1).join(', '), a.slice(-1)[0]].join(a.length < 2 ? '' : ' and ') }
+import { chain } from '../assets/js/utils.js'
 
 export default {
   name: 'SensesMeta',
+  docs: 'Since this component uses <code class="highlight gray no-hover">SensesDownload</code>, it’s important to set mode to <code class="highlight gray no-hover">spa</code> in <code class="highlight gray no-hover">nuxt.config.js</code>, when running in Nuxt.',
   components: {
     SensesCopy,
     SensesDownload
@@ -113,7 +112,7 @@ export default {
       return `https://dev.climatescenarios.org/share/${get(this.module, 'path')}`
     },
     downloads () {
-      return get(this.module, 'downloadIDs')
+      return get(this.module, 'downloadIDs', [])
     },
     gems () {
       return get(this.module, 'gems')

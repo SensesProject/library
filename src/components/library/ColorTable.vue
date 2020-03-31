@@ -103,7 +103,7 @@ export default {
       { id: 'blue', title: '100 Blue', circle: '', model: '', energy: '', semantics: [], tags: [], area: true, code: 'getColor(blue, 100)', klass: 'color--blue-100', type: 'aside' },
       { id: 'blue', title: '80 Blue', circle: '', model: '', energy: '', semantics: [], tags: [], area: true, code: 'getColor(blue, 80)', klass: 'color--blue-80', type: 'aside' },
       { id: 'blue', title: '60 Blue', circle: '', model: '', energy: '', semantics: [], tags: [], area: true, code: 'getColor(blue, 60)', klass: 'color--blue-60', type: 'aside' },
-      { id: 'blue', title: 'Blue', circle: 'Climate Impacts', model: 'Capital stock', energy: '', semantics: ['Interactive'], tags: ['Mitigation'], area: true, code: '$color-blue', klass: 'color--blue', type: 'main' },
+      { id: 'blue', title: 'Blue', circle: 'Climate Impacts', model: 'Capital stock', energy: '', semantics: [], tags: ['Mitigation'], area: true, code: '$color-blue', klass: 'color--blue', type: 'main' },
       { id: 'blue', title: '40 Blue', circle: '', model: '', energy: '', semantics: [], tags: [], area: true, code: 'getColor(blue, 40)', klass: 'color--blue-40', type: 'aside' },
       { id: 'blue', title: '20 Blue', circle: '', model: '', energy: '', semantics: [], tags: [], area: true, code: 'getColor(blue, 20)', klass: 'color--blue-20', type: 'aside' },
       { id: 'blue', title: '0 Blue', circle: '', model: '', energy: '', semantics: [], tags: [], area: true, code: 'getColor(blue, 0)', klass: 'color--blue-0', type: 'aside' },
@@ -117,8 +117,9 @@ export default {
       { id: 'neon', title: '100 Neon', circle: '', model: '', energy: '', semantics: [], tags: [], area: true, code: 'getColor(neon, 100)', klass: 'color--neon-100', type: 'aside' },
       { id: 'neon', title: '80 Neon', circle: '', model: '', energy: '', semantics: [], tags: [], area: true, code: 'getColor(neon, 80)', klass: 'color--neon-80', type: 'aside' },
       { id: 'neon', title: '60 Neon', circle: '', model: '', energy: '', semantics: [], tags: [], area: true, code: 'getColor(neon, 60)', klass: 'color--neon-60', type: 'aside' },
-      { id: 'neon', title: 'Neon', circle: '', model: '', energy: '', semantics: [], tags: [], area: true, code: '$color-neon', klass: 'color--neon', type: 'main' },
-      { id: 'neon', title: '40 Neon', circle: '', model: '', energy: '', semantics: [], tags: [], area: true, code: 'getColor(neon, 40)', klass: 'color--neon-40', type: 'aside' },
+      { id: 'neon', title: 'Neon', circle: '', model: '', energy: '', semantics: ['Interactive'], tags: [], area: true, code: '$color-neon', klass: 'color--neon', type: 'main' },
+      { id: 'neon', title: '45 Neon', circle: '', model: '', energy: '', semantics: ['Interactive Hover Area'], tags: [], area: true, code: 'getColor(neon, 45)', klass: 'color--neon-45', type: 'aside' },
+      { id: 'neon', title: '40 Neon', circle: '', model: '', energy: '', semantics: ['Interactive Hover Text'], tags: [], area: true, code: 'getColor(neon, 40)', klass: 'color--neon-40', type: 'aside' },
       { id: 'neon', title: '20 Neon', circle: '', model: '', energy: '', semantics: [], tags: [], area: true, code: 'getColor(neon, 20)', klass: 'color--neon-20', type: 'aside' },
       { id: 'neon', title: '0 Neon', circle: '', model: '', energy: '', semantics: [], tags: [], area: true, code: 'getColor(neon, 0)', klass: 'color--neon-0', type: 'aside' },
       { title: 'White', circle: '', model: '', energy: '', semantics: [], tags: [], area: false, code: 'getColor(gray, 100), $color-white', klass: 'color--white' },
@@ -332,6 +333,7 @@ export default {
   .color--neon-100 { @include color-getColor(neon, 100) }
   .color--neon-80 { @include color-getColor(neon, 80) }
   .color--neon-60 { @include color-getColor(neon, 60) }
+  .color--neon-45 { @include color-getColor(neon, 45) }
   .color--neon-40 { @include color-getColor(neon, 40) }
   .color--neon-20 { @include color-getColor(neon, 20) }
   .color--neon-0 { @include color-getColor(neon, 0) }

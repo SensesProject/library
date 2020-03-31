@@ -54,6 +54,9 @@
   &.neon {
     #{$property}: getColor(neon, $tone);
   }
+  &.gray {
+    #{$property}: getColor(gray, $tone - 10);
+  }
   &.white {
     #{$property}: $color-white;
   }
