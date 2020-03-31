@@ -229,11 +229,11 @@ export default {
 
   .overlay {
     position: absolute;
-    top: 0;
+    top: $spacing * 2;
     left: 0;
-    height: calc(100vh);
+    height: calc(100vh - #{$spacing * 2});
     width: 100%;
-    z-index: 1;
+    z-index: 10;
     display: flex;
     justify-content: center;
     padding: $spacing * 2 $spacing / 2 0;
