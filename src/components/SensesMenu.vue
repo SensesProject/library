@@ -1,10 +1,25 @@
 <template>
   <div class="senses-menu">
+    <ResizeObserver @notify="onResize"/>
     <div class="bar" :class="{ darkmode }">
-      <senses-logo :color="darkmode ? 'white' : 'black'" href="https://dev.climatescenarios.org/"/>
-      <span v-if="message" class="message">{{ message }}</span>
+      <senses-logo :color="darkmode ? 'white' : 'black'" href="/"/>
       <div class="falafel" @click="open = !open">
         <senses-falafel :color="darkmode ? 'white' : 'black'" :symbol="open ? 'close' : 'vertical'"/>
+      </div>
+      <div class="warnings">
+        <div v-if="wip" class="wip highlight red mono tiny no-hover">
+          <strong>work in progress – subject to change</strong>
+        </div>
+        <div v-if="!closeBrowserWarning" class="browser highlight orange mono tiny no-hover">
+          <div class="close" @click="closeBrowserWarning = true">✕</div>
+          <strong>Not optimized for this browser</strong><br>
+          Please visit this page with a modern web browser or visit the <a href="/primer-legacy">legacy primer</a> for an introduction to climate change scenarios
+        </div>
+        <div v-if="showScreenWarning && !closeScreenWarning" class="screen highlight yellow mono tiny no-hover">
+          <div class="close" @click="closeScreenWarning = true">✕</div>
+          <strong>Not optimized for small screens</strong><br>
+          Please visit this this module on a larger device
+        </div>
       </div>
     </div>
     <transition name="fade">
@@ -49,18 +64,27 @@
 </template>
 
 <script>
+import 'vue-resize/dist/vue-resize.css'
+import { ResizeObserver } from 'vue-resize'
 import SensesLogo from './SensesLogo.vue'
 import SensesFalafel from './SensesFalafel.vue'
 export default {
   name: 'SensesMenu',
   components: {
     SensesLogo,
-    SensesFalafel
+    SensesFalafel,
+    ResizeObserver
   },
   props: {
-    message: {
-      type: [String, Boolean],
-      default: false
+    wip: {
+      type: Boolean,
+      default: false,
+      docs: 'set to true for work in progress modules'
+    },
+    minWidth: {
+      type: Number,
+      default: null,
+      docs: 'only updates after resize'
     },
     darkmode: {
       type: Boolean,
@@ -69,10 +93,19 @@ export default {
   },
   data () {
     return {
-      open: false
+      open: false,
+      showScreenWarning: false,
+      closeScreenWarning: false,
+      closeBrowserWarning: false
     }
   },
-  computed: {
+  methods: {
+    onResize () {
+      this.showScreenWarning = this.minWidth != null && this.minWidth >= window.innerWidth
+    }
+  },
+  mounted () {
+    this.onResize()
   }
 }
 </script>
@@ -82,8 +115,6 @@ export default {
 
 .senses-menu {
   width: 100%;
-  // height: $spacing * 2;
-  // background: transparentize($color-white, 0.02);
   top: 0;
   z-index: 100;
   position: sticky;
@@ -91,8 +122,12 @@ export default {
   .bar {
     width: 100%;
     height: $spacing * 2;
-    background: transparentize($color-white, 0.02);
+    padding: 0 $spacing / 2;
+    display: grid;
+    grid-template-columns: auto auto;
+    position: relative;
 
+    background: transparentize($color-white, 0.02);
     @supports ((-webkit-backdrop-filter: saturate(180%) blur(20px)) or(backdrop-filter: saturate(180%) blur(20px))) {
       background: transparentize($color-white, 0.15);
       -webkit-backdrop-filter: saturate(180%) blur(10px);
@@ -101,66 +136,70 @@ export default {
 
     &.darkmode {
       background: transparentize($color-black, 0.02);
-
       @supports ((-webkit-backdrop-filter: saturate(180%) blur(20px)) or(backdrop-filter: saturate(180%) blur(20px))) {
         background: transparentize($color-black, 0.15);
         -webkit-backdrop-filter: saturate(180%) blur(10px);
         backdrop-filter:saturate(180%) blur(10px)
       }
     }
-    display: grid;
-    grid-template-columns: auto auto;
-    align-items: center;
-    align-content: center;
-    padding: 0 $spacing / 2;
-    grid-template-rows: auto auto;
-
-    @include media-query($narrow) {
-      grid-template-columns: auto 1fr auto;
-    }
-
-    .message {
-      margin-left: $spacing / 2;
-      font-size: 0.7em;
-      font-weight: $font-weight-regular;
-      letter-spacing: 1em / 3.5 * 0.125;
-      text-transform: uppercase;
-      color: $color-red;
-      line-height: 1.2;
-      grid-row-start: 2;
-      grid-column-end: span 2;
-      text-align: center;
-
-      @include media-query($narrow) {
-        font-size: 0.8em;
-        text-align: left;
-        grid-row-start: auto;
-        grid-column-end: span 1;
-      }
-
-      @include media-query($medium) {
-        font-size: 0.9em;
-      }
-
-      @include media-query($wide) {
-        font-size: 1em;
-      }
-    }
-
-    & > *:last-child {
-      margin-left: auto;
-    }
 
     .falafel {
+      justify-self: end;
       display: flex;
       align-items: center;
+      z-index: 2;
+    }
+    .senses-logo {
+      z-index: 2;
+    }
+
+    .warnings {
+      position: absolute;
+      top: $spacing * 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      // z-index: -1;
+
+      > div {
+        text-align: center;
+        margin-top: $spacing / 4;
+        width: 100%;
+        max-width: $narrow;
+        padding: $spacing / 4 $spacing / 2;
+        position: relative;
+
+        a {
+          color: inherit;
+        }
+
+        &.browser {
+          display: none;
+          a {
+            background: linear-gradient(to top, transparent 0.1em, getColor(orange, 20) 0.1em, $color-orange 0.2em, transparent 0.2em);
+          }
+          @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+            display: block;
+          }
+        }
+
+        .close {
+          position: absolute;
+          right: 0;
+          top: 0;
+          padding: $spacing / 4;
+          font-weight: $font-weight-bold;
+          cursor: pointer;
+        }
+      }
     }
   }
 
   .overlay {
     position: absolute;
-    top: $spacing * 2;
-    height: calc(100vh - #{$spacing * 2});
+    top: 0;
+    height: calc(100vh);
     width: 100%;
     left: 0;
     // background: red;
@@ -170,7 +209,7 @@ export default {
     align-items: center;
 
     background: transparentize($color-white, 0.02);
-    z-index: 100;
+    z-index: 1;
 
     @supports ((-webkit-backdrop-filter: saturate(180%) blur(20px)) or(backdrop-filter: saturate(180%) blur(20px))) {
       background: transparentize($color-white, 0.15);
