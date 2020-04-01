@@ -79,6 +79,7 @@ import { ResizeObserver } from 'vue-resize'
 import SensesLogo from './SensesLogo.vue'
 import SensesFalafel from './SensesFalafel.vue'
 import { disableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock'
+import { getUrlToResources } from '../assets/js/utils.js'
 export default {
   name: 'SensesMenu',
   components: {
@@ -147,7 +148,7 @@ export default {
   },
   mounted () {
     this.onResize()
-    fetch('/settings/modules.json').then(r => r.json()).then(data => {
+    fetch(getUrlToResources('settings/modules.json')).then(r => r.json()).then(data => {
       this.modules = data.modules
     }).catch(e => {
       this.modules = []

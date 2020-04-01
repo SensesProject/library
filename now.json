@@ -1,0 +1,7 @@
+{
+  "build": {
+    "env": {
+      "VUE_APP_STATIC_RESOURCES": "@vue-app-static-resources"
+    }
+  }
+}
