@@ -149,6 +149,7 @@ export default {
   mounted () {
     this.onResize()
     fetch(getUrlToResources('settings/modules.json')).then(r => r.json()).then(data => {
+    fetch('https://dev.climatescenarios.org/settings/modules.json').then(r => r.json()).then(data => {
       this.modules = data.modules
     }).catch(e => {
       this.modules = []
