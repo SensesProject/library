@@ -23,7 +23,7 @@
       </div>
     </div>
     <transition name="fade">
-      <div class="overlay" :class="{ darkmode }" v-if="open">
+      <div class="overlay" :class="{ darkmode, narrow }" v-if="open">
         <div class="menu" id="senses-menu">
           <div class="about">
             <section v-if="module != null">
@@ -115,6 +115,11 @@ export default {
     disableScrollLock: {
       type: Boolean,
       default: false
+    },
+    narrow: {
+      type: Boolean,
+      default: false,
+      docs: 'force narrow/mobile layout'
     }
   },
   data () {
@@ -392,6 +397,31 @@ export default {
       .nav {
         a {
           color: $color-white;
+        }
+      }
+    }
+
+    &.narrow {
+      .menu {
+        grid-template-columns: auto;
+        grid-template-rows: auto 1fr;
+
+        .nav {
+          grid-row: 1 / 2;
+
+          a {
+            .glyph {
+              transform: scale(2);
+            }
+
+            .link {
+              padding: $spacing / 4 $spacing / 2 $spacing / 4 0;
+            }
+
+            justify-content: flex-end;
+            align-items: center;
+            flex-direction: row-reverse;
+          }
         }
       }
     }
