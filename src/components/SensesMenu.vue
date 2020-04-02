@@ -336,6 +336,7 @@ export default {
           display: flex;
           align-items: center;
           white-space: nowrap;
+          color: $color-black;
 
           &:hover {
             @include tint(color);
