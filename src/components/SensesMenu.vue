@@ -257,7 +257,6 @@ export default {
     z-index: 10;
     display: flex;
     justify-content: center;
-    padding: 0 $spacing / 2;
 
     background: transparentize($color-white, 0.02);
     @supports ((-webkit-backdrop-filter: saturate(180%) blur(20px)) or(backdrop-filter: saturate(180%) blur(20px))) {
@@ -280,6 +279,7 @@ export default {
     .menu {
       display: grid;
       overflow: auto;
+      padding: 0 $spacing / 2;
       grid-template-columns: 2fr 1fr;
       gap: 0 $spacing * 2;
       max-width: 800px;
