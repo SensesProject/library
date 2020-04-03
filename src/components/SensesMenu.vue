@@ -136,6 +136,11 @@ export default {
       return this.modules.find(m => m.id === this.id)
     }
   },
+  watch: {
+    disableScrollLock () {
+      clearAllBodyScrollLocks()
+    }
+  },
   methods: {
     onResize () {
       this.showScreenWarning = this.minWidth != null && this.minWidth >= window.innerWidth
