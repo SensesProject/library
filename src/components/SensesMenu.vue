@@ -1,10 +1,10 @@
 <template>
   <div class="senses-menu">
     <ResizeObserver @notify="onResize"/>
-    <div class="bar" :class="{ darkmode, open }">
+    <div class="bar" :class="{ darkmode, open, transparent }">
       <senses-logo :color="logo && logo.color ? logo.color : darkmode ? 'white' : 'black'" href="/" v-bind="logo"/>
       <span class="to-the-toolkit">
-        <a href="/" class="button uppercase" v-if="!mobile && !narrow">
+        <a href="/" class="button uppercase no-mobile" v-if="!mobile && !narrow">
           <span class="glyph glyph-gems"/>
           <span>to the toolkit</span>
         </a>
@@ -36,7 +36,7 @@
     <transition name="fade">
       <div class="overlay" :class="{ darkmode, narrow }" v-if="open">
         <div class="menu" id="senses-menu">
-          <div class="about">
+          <div class="about" :style="{'margin-left': `${aboutOffset}rem`}">
             <section v-if="module != null">
               <h3>{{ module.title }}</h3>
               <div class="gray tiny uppercase">{{ module.authors.join(', ').replace(/,\s([^,]+)$/, ' & $1') }}</div>
@@ -127,6 +127,10 @@ export default {
       type: Boolean,
       default: false,
       docs: 'force narrow/mobile layout'
+    },
+    transparent: {
+      type: Boolean,
+      default: false
     }
   },
   data () {
@@ -142,6 +146,12 @@ export default {
   computed: {
     module () {
       return this.modules.find(m => m.id === this.id)
+    },
+    aboutOffset () {
+      if (this.logo == null) return 10 / 3.5
+      const { sx, mx, lx } = this.logo
+      if (sx == null || mx == null || lx == null) return 10 / 3.5
+      return (Math.max(sx + 2, mx + 4, lx + 6) + 2) / 3.5
     }
   },
   watch: {
@@ -224,6 +234,10 @@ export default {
       }
     }
 
+    &.transparent {
+      background: transparent;
+    }
+
     &.open {
       background: transparent;
     }
@@ -243,6 +257,11 @@ export default {
         .glyph {
           transform: scale(2);
           margin-right: $spacing / 4;
+        }
+        &.no-mobile {
+          @include max-width($narrow) {
+            display: none;
+          }
         }
       }
     }
@@ -367,13 +386,13 @@ export default {
       }
 
       .about {
-        width: 100%;
+        // width: 100%;
         max-width: 460px;
         padding: $spacing / 8 0;
         pointer-events: all;
         // justify-self: center;
-        @include min-width($medium) {
-          margin-left: calc(10rem / 3.5);
+        @include max-width($narrow) {
+          margin-left: 0 !important;
         }
         section {
           margin: 0 0 $spacing;
@@ -397,6 +416,7 @@ export default {
           .button {
             padding: $spacing / 4 $spacing / 2;
             cursor: pointer;
+            white-space: nowrap;
           }
         }
       }
@@ -497,14 +517,12 @@ export default {
         .nav {
           grid-row: 1 / 2;
           display: grid;
-          grid-template-columns: 1fr 1fr;
+          grid-template-columns: 1fr;
           gap: 0 $spacing / 4;
           margin-right: 0;
           .disabled {
             &.tiny {
-              grid-column: 1 / 3;
               margin-top: $spacing / 8;
-              // text-align: center;
             }
           }
 
