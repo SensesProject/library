@@ -60,7 +60,7 @@
               <span class="glyph glyph-gems" />
               <span class="link uppercase">Toolkit</span>
             </a>
-            <a href="/" class="gray highlight">
+            <a href="/imprint" class="gray highlight">
               <span class="glyph glyph-industry" />
               <span class="link">Imprint</span>
             </a>
