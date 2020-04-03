@@ -14,7 +14,7 @@
         <senses-falafel :color="darkmode ? 'white' : 'white'" :symbol="open ? 'close' : 'vertical'"/>
         </div>
       </div>
-      <div class="warnings">
+      <div class="warnings" v-if="!open">
         <div v-if="wip" class="wip highlight red mono tiny no-hover">
           <strong>work in progress – subject to change</strong>
         </div>
