@@ -31,7 +31,7 @@
               <div class="gray tiny uppercase">{{ module.authors.join(', ').replace(/,\s([^,]+)$/, ' & $1') }}</div>
               <!-- <div class="gray tiny">{{ module.description }}</div> -->
             </section>
-            <slot name="about"/>
+            <slot name="about" :close-menu="closeMenu"/>
             <section>
               <h3>About</h3>
               <div class="gray tiny">
@@ -149,6 +149,11 @@ export default {
       } else {
         clearAllBodyScrollLocks()
       }
+    },
+    closeMenu () {
+      this.open = false
+      if (this.disableScrollLock) return
+      clearAllBodyScrollLocks()
     }
   },
   mounted () {
