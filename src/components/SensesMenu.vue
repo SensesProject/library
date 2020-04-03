@@ -1,10 +1,18 @@
 <template>
   <div class="senses-menu">
     <ResizeObserver @notify="onResize"/>
-    <div class="bar" :class="{ darkmode }">
+    <div class="bar" :class="{ darkmode, open }">
       <senses-logo :color="logo && logo.color ? logo.color : darkmode ? 'white' : 'black'" href="/" v-bind="logo"/>
+      <span class="to-the-toolkit">
+        <a href="/" class="button uppercase" v-if="!mobile && !narrow">
+          <span class="glyph glyph-gems"/>
+          <span>to the toolkit</span>
+        </a>
+      </span>
       <div class="falafel" @click="toggleMenu()">
-        <senses-falafel :color="darkmode ? 'white' : 'black'" :symbol="open ? 'close' : 'vertical'"/>
+        <div class="button">
+        <senses-falafel :color="darkmode ? 'white' : 'white'" :symbol="open ? 'close' : 'vertical'"/>
+        </div>
       </div>
       <div class="warnings">
         <div v-if="wip" class="wip highlight red mono tiny no-hover">
@@ -23,13 +31,16 @@
       </div>
     </div>
     <transition name="fade">
+      <div class="background" :class="{ darkmode }" v-if="open"/>
+    </transition>
+    <transition name="fade">
       <div class="overlay" :class="{ darkmode, narrow }" v-if="open">
         <div class="menu" id="senses-menu">
           <div class="about">
             <section v-if="module != null">
               <h3>{{ module.title }}</h3>
               <div class="gray tiny uppercase">{{ module.authors.join(', ').replace(/,\s([^,]+)$/, ' & $1') }}</div>
-              <!-- <div class="gray tiny">{{ module.description }}</div> -->
+              <div class="gray tiny">{{ module.description }}</div>
             </section>
             <slot name="about" :close-menu="closeMenu"/>
             <section>
@@ -43,26 +54,22 @@
                 </div>
               </a>
             </section>
-            <section>
-              <h3>
-                Funding
-              </h3>
-              <div class="gray tiny">
-                 The project SENSES is part of the European Research Area for Climate Services (ERA4CS), an ERA-NET initiated by JPI Climate. It is funded by BMBF (DE), BMWFW (AT), NWO (NL), FORMAS (SE) with co-funding by the European Union (Grant 690462). (ERA4CS).
-              </div>
-            </section>
           </div>
           <nav class="nav">
-            <a href="/" class="neon wrapper">
+            <a href="/" class="neon button" v-if="mobile || narrow">
               <span class="glyph glyph-gems" />
               <span class="link uppercase">Toolkit</span>
             </a>
-            <span class="disabled tiny">coming soon:</span>
-            <a href="/policy-portal" class="disabled green wrapper">
+            <a href="/" class="gray highlight">
+              <span class="glyph glyph-industry" />
+              <span class="link">Imprint</span>
+            </a>
+            <span class="disabled tiny soon">coming soon</span>
+            <a href="/policy-portal" class="disabled green highlight">
                 <span class="green glyph glyph-policies" />
                 <span class="link">Policy Portal</span>
             </a>
-            <a href="/finance-portal" class="disabled purple wrapper">
+            <a href="/finance-portal" class="disabled purple highlight">
                 <span class="purple glyph glyph-hurricanes" />
                 <span class="link">Finance Portal</span>
             </a>
@@ -128,7 +135,8 @@ export default {
       showScreenWarning: false,
       closeScreenWarning: false,
       closeBrowserWarning: false,
-      modules: []
+      modules: [],
+      mobile: false
     }
   },
   computed: {
@@ -144,6 +152,7 @@ export default {
   methods: {
     onResize () {
       this.showScreenWarning = this.minWidth != null && this.minWidth >= window.innerWidth
+      this.mobile = window.innerWidth < 600
     },
     toggleMenu () {
       this.open = !this.open
@@ -163,11 +172,14 @@ export default {
   },
   mounted () {
     this.onResize()
-    fetch(getUrlToResources('settings/modules.json')).then(r => r.json()).then(data => {
-      this.modules = data.modules
-    }).catch(e => {
-      this.modules = []
-    })
+    fetch(getUrlToResources('settings/modules.json'))
+      .then(r => r.json())
+      .then(data => {
+        this.modules = data.modules
+      })
+      .catch(e => {
+        this.modules = []
+      })
   }
 }
 </script>
@@ -186,22 +198,52 @@ export default {
     height: $spacing * 2;
     padding: 0 $spacing / 2;
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: auto 1fr auto auto;
     position: relative;
 
+    transition: background $transition;
     background: transparentize($color-white, 0.02);
-    @supports ((-webkit-backdrop-filter: saturate(180%) blur(20px)) or(backdrop-filter: saturate(180%) blur(20px))) {
+    @supports (
+      (-webkit-backdrop-filter: saturate(180%) blur(20px))
+        or (backdrop-filter: saturate(180%) blur(20px))
+    ) {
       background: transparentize($color-white, 0.15);
       -webkit-backdrop-filter: saturate(180%) blur(10px);
-      backdrop-filter:saturate(180%) blur(10px)
+      backdrop-filter: saturate(180%) blur(10px);
     }
 
     &.darkmode {
       background: transparentize($color-black, 0.02);
-      @supports ((-webkit-backdrop-filter: saturate(180%) blur(20px)) or(backdrop-filter: saturate(180%) blur(20px))) {
+      @supports (
+        (-webkit-backdrop-filter: saturate(180%) blur(20px))
+          or (backdrop-filter: saturate(180%) blur(20px))
+      ) {
         background: transparentize($color-black, 0.15);
         -webkit-backdrop-filter: saturate(180%) blur(10px);
-        backdrop-filter:saturate(180%) blur(10px)
+        backdrop-filter: saturate(180%) blur(10px);
+      }
+    }
+
+    &.open {
+      background: transparent;
+    }
+
+    .to-the-toolkit {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      .button {
+        padding: $spacing / 4 $spacing / 2;
+        margin-right: $spacing / 4;
+        display: flex;
+        cursor: pointer;
+        &:hover {
+          color: $color-white;
+        }
+        .glyph {
+          transform: scale(2);
+          margin-right: $spacing / 4;
+        }
       }
     }
 
@@ -209,7 +251,9 @@ export default {
       justify-self: end;
       display: flex;
       align-items: center;
-      z-index: 2;
+      .button {
+        padding: $spacing / 8;
+      }
     }
     .senses-logo {
       z-index: 2;
@@ -239,9 +283,16 @@ export default {
         &.browser {
           display: none;
           a {
-            background: linear-gradient(to top, transparent 0.1em, getColor(orange, 20) 0.1em, $color-orange 0.2em, transparent 0.2em);
+            background: linear-gradient(
+              to top,
+              transparent 0.1em,
+              getColor(orange, 20) 0.1em,
+              $color-orange 0.2em,
+              transparent 0.2em
+            );
           }
-          @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+          @media all and (-ms-high-contrast: none),
+            (-ms-high-contrast: active) {
             display: block;
           }
         }
@@ -258,41 +309,56 @@ export default {
     }
   }
 
-  .overlay {
-    position: absolute;
-    top: $spacing * 2;
-    left: 0;
-    height: calc(100vh - #{$spacing * 2});
-    width: 100%;
-    z-index: 10;
-    display: flex;
-    justify-content: center;
-
+  .background {
     background: transparentize($color-white, 0.02);
-    @supports ((-webkit-backdrop-filter: saturate(180%) blur(20px)) or(backdrop-filter: saturate(180%) blur(20px))) {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    z-index: -10;
+    pointer-events: all;
+    @supports (
+      (-webkit-backdrop-filter: saturate(180%) blur(20px))
+        or (backdrop-filter: saturate(180%) blur(20px))
+    ) {
       background: transparentize($color-white, 0.15);
       -webkit-backdrop-filter: saturate(180%) blur(10px);
-      backdrop-filter:saturate(180%) blur(10px)
+      backdrop-filter: saturate(180%) blur(10px);
     }
+    &.darkmode {
+       background: transparentize($color-black, 0.02);
+      @supports (
+        (-webkit-backdrop-filter: saturate(180%) blur(20px))
+          or (backdrop-filter: saturate(180%) blur(20px))
+      ) {
+        background: transparentize($color-black, 0.15);
+        -webkit-backdrop-filter: saturate(180%) blur(10px);
+        backdrop-filter: saturate(180%) blur(10px);
+      }
+    }
+  }
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: calc(100vh);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    pointer-events: none;
+
     --border-color: #{getColor(gray, 90)};
     --policy-color: #{getColor(green, 50)};
     --finance-color: #{getColor(purple, 50)};
     --toolkit-color: #{getColor(neon, 50)};
 
-    &.fade-enter-active, &.fade-leave-active {
-      transition: opacity $transition;
-    }
-    &.fade-enter, &.fade-leave-to {
-      opacity: 0;
-    }
-
     .menu {
       display: grid;
       overflow: auto;
-      padding: 0 $spacing / 2;
-      grid-template-columns: 2fr 1fr;
-      gap: 0 $spacing * 2;
-      max-width: 800px;
+      padding: $spacing * 2 $spacing / 2 0;
+      grid-template-columns: 1fr auto;
+      gap: 0 $spacing;
       width: 100%;
 
       @include max-width($narrow) {
@@ -302,11 +368,21 @@ export default {
 
       .about {
         width: 100%;
-        padding: $spacing / 2 0;
+        max-width: 460px;
+        padding: $spacing / 8 0;
+        pointer-events: all;
+        // justify-self: center;
+        @include min-width($medium) {
+          margin-left: calc(10rem / 3.5);
+        }
         section {
-          margin: $spacing / 2 0 $spacing;
+          margin: 0 0 $spacing;
+          @include max-width($narrow) {
+            margin: $spacing * 0.75 0 $spacing;
+          }
           h3 {
             text-transform: uppercase;
+            font-weight: $font-weight-regular;
           }
           div {
             margin: $spacing / 4 0;
@@ -320,6 +396,7 @@ export default {
           }
           .button {
             padding: $spacing / 4 $spacing / 2;
+            cursor: pointer;
           }
         }
       }
@@ -327,11 +404,11 @@ export default {
       .nav {
         display: flex;
         flex-direction: column;
-        margin-top: $spacing / 2;
-
-        @include max-width($narrow) {
-          grid-row: 1 / 2;
-        }
+        margin-top: -$spacing / 4;
+        margin-right: $spacing * 1.5;
+        align-items: flex-end;
+        z-index: 10;
+        pointer-events: all;
 
         .disabled {
           opacity: 0.5;
@@ -341,52 +418,51 @@ export default {
           }
         }
 
+        @include max-width($narrow) {
+          grid-row: 1 / 2;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 0 $spacing / 4;
+          margin-right: 0;
+          .disabled {
+            &.tiny {
+              grid-column: 1 / 3;
+              margin-top: $spacing / 8;
+              // text-align: center;
+            }
+          }
+        }
+
         a {
-          background: none;
           display: flex;
           align-items: center;
           white-space: nowrap;
-          color: $color-black;
-
-          &:hover {
-            @include tint(color);
-          }
-
-          .glyph {
-            transform: scale(2.6);
-            // position: absolute;
-            // padding: 0 $spacing 0 0;
-            @include tint(color);
-
-            @include max-width($narrow) {
-              transform: scale(2);
-              font-size: 1em;
-            }
-          }
-
-          .link {
-            padding: $spacing / 2 0 $spacing / 2 $spacing / 2;
-
-            @include max-width($narrow) {
-              padding: $spacing / 4 $spacing / 2 $spacing / 4 0;
-            }
-          }
+          padding: $spacing / 4 $spacing / 2;
+          margin: $spacing / 8 0;
 
           @include max-width($narrow) {
-            justify-content: flex-end;
-            align-items: center;
-            flex-direction: row-reverse;
+            padding: $spacing / 4 $spacing / 4 $spacing / 4 $spacing / 8;
+            justify-content: center;
+          }
+
+          &.button {
+            color: $color-white;
+          }
+          cursor: pointer;
+
+          .glyph {
+            transform: scale(2);
+            margin-right: $spacing / 4;
+
+            @include max-width($narrow) {
+              transform: scale(1.8);
+              margin-right: $spacing / 8;
+            }
           }
         }
       }
     }
     &.darkmode {
-      background: transparentize($color-black, 0.02);
-      @supports ((-webkit-backdrop-filter: saturate(180%) blur(20px)) or(backdrop-filter: saturate(180%) blur(20px))) {
-        background: transparentize($color-black, 0.15);
-        -webkit-backdrop-filter: saturate(180%) blur(10px);
-        backdrop-filter:saturate(180%) blur(10px)
-      }
       --border-color: #{getColor(gray, 80)};
       --policy-color: #{getColor(green, 50)};
       --finance-color: #{getColor(purple, 50)};
@@ -405,37 +481,54 @@ export default {
           }
         }
       }
-      .nav {
-        a {
-          color: $color-white;
-        }
-      }
     }
 
     &.narrow {
       .menu {
         grid-template-columns: auto;
         grid-template-rows: auto 1fr;
+        .about {
+          margin-left: 0;
 
+          section {
+            margin: $spacing * 0.75 0 $spacing;
+          }
+        }
         .nav {
           grid-row: 1 / 2;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 0 $spacing / 4;
+          margin-right: 0;
+          .disabled {
+            &.tiny {
+              grid-column: 1 / 3;
+              margin-top: $spacing / 8;
+              // text-align: center;
+            }
+          }
 
           a {
+            padding: $spacing / 4 $spacing / 4 $spacing / 4 $spacing / 8;
+            justify-content: center;
+
             .glyph {
-              transform: scale(2);
+              transform: scale(1.8);
+              margin-right: $spacing / 8;
             }
-
-            .link {
-              padding: $spacing / 4 $spacing / 2 $spacing / 4 0;
-            }
-
-            justify-content: flex-end;
-            align-items: center;
-            flex-direction: row-reverse;
           }
         }
       }
     }
+  }
+
+  > .fade-enter-active,
+  > .fade-leave-active {
+    transition: opacity $transition;
+  }
+  > .fade-enter,
+  > .fade-leave-to {
+    opacity: 0;
   }
 }
 </style>

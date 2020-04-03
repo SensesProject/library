@@ -40,6 +40,7 @@ export default {
 .senses-falafel {
   width: $spacing;
   height: $spacing;
+  display: block;
 
   g {
     @include tint(fill, 50);
