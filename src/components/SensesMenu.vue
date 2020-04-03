@@ -31,7 +31,7 @@
       </div>
     </div>
     <transition name="fade">
-      <div class="background" :class="{ darkmode }" v-if="open"/>
+      <div class="background" :class="{ darkmode, transparent }" v-if="open"/>
     </transition>
     <transition name="fade">
       <div class="overlay" :class="{ darkmode, narrow }" v-if="open">
@@ -236,6 +236,13 @@ export default {
 
     &.transparent {
       background: transparent;
+      @supports (
+        (-webkit-backdrop-filter: saturate(180%) blur(20px))
+          or (backdrop-filter: saturate(180%) blur(20px))
+      ) {
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
+      }
     }
 
     &.open {
@@ -352,6 +359,16 @@ export default {
       ) {
         background: transparentize($color-black, 0.15);
         -webkit-backdrop-filter: saturate(180%) blur(10px);
+        backdrop-filter: saturate(180%) blur(10px);
+      }
+    }
+    &.transparent {
+      @supports (
+        (-webkit-backdrop-filter: saturate(180%) blur(20px))
+          or (backdrop-filter: saturate(180%) blur(20px))
+      ) {
+        background: transparent;
+         -webkit-backdrop-filter: saturate(180%) blur(10px);
         backdrop-filter: saturate(180%) blur(10px);
       }
     }
