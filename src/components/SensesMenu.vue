@@ -4,7 +4,7 @@
     <div class="bar" :class="{ darkmode, open, transparent }">
       <senses-logo :color="logo && logo.color ? logo.color : darkmode ? 'white' : 'black'" href="/" v-bind="logo">
       <span class="to-the-toolkit">
-        <span class="button uppercase no-mobile" v-if="!mobile && !narrow">
+        <span class="button uppercase no-mobile" v-if="!mobile && !narrow && !toolkit">
           <!-- <span class="glyph glyph-gems"/> -->
           <span class="arrow">→</span>
           <span>to the toolkit</span>
