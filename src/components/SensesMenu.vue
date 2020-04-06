@@ -138,6 +138,11 @@ export default {
     transparent: {
       type: Boolean,
       default: false
+    },
+    toolkit: {
+      type: Boolean,
+      default: false,
+      docs: 'Hide the toolkit link. (Probably because you are already in the toolkit)'
     }
   },
   data () {
