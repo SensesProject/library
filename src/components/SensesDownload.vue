@@ -58,12 +58,6 @@
           <dd v-if="reference">
             <SensesCopy :content="item.reference" />
           </dd>
-          <dt v-if="reference" class="caption">
-            URL
-          </dt>
-          <dd v-if="reference">
-            <SensesCopy content="https://climatescenarios.org/#primerdownloads" />
-          </dd>
           <dt class="caption">
             Licence
           </dt>
