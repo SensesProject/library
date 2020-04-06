@@ -1,11 +1,12 @@
 <template>
-  <component :is="rootElement" v-bind="rootAttributes" class="senses-logo no-underline" :class="[color, { animate, invalid }]">
+  <component :is="rootElement" v-bind="rootAttributes" class="senses-logo no-underline" :class="[color, {hover: !noHover, animate, invalid }]">
     <div class="circles" :style="{width: `${circlesWidth}em`, left: `${circlesOffset}em`, transform: `translateX(${-circlesOffset}em)`}">
       <div class="circle circle-s" :style="{transform: sTransform}"/>
       <div class="circle circle-m" :style="{transform: mTransform}"/>
       <div class="circle circle-l" :style="{transform: lTransform}"/>
     </div>
     <h1 class="sans">SENSES {{project}}</h1>
+    <slot/>
   </component>
 </template>
 
@@ -64,6 +65,10 @@ export default {
     ly: {
       type: Number,
       default: 0
+    },
+    noHover: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
@@ -122,21 +127,21 @@ export default {
         top: -$unit;
         height: $unit * 2;
         width: $unit * 2;
-        transition: transform .4s .2s;
+        transition: transform .4s .2s, border-color $transition;
       }
 
       &.circle-m {
         top: -$unit * 2;
         height: $unit * 4;
         width: $unit * 4;
-        transition: transform .4s .1s;
+        transition: transform .4s .1s, border-color $transition;
       }
 
       &.circle-l {
         top: -$unit * 3;
         height: $unit * 6;
         width: $unit * 6;
-        transition: transform .4s;
+        transition: transform .4s, border-color $transition;
       }
     }
   }
@@ -202,6 +207,13 @@ export default {
       .circle-l {
         transform: translate($unit * 0, $unit * 0) !important;
       }
+    }
+  }
+
+  &.hover:hover {
+    color: $color-neon;
+    .circle {
+      border-color: $color-neon;
     }
   }
 

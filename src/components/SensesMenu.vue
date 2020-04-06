@@ -2,13 +2,20 @@
   <div class="senses-menu">
     <ResizeObserver @notify="onResize"/>
     <div class="bar" :class="{ darkmode, open, transparent }">
-      <senses-logo :color="logo && logo.color ? logo.color : darkmode ? 'white' : 'black'" href="/" v-bind="logo"/>
+      <senses-logo :color="logo && logo.color ? logo.color : darkmode ? 'white' : 'black'" href="/" v-bind="logo">
       <span class="to-the-toolkit">
-        <a href="/" class="button uppercase no-mobile" v-if="!mobile && !narrow">
-          <span class="glyph glyph-gems"/>
+        <span class="button uppercase no-mobile" v-if="!mobile && !narrow">
+          <!-- <span class="glyph glyph-gems"/> -->
+          <span class="arrow">→</span>
           <span>to the toolkit</span>
-        </a>
+        </span>
       </span>
+      </senses-logo>
+      <!-- <span class="to-the-toolkit">
+        <a href="/" class="button uppercase no-mobile" v-if="!mobile && !narrow">
+          <span>→ to the toolkit</span>
+        </a>
+      </span> -->
       <div class="falafel" @click="toggleMenu()">
         <div class="button">
         <senses-falafel :color="darkmode ? 'white' : 'white'" :symbol="open ? 'close' : 'vertical'"/>
@@ -40,12 +47,12 @@
             <section v-if="module != null">
               <h3>{{ module.title }}</h3>
               <div class="gray tiny uppercase">{{ module.authors.join(', ').replace(/,\s([^,]+)$/, ' & $1') }}</div>
-              <div class="gray tiny">{{ module.description }}</div>
+              <div class="gray">{{ module.description }}</div>
             </section>
             <slot name="about" :close-menu="closeMenu"/>
             <section>
               <h3>About</h3>
-              <div class="gray tiny">
+              <div class="gray">
                The SENSES <strong><a href="/">Toolkit</a></strong> offers a range of modules to learn about and explore climate change scenarios. The <strong>policy</strong> and <strong>finance portals</strong> will offer a dedicated entry point with a curated selection of modules soon.
               </div>
               <a href="/about">
@@ -56,9 +63,9 @@
             </section>
           </div>
           <nav class="nav">
-            <a href="/" class="neon button" v-if="mobile || narrow">
+            <a href="/" class="neon highlight" v-if="true || mobile || narrow">
               <span class="glyph glyph-gems" />
-              <span class="link uppercase">Toolkit</span>
+              <span class="link">Toolkit</span>
             </a>
             <a href="/imprint" class="gray highlight">
               <span class="glyph glyph-industry" />
@@ -161,7 +168,8 @@ export default {
   },
   methods: {
     onResize () {
-      this.showScreenWarning = this.minWidth != null && this.minWidth >= window.innerWidth
+      this.showScreenWarning =
+        this.minWidth != null && this.minWidth >= window.innerWidth
       this.mobile = window.innerWidth < 600
     },
     toggleMenu () {
@@ -214,8 +222,8 @@ export default {
     transition: background $transition;
     background: transparentize($color-white, 0.02);
     @supports (
-      (-webkit-backdrop-filter: saturate(180%) blur(20px))
-        or (backdrop-filter: saturate(180%) blur(20px))
+      (-webkit-backdrop-filter: saturate(180%) blur(20px)) or
+        (backdrop-filter: saturate(180%) blur(20px))
     ) {
       background: transparentize($color-white, 0.15);
       -webkit-backdrop-filter: saturate(180%) blur(10px);
@@ -225,8 +233,8 @@ export default {
     &.darkmode {
       background: transparentize($color-black, 0.02);
       @supports (
-        (-webkit-backdrop-filter: saturate(180%) blur(20px))
-          or (backdrop-filter: saturate(180%) blur(20px))
+        (-webkit-backdrop-filter: saturate(180%) blur(20px)) or
+          (backdrop-filter: saturate(180%) blur(20px))
       ) {
         background: transparentize($color-black, 0.15);
         -webkit-backdrop-filter: saturate(180%) blur(10px);
@@ -237,8 +245,8 @@ export default {
     &.transparent {
       background: transparent;
       @supports (
-        (-webkit-backdrop-filter: saturate(180%) blur(20px))
-          or (backdrop-filter: saturate(180%) blur(20px))
+        (-webkit-backdrop-filter: saturate(180%) blur(20px)) or
+          (backdrop-filter: saturate(180%) blur(20px))
       ) {
         -webkit-backdrop-filter: none;
         backdrop-filter: none;
@@ -252,18 +260,22 @@ export default {
     .to-the-toolkit {
       display: flex;
       align-items: center;
-      justify-content: flex-end;
+      justify-content: flex-start;
+      // margin-left: $spacing / 4;
       .button {
-        padding: $spacing / 4 $spacing / 2;
+        padding: $spacing / 4 $spacing / 2 $spacing / 4 $spacing * 0.375;
         margin-right: $spacing / 4;
         display: flex;
         cursor: pointer;
-        &:hover {
-          color: $color-white;
-        }
+        background: none;
+        color: inherit;
+        transition: color $transition;
         .glyph {
           transform: scale(2);
           margin-right: $spacing / 4;
+        }
+        .arrow {
+          padding-right: $spacing / 4;
         }
         &.no-mobile {
           @include max-width($narrow) {
@@ -344,18 +356,18 @@ export default {
     z-index: -10;
     pointer-events: all;
     @supports (
-      (-webkit-backdrop-filter: saturate(180%) blur(20px))
-        or (backdrop-filter: saturate(180%) blur(20px))
+      (-webkit-backdrop-filter: saturate(180%) blur(20px)) or
+        (backdrop-filter: saturate(180%) blur(20px))
     ) {
       background: transparentize($color-white, 0.15);
       -webkit-backdrop-filter: saturate(180%) blur(10px);
       backdrop-filter: saturate(180%) blur(10px);
     }
     &.darkmode {
-       background: transparentize($color-black, 0.02);
+      background: transparentize($color-black, 0.02);
       @supports (
-        (-webkit-backdrop-filter: saturate(180%) blur(20px))
-          or (backdrop-filter: saturate(180%) blur(20px))
+        (-webkit-backdrop-filter: saturate(180%) blur(20px)) or
+          (backdrop-filter: saturate(180%) blur(20px))
       ) {
         background: transparentize($color-black, 0.15);
         -webkit-backdrop-filter: saturate(180%) blur(10px);
@@ -364,11 +376,11 @@ export default {
     }
     &.transparent {
       @supports (
-        (-webkit-backdrop-filter: saturate(180%) blur(20px))
-          or (backdrop-filter: saturate(180%) blur(20px))
+        (-webkit-backdrop-filter: saturate(180%) blur(20px)) or
+          (backdrop-filter: saturate(180%) blur(20px))
       ) {
         background: transparent;
-         -webkit-backdrop-filter: saturate(180%) blur(10px);
+        -webkit-backdrop-filter: saturate(180%) blur(10px);
         backdrop-filter: saturate(180%) blur(10px);
       }
     }
@@ -392,10 +404,14 @@ export default {
     .menu {
       display: grid;
       overflow: auto;
-      padding: $spacing * 2 $spacing / 2 0;
+      padding: $spacing * 3 $spacing / 2 0;
       grid-template-columns: 1fr auto;
-      gap: 0 $spacing;
+      gap: 0 $spacing * 2;
       width: 100%;
+
+      @include max-width($medium) {
+        gap: 0 $spacing;
+      }
 
       @include max-width($narrow) {
         grid-template-columns: auto;
@@ -403,13 +419,13 @@ export default {
       }
 
       .about {
-        // width: 100%;
         max-width: 460px;
-        padding: $spacing / 8 0;
         pointer-events: all;
-        // justify-self: center;
+        justify-self: end;
+        margin-top: - $spacing / 8;
         @include max-width($narrow) {
           margin-left: 0 !important;
+          justify-self: start;
         }
         section {
           margin: 0 0 $spacing;
@@ -418,7 +434,7 @@ export default {
           }
           h3 {
             text-transform: uppercase;
-            font-weight: $font-weight-regular;
+            // font-weight: $font-weight-regular;
           }
           div {
             margin: $spacing / 4 0;
@@ -441,9 +457,9 @@ export default {
       .nav {
         display: flex;
         flex-direction: column;
-        margin-top: -$spacing / 4;
-        margin-right: $spacing * 1.5;
-        align-items: flex-end;
+        margin-top: -$spacing / 2;
+        // margin-right: $spacing * 1.5;
+        align-items: flex-start;
         z-index: 10;
         pointer-events: all;
 
@@ -451,7 +467,8 @@ export default {
           opacity: 0.5;
           pointer-events: none;
           &.tiny {
-            margin-top: $spacing / 2;
+            margin-top: $spacing / 4;
+            height: $spacing / 2;
           }
         }
 
@@ -464,7 +481,6 @@ export default {
           .disabled {
             &.tiny {
               grid-column: 1 / 3;
-              margin-top: $spacing / 8;
               // text-align: center;
             }
           }
@@ -474,8 +490,9 @@ export default {
           display: flex;
           align-items: center;
           white-space: nowrap;
-          padding: $spacing / 4 $spacing / 2;
+          padding: $spacing / 4 $spacing $spacing / 4 $spacing / 2;
           margin: $spacing / 8 0;
+          width: 100%;
 
           @include max-width($narrow) {
             padding: $spacing / 4 $spacing / 4 $spacing / 4 $spacing / 8;
