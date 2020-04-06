@@ -4,7 +4,7 @@
     <div class="bar" :class="{ darkmode, open, transparent }">
       <senses-logo :color="logo && logo.color ? logo.color : darkmode ? 'white' : 'black'" href="/" v-bind="logo"/>
       <span class="to-the-toolkit">
-        <a href="/" class="button uppercase no-mobile" v-if="!mobile && !narrow">
+        <a href="/" class="button uppercase no-mobile" v-if="!mobile && !narrow && !toolkit">
           <span class="glyph glyph-gems"/>
           <span>to the toolkit</span>
         </a>
@@ -131,6 +131,11 @@ export default {
     transparent: {
       type: Boolean,
       default: false
+    },
+    toolkit: {
+      type: Boolean,
+      default: false,
+      docs: 'Hide the toolkit link. (Probably because you are already in the toolkit)'
     }
   },
   data () {
