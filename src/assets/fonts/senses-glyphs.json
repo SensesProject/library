@@ -343,6 +343,54 @@
       "search": [
         "world"
       ]
+    },
+    {
+      "uid": "3bd18d47a12b8709e9f4fe9ead4f7518",
+      "css": "finder-arrows-ccw",
+      "code": 59415,
+      "src": "entypo"
+    },
+    {
+      "uid": "bc64550dd022ce21604f97309b346cea",
+      "css": "finder-cog",
+      "code": 59416,
+      "src": "entypo"
+    },
+    {
+      "uid": "c759418c008e9562944080fee617fc76",
+      "css": "finder-cancel-circled",
+      "code": 59417,
+      "src": "entypo"
+    },
+    {
+      "uid": "390d6d13398cbf8c8c3c5493f7d34088",
+      "css": "finder-export",
+      "code": 59418,
+      "src": "entypo"
+    },
+    {
+      "uid": "7e4164950ffa4990961958b2d6318658",
+      "css": "finder-info-circled",
+      "code": 59419,
+      "src": "entypo"
+    },
+    {
+      "uid": "4109c474ff99cad28fd5a2c38af2ec6f",
+      "css": "finder-filter",
+      "code": 61616,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "9248ce8062fb4707a6919bfe9ac1af8e",
+      "css": "finder-popup",
+      "code": 59420,
+      "src": "entypo"
+    },
+    {
+      "uid": "48b87105bd38c20315f1b705b8c7b38c",
+      "css": "finder-list",
+      "code": 59421,
+      "src": "fontawesome"
     }
   ]
 }
