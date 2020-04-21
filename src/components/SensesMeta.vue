@@ -22,6 +22,12 @@
         <span class="caption">Data used in this module</span>
         <a :href="gems" class="btn--link">View {{ gemsAmount ? gemsAmount : '' }} guided explore module{{ gemsAmount === 1 ? '' : 's' }}&nbsp;<i>&nearr;</i></a>
       </section>
+      <section class="sources" v-if="sources">
+        <span class="caption">Sources</span>
+        <ul>
+          <li v-for="([label, link], n) in sources" :key="n"><a :href="link">{{ label }}</a></li>
+        </ul>
+      </section>
     </div>
     <footer class="meta-footer">
       <nav class="meta-nav">
@@ -56,11 +62,6 @@
           </a>
         </section>
       </nav>
-      <ul class="footer-share">
-        <li><a>Share on Twitter</a></li>
-        <li><a>Share on Facebook</a></li>
-        <li><a>Share via Mail</a></li>
-      </ul>
     </footer>
     <SensesDownload
       :visible="downloadVisible"
@@ -109,7 +110,7 @@ export default {
       return chain(get(this.module, 'authors', []))
     },
     link () {
-      return `https://dev.climatescenarios.org/share/${get(this.module, 'path')}`
+      return `https://dev.climatescenarios.org/${get(this.module, 'path')}`
     },
     downloads () {
       return get(this.module, 'downloadIDs', [])
@@ -122,6 +123,9 @@ export default {
     },
     downloadIDs () {
       return get(this.module, 'downloadIDs', [])
+    },
+    sources () {
+      return get(this.module, 'sources')
     }
   },
   mounted () {
@@ -163,6 +167,18 @@ export default {
 
     @include max-width($narrow) {
       grid-template-columns: repeat(1, 1fr);
+    }
+
+    a {
+      background: none;
+      color: #000;
+    }
+
+    .sources {
+      ul li {
+        margin-left: $spacing;
+        margin-bottom: $spacing / 4;
+      }
     }
 
     .caption {
