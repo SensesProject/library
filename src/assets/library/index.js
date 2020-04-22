@@ -10,6 +10,7 @@ import SensesSelect from '@/components/SensesSelect.vue'
 import SensesDownload from '@/components/SensesDownload.vue'
 import SensesCopy from '@/components/SensesCopy.vue'
 import SensesMeta from '@/components/SensesMeta.vue'
+import HelperHead from '@/components/HelperHead.vue'
 
 export default [
   SensesLogo,
@@ -23,5 +24,6 @@ export default [
   SensesSelect,
   SensesDownload,
   SensesCopy,
-  SensesMeta
+  SensesMeta,
+  HelperHead
 ]
