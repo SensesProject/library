@@ -40,6 +40,42 @@
     <p>Needs to be updated</p>
     <p>Update version in  <code>/package.json</code></p>
     <p>Commit and tag version</p>
+    <h2>Guides</h2>
+    <h3>Meta tags</h3>
+    <p>Add this to your <strong>Nuxt based projects</strong> <code>nuxt.config.js</code>:</p>
+    <pre>
+<code>const { getHead } = require('library/src/assets/js/head.js')
+…
+head: getHead({
+  title: 'Senses Toolkit',
+  description: 'The Senses Toolkit offers a wide range of modules to help you understand and communicate climate change scenarios'
+})</code>
+    </pre>
+    <p>You can pass a object to the <code>getHead</code> function to overwrite the default settings:</p>
+    <pre>
+<code>{
+  title: 'Senses Project',
+  description: 'The Senses Project make climate change scenarios more understandable through visualisation',
+  type: 'website',
+  card: 'summary'
+}</code>
+    </pre>
+    <p><strong>Regular projects</strong> can use this snippet:</p>
+    <pre>
+<code>&lt;meta charset="utf-8">
+&lt;meta name="viewport" content="width=device-width, initial-scale=1">
+&lt;title>Senses Project&lt;/title>
+&lt;meta name="description" content="The Senses Project make climate change scenarios more understandable through visualisation">
+&lt;link rel="icon" sizes="192x192" href="https://dev.climatescenarios.org/favicon-192.png">
+&lt;link rel="apple-touch-icon" href="https://dev.climatescenarios.org/favicon-192.png">
+&lt;link rel="mask-icon" href="https://dev.climatescenarios.org/favicon-svg.png" color="#5263ff">
+&lt;meta property="og:type" content="website">
+&lt;meta property="og:title" content="Senses Project">
+&lt;meta property="og:description" content="The Senses Project make climate change scenarios more understandable through visualisation">
+&lt;meta name="twitter:card" content="summary">
+&lt;meta name="twitter:title" content="Senses Project">
+&lt;meta name="twitter:description" content="The Senses Project make climate change scenarios more understandable through visualisation"></code>
+</pre>
   </div>
 </template>
 <script>
