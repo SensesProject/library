@@ -25,7 +25,10 @@
       <section class="sources" v-if="sources">
         <span class="caption">Sources</span>
         <ul>
-          <li v-for="([label, link], n) in sources" :key="n"><a :href="link">{{ label }}</a></li>
+          <li v-for="([label, link], n) in sources" :key="n">
+            <a v-if="link" :href="link">{{ label }}</a>
+            <span v-else>{{ label }}</span>
+          </li>
         </ul>
       </section>
     </div>
