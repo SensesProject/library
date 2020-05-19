@@ -16,7 +16,7 @@
       </section>
       <section v-if="downloads.length">
         <span class="caption">Printable resources</span>
-        <span class="btn--link clickable" @click="() => downloadVisible = !downloadVisible">View {{ downloads.length }} packages for download</span>
+        <span class="btn--link clickable" @click="() => downloadVisible = !downloadVisible">View {{ downloads.length }} {{ downloads.length > 1 ? 'packages' : 'package' }} for download</span>
       </section>
       <section v-if="gems">
         <span class="caption">Data used in this module</span>
@@ -45,7 +45,7 @@
           </a>
         </section>
         <section class="policy">
-          <a href="https://dev.climatescenarios.org/policy-portal/" class="wrapper">
+          <a class="wrapper">
             <div>
               <span class="glyph glyph-policies" />
             </div>
@@ -258,12 +258,18 @@ export default {
       }
 
       &.policy {
+        a {
+          cursor: default;
+        }
+
         strong, .glyph {
           color: $color-green;
         }
 
         a:hover, a:focus {
-          color: $color-green;
+          strong, .glyph, span, & {
+            color: $color-gray;
+          }
         }
       }
 
