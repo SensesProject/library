@@ -25,7 +25,7 @@
       <section class="sources" v-if="sources">
         <span class="caption">Sources</span>
         <ul>
-          <li v-for="([label, link], n) in sources" :key="n">
+          <li v-for="([label, link], n) in sources" :key="n" class="item">
             <a v-if="link" :href="link">{{ label }}</a>
             <span v-else>{{ label }}</span>
           </li>
@@ -190,6 +190,14 @@ export default {
       font-size: 0.6rem;
       text-transform: uppercase;
       letter-spacing: 0.05em;
+    }
+
+    .item {
+      a {
+        &:hover {
+          color: $color-neon;
+        }
+      }
     }
 
     .btn--link {
