@@ -78,7 +78,7 @@
 import { get, find } from 'lodash'
 import axios from 'axios'
 import SensesCopy from './SensesCopy.vue'
-import SensesDownload from './SensesDownload.vue'
+import SensesDownload from './SensesDownloadNuxt.vue'
 import { chain } from '../assets/js/utils.js'
 
 export default {

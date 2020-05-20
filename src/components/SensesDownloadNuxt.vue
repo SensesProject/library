@@ -1,4 +1,5 @@
 <template>
+<client-only>
   <modal
     :scrollable="true"
     :width="900"
@@ -85,17 +86,18 @@
       </div>
     </div>
   </modal>
+  </client-only>
 </template>
 
 <script>
-import Vue from 'vue'
+// import Vue from 'vue'
 import { get, map, includes, head, find, isNumber } from 'lodash'
 import axios from 'axios'
-import VModal from 'vue-js-modal'
+// import VModal from 'vue-js-modal/dist/ssr.index'
 import SensesCopy from './SensesCopy.vue'
 import { chain } from '../assets/js/utils.js'
 
-Vue.use(VModal)
+// Vue.use(VModal)
 
 export default {
   name: 'SensesDownload',
