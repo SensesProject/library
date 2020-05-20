@@ -16,7 +16,7 @@
       </section>
       <section v-if="downloads.length">
         <span class="caption">Printable resources</span>
-        <span class="btn--link clickable" @click="() => downloadVisible = !downloadVisible">View {{ downloads.length }} packages for download</span>
+        <span class="btn--link clickable" @click="() => downloadVisible = !downloadVisible">View {{ downloads.length }} {{ downloads.length > 1 ? 'packages' : 'package' }} for download</span>
       </section>
       <section v-if="gems">
         <span class="caption">Data used in this module</span>
@@ -25,7 +25,7 @@
       <section class="sources" v-if="sources">
         <span class="caption">Sources</span>
         <ul>
-          <li v-for="([label, link], n) in sources" :key="n">
+          <li v-for="([label, link], n) in sources" :key="n" class="item">
             <a v-if="link" :href="link">{{ label }}</a>
             <span v-else>{{ label }}</span>
           </li>
@@ -45,7 +45,7 @@
           </a>
         </section>
         <section class="policy">
-          <a href="https://dev.climatescenarios.org/policy-portal/" class="wrapper">
+          <a class="wrapper">
             <div>
               <span class="glyph glyph-policies" />
             </div>
@@ -83,7 +83,7 @@ import { chain } from '../assets/js/utils.js'
 
 export default {
   name: 'SensesMeta',
-  docs: 'Since this component uses <code class="highlight gray no-hover">SensesDownload</code>, it’s important to set mode to <code class="highlight gray no-hover">spa</code> in <code class="highlight gray no-hover">nuxt.config.js</code>, when running in Nuxt.',
+  docs: 'In regular Vue and SPA Nuxt you need to add the modal with these lines:<br /><code class="highlight">import Vue from \'vue\'<br />import VModal from \'vue-js-modal\'<br />Vue.use(VModal)</code><br /><br />Universal Nuxt projects need to create plugin called <code class="highlight">vue-js-modal.js</code> witht this content:<br /><code class="highlight">import Vue from \'vue\'<br />import VModal from \'vue-js-modal/dist/ssr.index\'<br />Vue.use(VModal)</code><br /><br />And add these lines to <code class="highlight">nuxt.config.js</code>:<br /><code class="highlight">plugins: [<br />\'~plugins/vue-js-modal.js\'<br />]',
   components: {
     SensesCopy,
     SensesDownload
@@ -192,6 +192,14 @@ export default {
       letter-spacing: 0.05em;
     }
 
+    .item {
+      a {
+        &:hover {
+          color: $color-neon;
+        }
+      }
+    }
+
     .btn--link {
       background: #fff;
       border: 1px solid getColor(gray, 80);
@@ -258,12 +266,18 @@ export default {
       }
 
       &.policy {
+        a {
+          cursor: default;
+        }
+
         strong, .glyph {
           color: $color-green;
         }
 
         a:hover, a:focus {
-          color: $color-green;
+          strong, .glyph, span, & {
+            color: $color-gray;
+          }
         }
       }
 
