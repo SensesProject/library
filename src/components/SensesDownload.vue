@@ -1,107 +1,105 @@
 <template>
-  <client-only>
-    <modal
-      :scrollable="true"
-      :width="900"
-      @closed="closed"
-      name="download"
-      height="auto"
-    >
-      <div class="page-download">
-        <header class="download-header">
-          <h1 class="mono">
-            {{ title }}
-          </h1>
-          <span v-if="downloadElements.length" class="caption">Available downloads</span>
-          <ul v-if="downloadElements.length" class="list">
-            <li
-              v-for="element in downloadElements"
-              :key="element.id"
-              :class="{ isActive: element.isActive, clickable: !element.isActive }"
-              @click="() => setActive(element.id)"
-            >
-              {{ element.label }}
-            </li>
-          </ul>
-          <span v-else>No downloads available for this module</span>
-        </header>
-        <div v-if="activeID && item" class="download-content">
-          <div class="download-download">
-            <h2 class="download-title">{{ item.label }}</h2>
-            <div>
-              <a :href="item.link" class="btn btn--action">Download</a>
-            </div>
-            <p class="description">
-              {{ item.description }}
-            </p>
+  <modal
+    :scrollable="true"
+    :width="900"
+    @closed="closed"
+    name="download"
+    height="auto"
+  >
+    <div class="page-download">
+      <header class="download-header">
+        <h1 class="mono">
+          {{ title }}
+        </h1>
+        <span v-if="downloadElements.length" class="caption">Available downloads</span>
+        <ul v-if="downloadElements.length" class="list">
+          <li
+            v-for="element in downloadElements"
+            :key="element.id"
+            :class="{ isActive: element.isActive, clickable: !element.isActive }"
+            @click="() => setActive(element.id)"
+          >
+            {{ element.label }}
+          </li>
+        </ul>
+        <span v-else>No downloads available for this module</span>
+      </header>
+      <div v-if="activeID && item" class="download-content">
+        <div class="download-download">
+          <h2 class="download-title">{{ item.label }}</h2>
+          <div>
+            <a :href="item.link" class="btn btn--action">Download</a>
           </div>
-          <dl class="download-details">
-            <dt class="caption">
-              Preview
-            </dt>
-            <dd class="gallery">
-              <ul class="previews">
-                <li
-                  v-for="(element, i) in item.previews"
-                  :key="i"
-                  class="preview">
-                  <img :src="`https://dev.climatescenarios.org/share/${element}`">
-                </li>
+          <p class="description">
+            {{ item.description }}
+          </p>
+        </div>
+        <dl class="download-details">
+          <dt class="caption">
+            Preview
+          </dt>
+          <dd class="gallery">
+            <ul class="previews">
+              <li
+                v-for="(element, i) in item.previews"
+                :key="i"
+                class="preview">
+                <img :src="`https://dev.climatescenarios.org/share/${element}`">
+              </li>
+            </ul>
+          </dd>
+          <dt class="caption">
+            Authors
+          </dt>
+          <dd>{{ author }}</dd>
+          <dt v-if="reference" class="caption">
+            Reference
+          </dt>
+          <dd v-if="reference">
+            <SensesCopy :content="item.reference" />
+          </dd>
+          <dt class="caption">
+            Licence
+          </dt>
+          <dd>
+            <span>Creative Commons Attribution-ShareAlike 4.0 International</span>
+            <aside class="licence-details">
+              <span>You are free to</span>
+              <ul>
+                <li>Copy and redistribute the material in any medium or format</li>
+                <li>Remix, transform, and build upon the material for any purpose, even commercially</li>
               </ul>
-            </dd>
-            <dt class="caption">
-              Authors
-            </dt>
-            <dd>{{ author }}</dd>
-            <dt v-if="reference" class="caption">
-              Reference
-            </dt>
-            <dd v-if="reference">
-              <SensesCopy :content="item.reference" />
-            </dd>
-            <dt class="caption">
-              Licence
-            </dt>
-            <dd>
-              <span>Creative Commons Attribution-ShareAlike 4.0 International</span>
-              <aside class="licence-details">
-                <span>You are free to</span>
-                <ul>
-                  <li>Copy and redistribute the material in any medium or format</li>
-                  <li>Remix, transform, and build upon the material for any purpose, even commercially</li>
-                </ul>
-                <span>Under the following terms</span>
-                <ul>
-                  <li>You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.</li>
-                  <li>If you remix, transform, or build upon the material, you must distribute your contributions under the same license as the original.</li>
-                  <li>You may not apply legal terms or technological measures that legally restrict others from doing anything the license permits.</li>
-                </ul>
-              </aside>
-            </dd>
-          </dl>
-          <span @click="closed" class="close">&times;</span>
-        </div>
-        <div v-else class="download-error">
-          <h2>Download can not be found</h2>
-        </div>
+              <span>Under the following terms</span>
+              <ul>
+                <li>You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.</li>
+                <li>If you remix, transform, or build upon the material, you must distribute your contributions under the same license as the original.</li>
+                <li>You may not apply legal terms or technological measures that legally restrict others from doing anything the license permits.</li>
+              </ul>
+            </aside>
+          </dd>
+        </dl>
+        <span @click="closed" class="close">&times;</span>
       </div>
-    </modal>
-  </client-only>
+      <div v-else class="download-error">
+        <h2>Download can not be found</h2>
+      </div>
+    </div>
+  </modal>
 </template>
 
 <script>
-// import Vue from 'vue'
+import Vue from 'vue'
 import { get, map, includes, head, find, isNumber } from 'lodash'
 import axios from 'axios'
-// import VModal from 'vue-js-modal'
+import VModal from 'vue-js-modal'
 import SensesCopy from './SensesCopy.vue'
 import { chain } from '../assets/js/utils.js'
 
-// Vue.use(VModal)
+Vue.use(VModal)
 
 export default {
   name: 'SensesDownload',
-  docs: 'In regular Vue and SPA Nuxt you need to add the modal with these lines:<br /><code class="highlight">import Vue from \'vue\'<br />import VModal from \'vue-js-modal\'<br />Vue.use(VModal)</code><br /><br />Universal Nuxt projects need to create plugin called <code class="highlight">vue-js-modal.js</code> witht this content:<br /><code class="highlight">import Vue from \'vue\'<br />import VModal from \'vue-js-modal/dist/ssr.index\'<br />Vue.use(VModal)</code><br /><br />And add these lines to <code class="highlight">nuxt.config.js</code>:<br /><code class="highlight">plugins: [<br />\'~plugins/vue-js-modal.js\'<br />]',
+  docs: 'It’s important to set mode to <code class="highlight gray no-hover">spa</code> in <code class="highlight gray no-hover">nuxt.config.js</code>, when running in Nuxt.',
   components: {
     SensesCopy
   },

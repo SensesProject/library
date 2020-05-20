@@ -83,7 +83,7 @@ import { chain } from '../assets/js/utils.js'
 
 export default {
   name: 'SensesMeta',
-  docs: 'In regular Vue and SPA Nuxt you need to add the modal with these lines:<br /><code class="highlight">import Vue from \'vue\'<br />import VModal from \'vue-js-modal\'<br />Vue.use(VModal)</code><br /><br />Universal Nuxt projects need to create plugin called <code class="highlight">vue-js-modal.js</code> witht this content:<br /><code class="highlight">import Vue from \'vue\'<br />import VModal from \'vue-js-modal/dist/ssr.index\'<br />Vue.use(VModal)</code><br /><br />And add these lines to <code class="highlight">nuxt.config.js</code>:<br /><code class="highlight">plugins: [<br />\'~plugins/vue-js-modal.js\'<br />]',
+  docs: 'Since this component uses <code class="highlight gray no-hover">SensesDownload</code>, it’s important to set mode to <code class="highlight gray no-hover">spa</code> in <code class="highlight gray no-hover">nuxt.config.js</code>, when running in Nuxt.',
   components: {
     SensesCopy,
     SensesDownload
