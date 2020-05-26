@@ -1,5 +1,5 @@
 'use strict'
-import { getUrlToResources } from '../assets/js/utils.js'
+import { getUrlToResources } from './utils.js'
 
 const DEFAULTS = {
   title: 'Senses Project',
