@@ -64,7 +64,7 @@
           </div>
           <nav class="nav">
             <a href="/" class="neon highlight" v-if="true || mobile || narrow">
-              <span class="glyph glyph-gems" />
+              <span class="glyph glyph-toolkit" />
               <span class="link">Toolkit</span>
             </a>
             <a href="/imprint" class="gray highlight">
@@ -77,7 +77,7 @@
                 <span class="link">Policy Portal</span>
             </a>
             <a href="/finance-portal" class="disabled purple highlight">
-                <span class="purple glyph glyph-hurricanes" />
+                <span class="purple glyph glyph-finance" />
                 <span class="link">Finance Portal</span>
             </a>
           </nav>
