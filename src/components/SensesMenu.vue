@@ -236,7 +236,7 @@ export default {
     }
 
     &.darkmode {
-      background: transparentize($color-black, 0.02);
+      background: transparentize(getColor(neon, 0), 0.02);
       @supports (
         (-webkit-backdrop-filter: saturate(180%) blur(20px)) or
           (backdrop-filter: saturate(180%) blur(20px))
@@ -369,7 +369,7 @@ export default {
       backdrop-filter: saturate(180%) blur(10px);
     }
     &.darkmode {
-      background: transparentize($color-black, 0.02);
+      background: transparentize(getColor(neon, 0), 0.02);
       @supports (
         (-webkit-backdrop-filter: saturate(180%) blur(20px)) or
           (backdrop-filter: saturate(180%) blur(20px))
