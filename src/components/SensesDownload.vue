@@ -44,7 +44,7 @@
                 v-for="(element, i) in item.previews"
                 :key="i"
                 class="preview">
-                <img :src="`https://dev.climatescenarios.org/share/${element}`">
+                <img :src="getUrlToResources(`share/${element}`)">
               </li>
             </ul>
           </dd>
@@ -93,7 +93,7 @@ import { get, map, includes, head, find, isNumber } from 'lodash'
 import axios from 'axios'
 import VModal from 'vue-js-modal'
 import SensesCopy from './SensesCopy.vue'
-import { chain } from '../assets/js/utils.js'
+import { chain, getUrlToResources } from '../assets/js/utils.js'
 
 Vue.use(VModal)
 
@@ -130,7 +130,8 @@ export default {
   data () {
     return {
       downloads: [], // A list of downloads fetched from external JSON file
-      activeID: false
+      activeID: false,
+      getUrlToResources
     }
   },
   computed: {
@@ -214,7 +215,7 @@ export default {
       }
     },
     loadDownloads () {
-      axios.get('https://dev.climatescenarios.org/settings/downloads.json')
+      axios.get(getUrlToResources('settings/downloads.json'))
         .then((response) => {
           this.downloads = response.data.downloads
         })

@@ -1,4 +1,5 @@
 'use strict'
+import { getUrlToResources } from '../assets/js/utils.js'
 
 const DEFAULTS = {
   title: 'Senses Project',
@@ -7,7 +8,7 @@ const DEFAULTS = {
   card: 'summary_large_image',
   width: 1200,
   height: 630,
-  image: 'https://dev.climatescenarios.org/share/og-toolkit.jpg'
+  image: getUrlToResources('share/og-toolkit.jpg')
 }
 
 const required = [
@@ -16,9 +17,9 @@ const required = [
 ]
 
 const favicon = [
-  { rel: 'icon', href: 'https://dev.climatescenarios.org/favicon-192.png', sizes: '192x192' },
-  { rel: 'apple-touch-icon', href: 'https://dev.climatescenarios.org/favicon-192.png' },
-  { rel: 'mask-icon', href: 'https://dev.climatescenarios.org/favicon.svg', color: '#5263ff' }
+  { rel: 'icon', href: getUrlToResources('favicon-192.png'), sizes: '192x192' },
+  { rel: 'apple-touch-icon', href: getUrlToResources('favicon-192.png') },
+  { rel: 'mask-icon', href: getUrlToResources('favicon.svg'), color: '#5263ff' }
 ]
 
 const tags = [

@@ -35,7 +35,7 @@
     <footer class="meta-footer">
       <nav class="meta-nav">
         <section class="toolkit">
-          <a href="https://dev.climatescenarios.org" class="wrapper">
+          <a :href="getUrlToResources('')" class="wrapper">
             <div>
               <span class="glyph glyph-gems" />
             </div>
@@ -79,7 +79,7 @@ import { get, find } from 'lodash'
 import axios from 'axios'
 import SensesCopy from './SensesCopy.vue'
 import SensesDownload from './SensesDownloadNuxt.vue'
-import { chain } from '../assets/js/utils.js'
+import { chain, getUrlToResources } from '../assets/js/utils.js'
 
 export default {
   name: 'SensesMeta',
@@ -98,7 +98,8 @@ export default {
   data () {
     return {
       modules: [],
-      downloadVisible: false
+      downloadVisible: false,
+      getUrlToResources
     }
   },
   computed: {
@@ -113,7 +114,7 @@ export default {
       return chain(get(this.module, 'authors', []))
     },
     link () {
-      return `https://dev.climatescenarios.org/${get(this.module, 'path')}`
+      return getUrlToResources(get(this.module, 'path'))
     },
     downloads () {
       return get(this.module, 'downloadIDs', [])
@@ -137,7 +138,7 @@ export default {
   },
   methods: {
     loadModules () {
-      axios.get('https://dev.climatescenarios.org/settings/modules.json')
+      axios.get(getUrlToResources('settings/modules.json'))
         .then((response) => {
           const modules = get(response, ['data', 'modules'], [])
           // console.info(`Fetched ${modules.length} modules`)
