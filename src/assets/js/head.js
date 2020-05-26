@@ -4,7 +4,7 @@ const DEFAULTS = {
 	title: 'Senses Project',
 	description: 'The Senses Project make climate change scenarios more understandable through visualisation',
 	type: 'website',
-	card: 'summary',
+	card: 'summary_large_image',
 	width: 1200,
 	height: 630,
 	image: 'https://dev.climatescenarios.org/share/og-toolkit.jpg'
