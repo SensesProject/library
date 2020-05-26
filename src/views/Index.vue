@@ -60,22 +60,7 @@ head: getHead({
   card: 'summary'
 }</code>
     </pre>
-    <p><strong>Regular projects</strong> can use this snippet:</p>
-    <pre>
-<code>&lt;meta charset="utf-8">
-&lt;meta name="viewport" content="width=device-width, initial-scale=1">
-&lt;title>Senses Project&lt;/title>
-&lt;meta name="description" content="The Senses Project make climate change scenarios more understandable through visualisation">
-&lt;link rel="icon" sizes="192x192" href="https://dev.climatescenarios.org/favicon-192.png">
-&lt;link rel="apple-touch-icon" href="https://dev.climatescenarios.org/favicon-192.png">
-&lt;link rel="mask-icon" href="https://dev.climatescenarios.org/favicon-svg.png" color="#5263ff">
-&lt;meta property="og:type" content="website">
-&lt;meta property="og:title" content="Senses Project">
-&lt;meta property="og:description" content="The Senses Project make climate change scenarios more understandable through visualisation">
-&lt;meta name="twitter:card" content="summary">
-&lt;meta name="twitter:title" content="Senses Project">
-&lt;meta name="twitter:description" content="The Senses Project make climate change scenarios more understandable through visualisation"></code>
-</pre>
+    <p><strong>Regular projects</strong> can generate a snipper <router-link to="components/HelperHead">here</router-link></p>
   </div>
 </template>
 <script>
