@@ -37,7 +37,7 @@
         <section class="toolkit">
           <a :href="getUrlToResources('')" class="wrapper">
             <div>
-              <span class="glyph glyph-gems" />
+              <span class="glyph glyph-toolkit-thick" />
             </div>
             <div>
               <span>Visit the <strong>toolkit</strong> to find all modules</span>
@@ -47,7 +47,7 @@
         <section class="policy">
           <a class="wrapper">
             <div>
-              <span class="glyph glyph-policies" />
+              <span class="glyph glyph-policies-thick" />
             </div>
             <div>
               <span>Visit the <strong>Policy</strong> portal for a curated path&nbsp;&nearr;</span>
@@ -57,7 +57,7 @@
         <section class="finance">
           <a class="wrapper">
             <div>
-              <span class="glyph glyph-hurricanes" />
+              <span class="glyph glyph-finance-thick" />
             </div>
             <div>
               <span>Visit the <strong>Finance</strong> portal for a curated path&nbsp;&nearr;</span>
