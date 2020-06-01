@@ -50,7 +50,7 @@
               <span class="glyph glyph-policies-thick" />
             </div>
             <div>
-              <span>Visit the <strong>Policy</strong> portal for a curated path&nbsp;&nearr;</span>
+              <span>The <strong>Policy</strong> portal is launching soon&nbsp;&nearr;</span>
             </div>
           </a>
         </section>
@@ -60,7 +60,7 @@
               <span class="glyph glyph-finance-thick" />
             </div>
             <div>
-              <span>Visit the <strong>Finance</strong> portal for a curated path&nbsp;&nearr;</span>
+              <span>The <strong>Finance</strong> portal is launching soon&nbsp;&nearr;</span>
             </div>
           </a>
         </section>
