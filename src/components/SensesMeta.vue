@@ -169,8 +169,16 @@ export default {
     grid-gap: $spacing $spacing;
     grid-template-columns: repeat(2, 1fr);
 
-    @include max-width($narrow) {
+    .sources {
+      grid-column-end: span 2;
+    }
+
+    @include max-width($medium) {
       grid-template-columns: repeat(1, 1fr);
+
+      .sources {
+        grid-column-end: span 1;
+      }
     }
 
     a {
