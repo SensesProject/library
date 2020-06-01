@@ -114,7 +114,7 @@ export default {
       return chain(get(this.module, 'authors', []))
     },
     link () {
-      return getUrlToResources(get(this.module, 'path'))
+      return getUrlToResources(get(this.module, 'path'), true)
     },
     downloads () {
       return get(this.module, 'downloadIDs', [])
