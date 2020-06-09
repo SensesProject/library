@@ -3,12 +3,12 @@ import { getUrlToResources } from './utils.js'
 
 const DEFAULTS = {
   title: 'Senses Project',
-  description: 'The Senses Project make climate change scenarios more understandable through visualisation',
+  description: 'The Senses Project makes climate change scenarios more understandable through visualisation',
   type: 'website',
   card: 'summary_large_image',
   width: 1200,
   height: 630,
-  image: getUrlToResources('share/og-toolkit.jpg')
+  image: 'https://climatescenarios.org/share/og-toolkit.jpg'
 }
 
 const required = [
