@@ -337,6 +337,7 @@ export default {
           @media all and (-ms-high-contrast: none),
             (-ms-high-contrast: active) {
             display: block;
+            z-index: 10;
           }
         }
 
