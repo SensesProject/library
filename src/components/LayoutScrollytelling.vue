@@ -4,7 +4,7 @@
       <!-- <header>
         <SensesLogo color="white"/>
       </header> -->
-    <div class="vis" ref="vis" :class="{'ignore-menu-bar': ignoreMenuBar}">
+    <div class="vis" ref="vis" :class="{'ignore-menu-bar': ignoreMenuBar}" :style="{top: top ? top : null}">
       <div class="debug" v-if="debug"></div>
       <slot name="vis" :width="width" :height="height" :step="step">
         <div
@@ -69,6 +69,11 @@ export default {
       type: Boolean,
       default: false,
       docs: 'set to true to ignore the height of the menu bar.'
+    },
+    top: {
+      type: String,
+      default: null,
+      docs: 'overwrite css-attribute top of vis element (used to set where element should stick)'
     }
   },
   data () {
@@ -150,6 +155,9 @@ export default {
     &.ignore-menu-bar {
       top: 0;
       height: 100vh;
+    }
+    &.auto-height {
+      height: auto;
     }
 
     .debug {
