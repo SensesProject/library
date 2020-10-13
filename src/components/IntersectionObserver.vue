@@ -1,5 +1,5 @@
 <template>
-  <div class="intersection-observer" ref="intersect" :class="{ default: !noStyling }">
+  <div class="intersection-observer" ref="intersect" :class="[classes, { default: !noStyling }]">
     <div :class="[{ default: !noStyling, darkmode }, align]">
       <slot>
         <h2>Step {{ step }}</h2>
@@ -41,10 +41,11 @@ export default {
       type: Boolean,
       default: false,
       docs: 'enable darkmode'
-    }
-  },
-  data () {
-    return {
+    },
+    classes: {
+      type: String,
+      default: '',
+      docs: 'classes to be added to the wrapper div'
     }
   },
   mounted () {
