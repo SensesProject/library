@@ -88,7 +88,12 @@ export default {
     placement: {
       type: String,
       default: 'bottom-start',
-      docs: 'placement of tooltip, defualts to "bottom-start"'
+      docs: 'placement of tooltip, defaults to "bottom-start"'
+    },
+    previewKey: {
+      type: [Boolean, String],
+      default: false,
+      docs: 'Define a custom key of the selected object that is displayed when the tooltip is closed. Default uses "label".'
     }
   },
   data () {
@@ -102,7 +107,7 @@ export default {
       const { options, value } = this
       const selected = options.find(o => (o.value != null ? o.value : o) === value)
       if (selected == null) return 'Choose Option'
-      return selected.label || (selected.value != null ? selected.value : selected)
+      return (previewKey ? selected[previewKey] : selected.label) || (selected.value != null ? selected.value : selected)
     }
   }
 }
