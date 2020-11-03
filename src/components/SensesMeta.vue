@@ -190,13 +190,22 @@ export default {
 
     a {
       background: none;
-      color: #000;
+      color: $color-black;
     }
 
     .sources::v-deep {
       ul li {
         margin-left: $spacing;
         margin-bottom: $spacing / 4;
+
+        a {
+          background: none;
+          color: $color-black;
+
+          &:hover {
+            color: $color-neon;
+          }
+        }
       }
     }
 
@@ -263,7 +272,7 @@ export default {
 
       a {
         background: none;
-        color: #000;
+        color: $color-black;
       }
 
       .glyph {
