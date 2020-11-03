@@ -104,7 +104,7 @@ export default {
   },
   computed: {
     label () {
-      const { options, value } = this
+      const { options, value, previewKey } = this
       const selected = options.find(o => (o.value != null ? o.value : o) === value)
       if (selected == null) return 'Choose Option'
       return (previewKey ? selected[previewKey] : selected.label) || (selected.value != null ? selected.value : selected)
