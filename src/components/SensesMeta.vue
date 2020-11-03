@@ -22,14 +22,16 @@
         <span class="caption">Data used in this module</span>
         <a :href="gems" class="btn--link">View {{ gemsAmount ? gemsAmount : '' }} guided explore module{{ gemsAmount === 1 ? '' : 's' }}&nbsp;<i>&nearr;</i></a>
       </section>
-      <section class="sources" v-if="sources">
+      <section class="sources" v-if="sources || localSources">
         <span class="caption">Sources</span>
-        <ul>
-          <li v-for="([label, link], n) in sources" :key="n" class="item">
-            <a v-if="link" :href="link">{{ label }}</a>
-            <span v-else>{{ label }}</span>
-          </li>
-        </ul>
+        <slot>
+          <ul>
+            <li v-for="([label, link], n) in sources" :key="n" class="item">
+              <a v-if="link" :href="link">{{ label }}</a>
+              <span v-else>{{ label }}</span>
+            </li>
+          </ul>
+        </slot>
       </section>
     </div>
     <footer class="meta-footer">
@@ -93,6 +95,11 @@ export default {
       type: [String, Boolean],
       default: false,
       docs: 'ID of the module'
+    },
+    localSources: {
+      type: Boolean,
+      default: false,
+      docs: 'set to true when providing sources by slot instead of global modules config'
     }
   },
   data () {
@@ -186,7 +193,7 @@ export default {
       color: #000;
     }
 
-    .sources {
+    .sources::v-deep {
       ul li {
         margin-left: $spacing;
         margin-bottom: $spacing / 4;
