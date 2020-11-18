@@ -12,6 +12,7 @@
       aria-haspopup="listbox"
       :aria-expanded="isVisible"
       :aria-labelledby="`btn_${uniqID}`"
+      :disabled="disabled"
       :id="`btn_${uniqID}`"
       :style="{'min-width': isNaN(width) ? width : `${width}px`}">
       <span><slot>{{ label }}</slot></span><svg width="16" height="8"><g><path d="M-4,1.5 L0,-1.5 L4,1.5"/></g></svg>
@@ -94,6 +95,11 @@ export default {
       type: [Boolean, String],
       default: false,
       docs: 'Define a custom key of the selected object that is displayed when the tooltip is closed. Default uses "label".'
+    },
+    disabled: {
+      type: Boolean,
+      default: false,
+      docs: 'Disables the button'
     }
   },
   data () {
