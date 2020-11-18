@@ -1,6 +1,7 @@
 <template>
   <v-popover
-    class="senses-select"
+    :class="['senses-select', { disabled }]"
+    :disabled="disabled"
     offset="2"
     trigger="click"
     :popoverClass="['senses-tooltip senses-tooltip-select']"
