@@ -6,7 +6,7 @@
         <router-link to="/style">Style</router-link>
         <router-link to="/components">Components</router-link>
       </nav>
-      <SensesLogo color="blue"/>
+      <SensesLogo color="black"/>
     </div>
     <div class="page">
       <router-view/>
@@ -43,6 +43,8 @@ a {
     display: flex;
     justify-content: space-between;
     padding-right: $spacing / 2;
+    border-bottom: 1px solid $color-neon;
+    margin-bottom: $spacing / 2;
 
     nav {
       display: flex;
@@ -52,13 +54,13 @@ a {
       a {
         font-weight: $font-weight-bold;
         margin: $spacing / 2 0 $spacing / 2 $spacing / 2;
-
+        background: none;
         &.router-link-active {
-          color: $color-blue;
+          color: $color-neon;
           &.index {
             color: $color-default;
             &.router-link-exact-active {
-              color: $color-blue;
+              color: $color-neon;
             }
           }
         }

@@ -61,9 +61,13 @@ export default {
   .section {
     width: 100%;
     overflow: scroll;
-    border-top: 1px solid $color-green;
+    border-top: 1px solid $color-neon;
     margin-bottom: $spacing;
     padding-top: $spacing / 4;
+
+    &:first-of-type {
+      border-top: none;
+    }
 
     .font {
       display: flex;
@@ -100,11 +104,12 @@ export default {
     }
 
     code {
+      background: getColor(gray, 90);
       font-family: $font-mono;
+      color: getColor(neon, 20);
       font-size: 1rem;
       word-wrap: normal;
       padding: 0 $spacing / 8;
-      background: $color-green;
       margin: $spacing / 16 0;
     }
 
