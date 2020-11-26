@@ -152,6 +152,13 @@ export default {
     letter-spacing: $unit * 0.125;
   }
 
+  &.neon {
+    color: $color-neon;
+    .circle {
+      border-color: $color-neon;
+    }
+  }
+
   &.violet {
     color: $color-violet;
     .circle {

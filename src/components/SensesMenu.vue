@@ -2,24 +2,16 @@
   <div class="senses-menu">
     <ResizeObserver @notify="onResize"/>
     <div class="bar" :class="{ darkmode, open, transparent }">
-      <senses-logo :color="logo && logo.color ? logo.color : darkmode ? 'white' : 'black'" href="/" v-bind="logo">
-      <span class="to-the-toolkit">
-        <span class="button uppercase no-mobile" v-if="!mobile && !narrow && !toolkit">
-          <!-- <span class="glyph glyph-gems"/> -->
-          <span class="arrow">→</span>
-          <span>to the toolkit</span>
-        </span>
-      </span>
+      <senses-logo rootElement="span" :color="logo && logo.color ? logo.color : darkmode ? 'white' : 'neon'" v-bind="logo" no-hover :animate="false">
       </senses-logo>
       <!-- <span class="to-the-toolkit">
         <a href="/" class="button uppercase no-mobile" v-if="!mobile && !narrow">
           <span>→ to the toolkit</span>
         </a>
       </span> -->
-      <div class="falafel" @click="toggleMenu()">
-        <div class="button">
-        <senses-falafel :color="darkmode ? 'white' : 'white'" :symbol="open ? 'close' : 'vertical'"/>
-        </div>
+      <div class="falafel">
+        <a href="de"><div class="button" :class="{active: lang === 'de'}">DE</div></a>
+        <a href="en"><div class="button" :class="{active: lang === 'en'}">EN</div></a>
       </div>
       <div class="warnings" v-if="!open">
         <div v-if="wip" class="wip highlight red mono tiny no-hover">
@@ -37,53 +29,6 @@
         </div>
       </div>
     </div>
-    <transition name="fade">
-      <div class="background" :class="{ darkmode, transparent }" v-if="open"/>
-    </transition>
-    <transition name="fade">
-      <div class="overlay" :class="{ darkmode, narrow }" v-if="open">
-        <div class="menu" id="senses-menu">
-          <div class="about" :style="{'margin-left': `${aboutOffset}rem`}">
-            <section v-if="module != null">
-              <h3>{{ module.title }}</h3>
-              <div class="gray tiny uppercase">{{ module.authors.join(', ').replace(/,\s([^,]+)$/, ' & $1') }}</div>
-              <div class="gray">{{ module.description }}</div>
-            </section>
-            <slot name="about" :close-menu="closeMenu"/>
-            <section>
-              <h3>About</h3>
-              <div class="gray">
-               The SENSES <strong><a href="/">Toolkit</a></strong> offers a range of modules to learn about and explore climate change scenarios. The <strong>policy</strong> and <strong>finance portals</strong> will offer a dedicated entry point with a curated selection of modules soon.
-              </div>
-              <a href="/about">
-                <div class="button">
-                  Learn to navigate the toolkit →
-                </div>
-              </a>
-            </section>
-          </div>
-          <nav class="nav">
-            <a href="/" class="neon highlight" v-if="true || mobile || narrow">
-              <span class="glyph glyph-toolkit" />
-              <span class="link">Toolkit</span>
-            </a>
-            <a href="/imprint" class="gray highlight">
-              <span class="glyph glyph-industry" />
-              <span class="link">Imprint</span>
-            </a>
-            <span class="disabled tiny soon">coming soon</span>
-            <a href="/policy-portal" class="disabled green highlight">
-                <span class="green glyph glyph-policies" />
-                <span class="link">Policy Portal</span>
-            </a>
-            <a href="/finance-portal" class="disabled purple highlight">
-                <span class="purple glyph glyph-finance" />
-                <span class="link">Finance Portal</span>
-            </a>
-          </nav>
-        </div>
-      </div>
-    </transition>
   </div>
 </template>
 
@@ -91,14 +36,11 @@
 import 'vue-resize/dist/vue-resize.css'
 import { ResizeObserver } from 'vue-resize'
 import SensesLogo from './SensesLogo.vue'
-import SensesFalafel from './SensesFalafel.vue'
 import { disableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock'
-import { getUrlToResources } from '../assets/js/utils.js'
 export default {
   name: 'SensesMenu',
   components: {
     SensesLogo,
-    SensesFalafel,
     ResizeObserver
   },
   props: {
@@ -156,6 +98,9 @@ export default {
     }
   },
   computed: {
+    lang () {
+      return location.pathname.split('/').find((frag, i, fragments) => i === fragments.length - 1).toLowerCase
+    },
     module () {
       return this.modules.find(m => m.id === this.id)
     },
@@ -195,14 +140,6 @@ export default {
   },
   mounted () {
     this.onResize()
-    fetch(getUrlToResources('settings/modules.json'))
-      .then(r => r.json())
-      .then(data => {
-        this.modules = data.modules
-      })
-      .catch(e => {
-        this.modules = []
-      })
   }
 }
 </script>
@@ -294,8 +231,21 @@ export default {
       justify-self: end;
       display: flex;
       align-items: center;
+      a:first-of-type {
+        margin-right: $spacing / 4;
+      }
       .button {
-        padding: $spacing / 8;
+        // padding: $spacing / 8;
+        // text-align: center;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &.active {
+          text-decoration: underline;
+        }
       }
     }
     .senses-logo {

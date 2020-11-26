@@ -10,32 +10,32 @@
         <span class="caption">Authors</span>
         <span>{{ authors }}</span>
       </section>
-      <section>
+      <!-- <section>
         <span class="caption">Link</span>
         <SensesCopy :content="link" />
-      </section>
-      <section v-if="downloads.length">
+      </section> -->
+      <!-- <section v-if="downloads.length">
         <span class="caption">Printable resources</span>
         <span class="btn--link clickable" @click="() => downloadVisible = !downloadVisible">View {{ downloads.length }} {{ downloads.length > 1 ? 'packages' : 'package' }} for download</span>
       </section>
       <section v-if="gems">
         <span class="caption">Data used in this module</span>
         <a :href="gems" class="btn--link">View {{ gemsAmount ? gemsAmount : '' }} guided explore module{{ gemsAmount === 1 ? '' : 's' }}&nbsp;<i>&nearr;</i></a>
-      </section>
+      </section> -->
       <section class="sources" v-if="sources || localSources">
-        <span class="caption">Sources</span>
+        <span class="caption">References</span>
         <slot>
           <ul>
-            <li v-for="([label, link], n) in sources" :key="n" class="item">
-              <a v-if="link" :href="link">{{ label }}</a>
-              <span v-else>{{ label }}</span>
+            <li v-for="([label], n) in sources" :key="n" class="item">
+              <!-- <a v-if="link" :href="link">{{ label }}</a> -->
+              <span>{{ label }}</span>
             </li>
           </ul>
         </slot>
       </section>
     </div>
     <footer class="meta-footer">
-      <nav class="meta-nav">
+      <!-- <nav class="meta-nav">
         <section class="toolkit">
           <a :href="getUrlToResources('')" class="wrapper">
             <div>
@@ -66,29 +66,29 @@
             </div>
           </a>
         </section>
-      </nav>
+      </nav> -->
     </footer>
-    <SensesDownload
+    <!-- <SensesDownload
       :visible="downloadVisible"
       :ids="downloadIDs"
       :title="title"
-      :close="() => downloadVisible = false" />
+      :close="() => downloadVisible = false" /> -->
   </div>
 </template>
 
 <script>
 import { get, find } from 'lodash'
 import axios from 'axios'
-import SensesCopy from './SensesCopy.vue'
-import SensesDownload from './SensesDownload.vue'
+// import SensesCopy from './SensesCopy.vue'
+// import SensesDownload from './SensesDownload.vue'
 import { chain, getUrlToResources } from '../assets/js/utils.js'
 
 export default {
   name: 'SensesMeta',
   docs: 'Since this component uses <code class="highlight gray no-hover">SensesDownload</code>, it’s important to set mode to <code class="highlight gray no-hover">spa</code> in <code class="highlight gray no-hover">nuxt.config.js</code>, when running in Nuxt.',
   components: {
-    SensesCopy,
-    SensesDownload
+    // SensesCopy,
+    // SensesDownload
   },
   props: {
     id: {
@@ -115,7 +115,11 @@ export default {
       return find(modules, { id })
     },
     title () {
-      return get(this.module, 'title', 'unnamed module')
+      if (this.lang === 'de') return get(this.module, 'titel', 'GEMRAN TITLE MISSING')
+      return get(this.module, 'title', 'title missing')
+    },
+    lang () {
+      return location.pathname.split('/').find((frag, i, fragments) => i === fragments.length - 1).toLowerCase
     },
     authors () {
       return chain(get(this.module, 'authors', []))
