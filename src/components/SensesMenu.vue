@@ -99,7 +99,7 @@ export default {
   },
   computed: {
     lang () {
-      return location.pathname.split('/').filter(frag => frag.length > 0).find((frag, i, fragments) => i === fragments.length - 1).toLowerCase()
+      return (location.pathname.split('/').filter(frag => frag.length > 0).find((frag, i, fragments) => i === fragments.length - 1) || 'en').toLowerCase()
     },
     module () {
       return this.modules.find(m => m.id === this.id)
