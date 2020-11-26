@@ -119,7 +119,7 @@ export default {
       return get(this.module, 'title', 'title missing')
     },
     lang () {
-      return location.pathname.split('/').find((frag, i, fragments) => i === fragments.length - 1).toLowerCase
+      return location.pathname.split('/').find((frag, i, fragments) => i === fragments.length - 1).toLowerCase()
     },
     authors () {
       return chain(get(this.module, 'authors', []))
