@@ -10,8 +10,8 @@
         </a>
       </span> -->
       <div class="falafel">
-        <a href="de"><div class="button" :class="{active: lang === 'de'}">DE</div></a>
-        <a href="en"><div class="button" :class="{active: lang === 'en'}">EN</div></a>
+        <a href="../de"><div class="button" :class="{active: lang === 'de'}">DE</div></a>
+        <a href="../en"><div class="button" :class="{active: lang === 'en'}">EN</div></a>
       </div>
       <div class="warnings" v-if="!open">
         <div v-if="wip" class="wip highlight red mono tiny no-hover">
@@ -99,7 +99,7 @@ export default {
   },
   computed: {
     lang () {
-      return location.pathname.split('/').find((frag, i, fragments) => i === fragments.length - 1).toLowerCase()
+      return location.pathname.split('/').filter(frag => frag.length > 0).find((frag, i, fragments) => i === fragments.length - 1).toLowerCase()
     },
     module () {
       return this.modules.find(m => m.id === this.id)
