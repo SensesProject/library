@@ -14,6 +14,10 @@
         <span class="caption">Link</span>
         <SensesCopy :content="link" />
       </section>
+      <section>
+        <span class="caption">Last update</span>
+        <span>{{ lastUpdate }}</span>
+      </section>
       <section v-if="downloads.length">
         <span class="caption">Printable resources</span>
         <span class="btn--link clickable" @click="() => downloadVisible = !downloadVisible">View {{ downloads.length }} {{ downloads.length > 1 ? 'packages' : 'package' }} for download</span>
@@ -23,7 +27,7 @@
         <a :href="gems" class="btn--link">View {{ gemsAmount ? gemsAmount : '' }} guided explore module{{ gemsAmount === 1 ? '' : 's' }}&nbsp;<i>&nearr;</i></a>
       </section>
       <section class="sources" v-if="sources || localSources">
-        <span class="caption">Sources</span>
+        <span class="caption">References</span>
         <slot>
           <ul>
             <li v-for="([label, link], n) in sources" :key="n" class="item">
@@ -137,6 +141,15 @@ export default {
     },
     sources () {
       return get(this.module, 'sources')
+    },
+    lastUpdate () {
+      const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+      const d = new Date(get(this.module, 'lastUpdate'))
+      if (d instanceof Date && !isNaN(d)) {
+        return `${monthNames[d.getMonth()]} ${d.getFullYear()}`
+      } else {
+        return false
+      }
     }
   },
   mounted () {
@@ -148,7 +161,6 @@ export default {
       axios.get(getUrlToResources('settings/modules.json'))
         .then((response) => {
           const modules = get(response, ['data', 'modules'], [])
-          // console.info(`Fetched ${modules.length} modules`)
           this.modules = modules
         })
     }
@@ -215,6 +227,15 @@ export default {
       font-size: 0.6rem;
       text-transform: uppercase;
       letter-spacing: 0.05em;
+
+      & + span {
+        display: inline-block;
+        margin-top: 0.3rem;
+      }
+
+      & + ul {
+        margin-top: 0.5rem;
+      }
     }
 
     .item {
