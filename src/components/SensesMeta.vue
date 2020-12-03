@@ -26,7 +26,7 @@
         <span class="caption">Data used in this module</span>
         <a :href="gems" class="btn--link">View {{ gemsAmount ? gemsAmount : '' }} guided explore module{{ gemsAmount === 1 ? '' : 's' }}&nbsp;<i>&nearr;</i></a>
       </section>
-      <section class="sources" v-if="sources || localSources">
+      <section class="sources" v-if="sources.length || localSources">
         <span class="caption">References</span>
         <slot>
           <ul>
@@ -140,7 +140,7 @@ export default {
       return get(this.module, 'downloadIDs', [])
     },
     sources () {
-      return get(this.module, 'sources')
+      return get(this.module, 'sources', [])
     },
     lastUpdate () {
       const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
