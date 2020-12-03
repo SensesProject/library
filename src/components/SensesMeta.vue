@@ -14,10 +14,6 @@
         <span class="caption">Link</span>
         <SensesCopy :content="link" />
       </section>
-      <section>
-        <span class="caption">Last update</span>
-        <span>{{ lastUpdate }}</span>
-      </section>
       <section v-if="downloads.length">
         <span class="caption">Printable resources</span>
         <span class="btn--link clickable" @click="() => downloadVisible = !downloadVisible">View {{ downloads.length }} {{ downloads.length > 1 ? 'packages' : 'package' }} for download</span>
@@ -25,6 +21,10 @@
       <section v-if="gems">
         <span class="caption">Data used in this module</span>
         <a :href="gems" class="btn--link">View {{ gemsAmount ? gemsAmount : '' }} guided explore module{{ gemsAmount === 1 ? '' : 's' }}&nbsp;<i>&nearr;</i></a>
+      </section>
+      <section>
+        <span class="caption">Last update</span>
+        <span>{{ lastUpdate }}</span>
       </section>
       <section class="sources" v-if="sources.length || localSources">
         <span class="caption">References</span>
