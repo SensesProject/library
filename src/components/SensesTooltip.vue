@@ -1,5 +1,5 @@
 <template>
-  <v-popover offset="2" :trigger="trigger" :popoverClass="['senses-tooltip', ...tooltipClass]" :placement="placement">
+  <v-popover v-bind="tooltipOptions" offset="2" :trigger="trigger" :popoverClass="['senses-tooltip', ...tooltipClass]" :placement="placement">
     <span :class="textClass"><slot>{{ text }}</slot></span>
     <slot name="tooltip" slot="popover">
       {{ tooltip }}
@@ -48,6 +48,13 @@ export default {
       type: String,
       default: 'top',
       docs: 'placement of tooltip. defaults to "top"'
+    },
+    tooltipOptions: {
+      type: Object,
+      default () {
+        return {}
+      },
+      docs: 'other options directly passed to v-popover. refer to https://github.com/Akryum/v-tooltip#other-options'
     }
   },
   data () {
