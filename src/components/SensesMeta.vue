@@ -143,7 +143,7 @@ export default {
       return get(this.module, 'sources', [])
     },
     lastUpdate () {
-      const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+      const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
       const d = new Date(get(this.module, 'lastUpdate'))
       if (d instanceof Date && !isNaN(d)) {
         return `${monthNames[d.getMonth()]} ${d.getFullYear()}`
