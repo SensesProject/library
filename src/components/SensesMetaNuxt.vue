@@ -76,7 +76,6 @@
 
 <script>
 import { get, find } from 'lodash'
-import axios from 'axios'
 import SensesCopy from './SensesCopy.vue'
 import SensesDownload from './SensesDownloadNuxt.vue'
 import { chain, getUrlToResources } from '../assets/js/utils.js'
@@ -138,11 +137,10 @@ export default {
   },
   methods: {
     loadModules () {
-      axios.get(getUrlToResources('settings/modules.json'))
-        .then((response) => {
-          const modules = get(response, ['data', 'modules'], [])
-          // console.info(`Fetched ${modules.length} modules`)
-          this.modules = modules
+      fetch(getUrlToResources('settings/modules.json'))
+        .then(response => response.json())
+        .then(data => {
+          this.modules = get(data, ['modules'], [])
         })
     }
   }

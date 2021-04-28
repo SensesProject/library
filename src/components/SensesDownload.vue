@@ -90,7 +90,6 @@
 <script>
 import Vue from 'vue'
 import { get, map, includes, head, find, isNumber } from 'lodash'
-import axios from 'axios'
 import VModal from 'vue-js-modal'
 import SensesCopy from './SensesCopy.vue'
 import { chain, getUrlToResources } from '../assets/js/utils.js'
@@ -215,9 +214,10 @@ export default {
       }
     },
     loadDownloads () {
-      axios.get(getUrlToResources('settings/downloads.json'))
-        .then((response) => {
-          this.downloads = response.data.downloads
+      fetch(getUrlToResources('settings/downloads.json'))
+        .then(response => response.json())
+        .then(data => {
+          this.downloads = get(data, ['downloads'], [])
         })
     }
   }
