@@ -71,14 +71,13 @@
               <span class="glyph glyph-industry" />
               <span class="link">Imprint</span>
             </a>
-            <span class="disabled tiny soon">coming soon</span>
-            <a href="/policy-portal" class="disabled green highlight">
-                <span class="green glyph glyph-policies" />
-                <span class="link">Policy Portal</span>
+            <a href="/policy-portal" class="green highlight">
+              <span class="green glyph glyph-policies" />
+              <span class="link">Policy Portal</span>
             </a>
-            <a href="/finance-portal" class="disabled purple highlight">
-                <span class="purple glyph glyph-finance" />
-                <span class="link">Finance Portal</span>
+            <a href="/finance-portal" class="purple highlight">
+              <span class="purple glyph glyph-finance" />
+              <span class="link">Finance Portal</span>
             </a>
           </nav>
         </div>
