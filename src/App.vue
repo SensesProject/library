@@ -21,7 +21,7 @@ export default {
 </script>
 <style lang="scss">
 $font-prefix: './assets/fonts';
-@import "/style/base";
+@import "@/style/base";
 a {
   color: $color-black;
 }
@@ -35,7 +35,7 @@ a {
 // }
 </style>
 <style scoped lang="scss">
-@import "/style/variables";
+@import "@/style/variables";
 #app {
   min-height: 100vh;
   .menu-bar {
